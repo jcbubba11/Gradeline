@@ -1,0 +1,40 @@
+rules_version = '2';
+
+// Security rules for Gradeline's Mentor review.
+// Paste these into Firebase console → Firestore Database → Rules, then Publish.
+// Reviews can be read only by someone who has the exact link (no listing),
+// can't be edited after creation, and comments can only change their "resolved" flag.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /reviews/{reviewId} {
+      allow get: if true;
+      allow list, update, delete: if false;
+      allow create: if reviewId.size() == 10
+        && request.resource.data.keys().hasOnly(['text', 'mode', 'author', 'note', 'createdAt'])
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 20000
+        && request.resource.data.mode in ['resume', 'letter', 'linkedin']
+        && request.resource.data.author is string && request.resource.data.author.size() <= 80
+        && request.resource.data.note is string && request.resource.data.note.size() <= 300
+        && request.resource.data.createdAt is string && request.resource.data.createdAt.size() <= 40;
+
+      match /comments/{commentId} {
+        allow read: if true;
+        allow delete: if false;
+        allow create: if exists(/databases/$(database)/documents/reviews/$(reviewId))
+          && request.resource.data.keys().hasOnly(['line', 'quote', 'text', 'name', 'resolved', 'createdAt'])
+          && request.resource.data.line is int
+          && request.resource.data.line >= 0 && request.resource.data.line < 2000
+          && request.resource.data.quote is string && request.resource.data.quote.size() <= 200
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 2000
+          && request.resource.data.name is string && request.resource.data.name.size() <= 80
+          && request.resource.data.resolved == false
+          && request.resource.data.createdAt is string && request.resource.data.createdAt.size() <= 40;
+        allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['resolved'])
+          && request.resource.data.resolved is bool;
+      }
+    }
+  }
+}
