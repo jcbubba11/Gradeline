@@ -38,21 +38,22 @@ MAJORS = [
      r"statistic|research engineer|deep learning|nlp|natural language|computer vision|\bvision\b|reinforcement learning|"
      r"robot learning|interpretab|research intern|researcher|research fellow|phd"),
     ("Engineering (EE, ME, Aero, Civil)", r"hardware|electrical|mechanical|aerospace|civil|chemical engineer|manufacturing|"
-     r"firmware|embedded|\brf\b|asic|fpga|silicon|robotics|propulsion|structural|industrial engineer|test engineer"),
+     r"firmware|embedded|\brf\b|asic|fpga|silicon|robotics|propulsion|structural|industrial engineer|test engineer|"
+     r"technician|turbo|thermal|materials|nuclear|process engineer|quality engineer"),
     ("Finance, Accounting & Economics", r"financ|accounting|accountant|investment|invest|trading|trader|quant|banking|"
      r"treasury|\btax\b|audit|fp&a|equity|credit|risk|actuar|econom|capital markets|wealth|summer analyst"),
     ("Business, Strategy & Consulting", r"strategy|business operations|bizops|consult|business analyst|corporate development|"
      r"\bmba\b|general management|business intern"),
     ("Marketing, Communications & Media", r"marketing|communications|social media|content|brand|\bpr\b|public relations|"
      r"journalis|editorial|editor|video|podcast|media|copywrit|growth|seo|market research"),
-    ("Design & Creative Arts", r"design|designer|\bux\b|\bui\b|graphic|illustrat|animation|creative|art\b|photograph"),
+    ("Design & Creative Arts", r"design|designer|\bux\b|\bui\b|graphic|illustrat|animation|creative|\barts?\b|photograph"),
     ("Product & Project Management", r"product manag|product intern|\bapm\b|program manag|project manag|product owner|technical program|product innovation|special projects"),
     ("Sales & Customer Success", r"sales|account exec|account manag|business development|\bbdr\b|\bsdr\b|customer|partnerships"),
-    ("HR, People & Operations", r"\bhr\b|human resources|people|recruit|talent|operations|supply chain|logistics|procurement|facilities"),
+    ("HR, People & Operations", r"\bhr\b|human resources|people|employee experience|recruit|talent|operations|supply chain|logistics|procurement|facilities"),
     ("Law, Policy & Government", r"legal|\blaw\b|paralegal|policy|government|public affairs|compliance|regulatory|privacy"),
     ("Health, Biology & Life Sciences", r"biolog|\bbio|clinical|health|medical|pharma|chemist|\blab\b|laboratory|genom|"
      r"neuro|nurs|patient|life science|biotech"),
-    ("Education & Nonprofit", r"educat|teach|curriculum|tutor|nonprofit|non-profit|community|social impact"),
+    ("Education & Nonprofit", r"educat|teach|curriculum|tutor|nonprofit|non-profit|community|social impact|grants|fundrais|philanthrop"),
 ]
 MAJORS = [(name, re.compile(rx, re.I)) for name, rx in MAJORS]
 OTHER = "Other / Any major"
@@ -107,7 +108,7 @@ def is_remote(*parts):
 # ---------- per-ATS fetchers: each returns a list of raw dicts ----------
 
 def fetch_greenhouse(token):
-    data = get_json(f"https://boards-api.greenhouse.io/v1/boards/{urllib.parse.quote(token)}/jobs")
+    data = get_json(f"https://boards-api.greenhouse.io/v1/boards/{urllib.parse.quote(urllib.parse.unquote(token))}/jobs")
     out = []
     for j in data.get("jobs", []):
         loc = (j.get("location") or {}).get("name") or ""
@@ -117,7 +118,7 @@ def fetch_greenhouse(token):
 
 
 def fetch_lever(token):
-    data = get_json(f"https://api.lever.co/v0/postings/{urllib.parse.quote(token)}?mode=json")
+    data = get_json(f"https://api.lever.co/v0/postings/{urllib.parse.quote(urllib.parse.unquote(token))}?mode=json")
     out = []
     for j in data if isinstance(data, list) else []:
         cat = j.get("categories") or {}
@@ -130,7 +131,7 @@ def fetch_lever(token):
 
 
 def fetch_ashby(token):
-    data = get_json(f"https://api.ashbyhq.com/posting-api/job-board/{urllib.parse.quote(token)}")
+    data = get_json(f"https://api.ashbyhq.com/posting-api/job-board/{urllib.parse.quote(urllib.parse.unquote(token))}")
     out = []
     for j in data.get("jobs", []):
         if j.get("isListed") is False:
@@ -149,7 +150,7 @@ def fetch_smartrecruiters(token):
     out, offset = [], 0
     while True:
         q = urllib.parse.urlencode({"q": "intern", "limit": 100, "offset": offset})
-        data = get_json(f"https://api.smartrecruiters.com/v1/companies/{urllib.parse.quote(token)}/postings?{q}")
+        data = get_json(f"https://api.smartrecruiters.com/v1/companies/{urllib.parse.quote(urllib.parse.unquote(token))}/postings?{q}")
         for j in data.get("content", []):
             l = j.get("location") or {}
             loc = ", ".join(x for x in (l.get("city"), l.get("region"), l.get("country", "").upper()) if x)
