@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pull internship postings from public company job-board feeds and write the
+"""Pull internship and entry-level job postings from public company job-board feeds and write the
 site's data file.
 
 Sources: Greenhouse, Lever, Ashby and SmartRecruiters public job-board APIs
@@ -22,12 +22,28 @@ from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-UA = "GradelineInternshipTracker/1.0 (+https://github.com/)"
+UA = "OneStopJobTracker/1.0 (+https://github.com/)"
 
 INTERN_RE = re.compile(
     r"\b(intern|interns|internship|co-?op|summer (?:analyst|associate|scholar)|"
     r"student (?:trainee|researcher|worker)|apprentice(?:ship)?|fellowship)\b", re.I)
-SKIP_RE = re.compile(r"\b(manager of|director|head of|senior|sr\.?|principal|staff)\b", re.I)
+SKIP_RE = re.compile(r"\b(manager of|director|head of|senior|sr\.?|principal|staff|lead|vp|vice president|chief|"
+                     r"architect|ii|iii|iv|level [2-9])\b", re.I)
+# Full-time roles that say plainly they're for new grads or early career.
+ENTRY_RE = re.compile(
+    r"\b(entry[- ]level|new grad(?:uate)?s?|recent grad(?:uate)?s?|university grad(?:uate)?|college grad(?:uate)?|"
+    r"graduate (?:program|scheme|analyst|engineer|trainee|rotational)|early[- ]career|early[- ]in[- ]career|"
+    r"junior|jr\.?|associate (?:analyst|engineer|consultant|developer|scientist|designer|product manager|"
+    r"accountant|specialist|coordinator)|analyst i\b|engineer i\b|level 1|level i\b|rotational program|"
+    r"leadership development program|campus hire|university hire|class of 20\d\d|20\d\d start)\b", re.I)
+
+
+def job_type(title):
+    if INTERN_RE.search(title):
+        return "Internship"
+    if ENTRY_RE.search(title):
+        return "Entry-level"
+    return None
 
 # Major groups, matched against the posting title. A posting can land in several.
 MAJORS = [
@@ -147,9 +163,18 @@ def fetch_ashby(token):
 
 
 def fetch_smartrecruiters(token):
+    out, seen = [], set()
+    for term in ("intern", "entry level", "graduate", "junior"):
+        for j in fetch_smartrecruiters_term(token, term):
+            if j["id"] not in seen:
+                seen.add(j["id"]); out.append(j)
+    return out
+
+
+def fetch_smartrecruiters_term(token, term):
     out, offset = [], 0
     while True:
-        q = urllib.parse.urlencode({"q": "intern", "limit": 100, "offset": offset})
+        q = urllib.parse.urlencode({"q": term, "limit": 100, "offset": offset})
         data = get_json(f"https://api.smartrecruiters.com/v1/companies/{urllib.parse.quote(urllib.parse.unquote(token))}/postings?{q}")
         for j in data.get("content", []):
             l = j.get("location") or {}
@@ -172,7 +197,8 @@ def fetch_usajobs():
         return [], "skipped (USAJOBS_KEY / USAJOBS_EMAIL not set)"
     headers = {"Host": "data.usajobs.gov", "User-Agent": email, "Authorization-Key": key}
     seen, out = set(), []
-    for params in ({"HiringPath": "student", "ResultsPerPage": 500}, {"Keyword": "intern", "ResultsPerPage": 500}):
+    for params in ({"HiringPath": "student", "ResultsPerPage": 500}, {"Keyword": "intern", "ResultsPerPage": 500},
+                   {"HiringPath": "graduates", "ResultsPerPage": 500}):
         for page in range(1, 6):
             q = urllib.parse.urlencode({**params, "Page": page})
             data = get_json(f"https://data.usajobs.gov/api/search?{q}", headers)
@@ -239,7 +265,10 @@ def main():
         ok_boards += 1
         for j in jobs:
             title = re.sub(r"\s+", " ", j["title"]).strip()
-            if not j.get("url") or not INTERN_RE.search(title) or SKIP_RE.search(title):
+            kind = job_type(title)
+            if c["ats"] == "usajobs" and not kind:
+                kind = "Entry-level"  # USAJOBS results here come from the student and recent-graduate hiring paths
+            if not j.get("url") or not kind or SKIP_RE.search(title):
                 continue
             key = f"{c['ats']}:{c['token']}:{j['id']}"
             first_seen = previous.get(key, {}).get("first_seen", now)
@@ -255,13 +284,16 @@ def main():
                 "closes": j.get("closes"),
                 "industry": c["industry"],
                 "majors": tag_majors(title),
+                "type": kind,
                 "source": c["ats"],
             }
 
     items = sorted(postings.values(), key=lambda p: p["posted"] or "", reverse=True)
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w") as f:
-        json.dump({"updated": now, "count": len(items), "companies": len({p["company"] for p in items}),
+        json.dump({"updated": now, "count": len(items),
+                   "internships": sum(p.get("type") == "Internship" for p in items),
+                   "entry_level": sum(p.get("type") == "Entry-level" for p in items), "companies": len({p["company"] for p in items}),
                    "postings": items}, f, separators=(",", ":"))
     with open(args.report, "w") as f:
         json.dump({"run": now, "boards_ok": ok_boards, "boards_failed": len(failures), "usajobs": usa_status,

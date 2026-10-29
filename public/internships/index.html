@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Live internship openings by major, updated daily | Gradeline</title>
+<title>Internship search by major, updated daily | One Stop</title>
 <meta name="description" content="Free, live list of internship openings pulled straight from company career pages several times a day. Filter by major, industry, location and how recently it was posted.">
-<meta property="og:title" content="Live internship openings by major | Gradeline">
+<meta property="og:title" content="Live internship openings by major | One Stop">
 <meta property="og:description" content="Internship openings from company career pages, updated several times a day. Filter by major and industry. Free, no sign-up.">
-<link rel="canonical" href="https://wonderful-panda-c6c673.netlify.app/internships/">
+<link rel="canonical" href="https://enchanting-cobbler-9bc669.netlify.app/internships/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Gradeline">
+<meta property="og:site_name" content="One Stop">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23c62828'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3EG%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap">
 <style>:root{--bg:#f5f7fa;--paper:#fff;--ink:#18202b;--muted:#586273;--line:#dde3ea;--blue:#1d4fa3;--red:#c0302b;--soft:#eef2f7;--green:#1f7a4d}
@@ -41,7 +41,7 @@ footer{margin-top:48px;border-top:1px solid var(--line);padding:20px 0 40px;colo
 @media (max-width:560px){.apply{width:100%;text-align:center}}</style>
 </head>
 <body>
-<header><div class="wrap"><a class="brand" href="/">Grade<span>line</span></a><a href="/#robot">Check your resume first</a></div></header>
+<header><div class="wrap"><a class="brand" href="/">One<span> Stop</span></a><a href="/#tailor">Check your resume first</a></div></header>
 <main class="wrap">
 <h1>Live internship openings</h1>
 <p class="lead">Pulled straight from company career pages several times a day. Pick your major, then apply on the company's own site.</p>
@@ -59,9 +59,10 @@ footer{margin-top:48px;border-top:1px solid var(--line);padding:20px 0 40px;colo
 <ul class="list" id="list"></ul>
 <button class="morebtn" id="more" hidden>Show more</button>
 
-<p class="note">Listings link to each employer's own careers page; Gradeline doesn't post jobs or take applications. Openings can close at any time, so always confirm details on the employer's site. Missing a company? Tell us and we'll add its careers page.</p>
+<p class="note">Looking for full-time new-grad roles too? <a href="/#internships">Search internships and entry-level jobs</a> with recruiter and alumni contacts.</p>
+<p class="note">Listings link to each employer's own careers page; One Stop doesn't post jobs or take applications. Openings can close at any time, so always confirm details on the employer's site. Missing a company? Tell us and we'll add its careers page.</p>
 </main>
-<footer><div class="wrap">Gradeline · free resume, cover letter and LinkedIn tools · <a href="/#privacy">Privacy</a> · <a href="/#terms">Terms</a></div></footer>
+<footer><div class="wrap">One Stop · free resume builder, resume checker and job search · <a href="/#privacy">Privacy</a> · <a href="/#terms">Terms</a></div></footer>
 <script>
 (function () {
   var PAGE = 40, DAY = 864e5;
@@ -98,6 +99,7 @@ footer{margin-top:48px;border-top:1px solid var(--line);padding:20px 0 40px;colo
   }
 
   function matches(j) {
+    if (j.type && j.type !== 'Internship') return false;
     if (f.major.value && j.majors.indexOf(f.major.value) < 0) return false;
     if (f.industry.value && j.industry !== f.industry.value) return false;
     if (f.remote.checked && !j.remote) return false;
@@ -133,7 +135,7 @@ footer{margin-top:48px;border-top:1px solid var(--line);padding:20px 0 40px;colo
     fill(f.major, Object.keys(majors).filter(function (m) { return m !== other; }).sort().concat(majors[other] ? [other] : []));
     fill(f.industry, Object.keys(industries).sort());
     readUrl();
-    el('stamp').textContent = (data.count || all.length).toLocaleString() + ' openings at ' + (data.companies || 0).toLocaleString() +
+    el('stamp').textContent = (data.internships != null ? data.internships : (data.count || all.length)).toLocaleString() + ' openings at ' + (data.companies || 0).toLocaleString() +
       ' employers · updated ' + new Date(data.updated).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
     render();
   }).catch(function () {

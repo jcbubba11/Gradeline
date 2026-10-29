@@ -1,11 +1,19 @@
 rules_version = '2';
 
-// Security rules for Gradeline's Mentor review.
-// Paste these into Firebase console → Firestore Database → Rules, then Publish.
+// Security rules for One Stop: optional accounts and Mentor review.
 // Reviews can be read only by someone who has the exact link (no listing),
 // can't be edited after creation, and comments can only change their "resolved" flag.
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Optional accounts: each signed-in person can read and write only their own synced work.
+    match /users/{uid} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['data', 'savedAt'])
+        && request.resource.data.data is string
+        && request.resource.data.data.size() <= 950000
+        && request.resource.data.savedAt is string && request.resource.data.savedAt.size() <= 40;
+    }
     match /reviews/{reviewId} {
       allow get: if true;
       allow list, update, delete: if false;

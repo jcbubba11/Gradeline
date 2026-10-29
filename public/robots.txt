@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wonderful-panda-c6c673.netlify.app/sitemap.xml
+Sitemap: https://enchanting-cobbler-9bc669.netlify.app/sitemap.xml

@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gradeline: free resume, cover letter and LinkedIn grader</title>
-<meta name="description" content="Grade your resume, cover letter and LinkedIn profile for free, with every rule backed by career-center sources. Templates, a builder, ATS view, bullet coach, interview prep and a job tracker.">
-<meta property="og:title" content="Gradeline">
-<meta property="og:description" content="Free resume, cover letter and LinkedIn grader backed by career-center sources. Grading runs in your browser.">
+<title>One Stop | Free Resume Builder, Resume Checker &amp; Job Search</title>
+<meta name="description" content="Make a resume for free, check it for ATS hiring software, and search internships and entry-level jobs by major. Resume builder, templates, cover letters, LinkedIn checker and job tracker in one stop.">
+<meta property="og:title" content="One Stop | Free Resume Builder, Resume Checker &amp; Job Search">
+<meta property="og:site_name" content="One Stop">
+<meta property="og:description" content="Make a resume, check it for ATS, and find internships and entry-level jobs by major. Free, all in one place.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://wonderful-panda-c6c673.netlify.app/">
-<link rel="canonical" href="https://wonderful-panda-c6c673.netlify.app/">
-<script type="application/ld+json" id="ldApp">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Gradeline", "url": "https://wonderful-panda-c6c673.netlify.app/", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "Free resume, cover letter and LinkedIn grader with source-backed checks, a resume builder, ATS view and job tracker.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
+<meta property="og:url" content="https://enchanting-cobbler-9bc669.netlify.app/">
+<link rel="canonical" href="https://enchanting-cobbler-9bc669.netlify.app/">
+<script type="application/ld+json" id="ldApp">{"@context": "https://schema.org", "@type": "WebApplication", "name": "One Stop", "url": "https://enchanting-cobbler-9bc669.netlify.app/", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "description": "Free resume builder, resume checker and job search: make a resume, check it for ATS, and find internships and entry-level jobs by major.", "alternateName": ["One Stop Resume Builder", "One Stop Job Search"], "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23c62828'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3EG%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -66,14 +67,19 @@ header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; b
 .brand b span { color: var(--red); }
 .brand small { font-family: var(--f-pen); color: var(--red); font-size: 1.15rem; }
 nav.tabs { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; min-width: 0; flex: 1 1 auto; }
-.more { position: relative; }
+.more { position: static; }
+.top-inner { position: relative; }
 .more summary { list-style: none; cursor: pointer; white-space: nowrap; color: var(--muted); font-weight: 700; font-size: .92rem; padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 6px; }
 .more summary::-webkit-details-marker { display: none; }
 .more summary::after { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); }
 .more[open] summary::after { transform: rotate(-135deg) translateY(-1px); }
 .more summary:hover, .more[open] summary { color: var(--ink); background: var(--soft); }
 .more summary.current { color: var(--ink); background: var(--soft); box-shadow: inset 0 -3px 0 var(--red); }
-.more-menu { position: absolute; top: calc(100% + 6px); left: 0; z-index: 8; min-width: 220px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 6px; display: grid; gap: 2px; }
+.more-menu { position: absolute; top: calc(100% - 4px); right: 0; z-index: 8; width: min(760px, calc(100vw - 24px)); background: var(--paper); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 10px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px 8px; max-height: calc(100vh - 90px); overflow-y: auto; }
+.more-menu .col { display: grid; gap: 2px; align-content: start; min-width: 0; }
+.more-menu .col a { white-space: normal; }
+@media (max-width: 720px) { .more-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 380px) { .more-menu { grid-template-columns: minmax(0, 1fr); } }
 .more-menu a { display: block; }
 nav.tabs .more-menu a[aria-current="page"] { box-shadow: none; color: var(--red); }
 
@@ -168,6 +174,103 @@ label.field select { font: inherit; font-weight: 400; font-size: .92rem; width: 
 .doc p { margin: 2px 0; }
 .doc.letter p { margin: 0 0 8px; }
 .doc mark { background: var(--amber-soft); color: inherit; border-radius: 2px; padding: 0 1px; }
+/* Account */
+.acct { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.acct-me { position: relative; }
+.acct-me summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 4px 8px 4px 4px; border-radius: 99px; border: 1px solid var(--line); }
+.acct-me summary::-webkit-details-marker { display: none; }
+.acct-me summary:hover, .acct-me[open] summary { background: var(--soft); }
+.acct-av { width: 28px; height: 28px; border-radius: 50%; background: var(--blue); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: .85rem; background-size: cover; background-position: center; }
+.acct-name { font-weight: 700; font-size: .88rem; max-width: 14ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.acct-pop { position: absolute; right: 0; top: calc(100% + 6px); z-index: 9; min-width: 240px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 14px; display: grid; gap: 8px; }
+.acct-email { font-weight: 700; font-size: .88rem; overflow-wrap: anywhere; }
+.acct-sync { color: var(--muted); font-size: .82rem; }
+.acct-dlg { width: min(420px, calc(100vw - 32px)); border: 1px solid var(--line); border-radius: 14px; padding: 24px; box-shadow: 0 20px 60px rgba(24,32,43,.25); color: var(--ink); background: var(--paper); }
+.acct-dlg::backdrop { background: rgba(24,32,43,.45); }
+.acct-dlg h2 { font-size: 1.35rem; margin: 0 0 6px; padding-right: 36px; }
+.acct-x { position: absolute; top: 14px; right: 14px; margin: 0; }
+.acct-why { color: var(--muted); font-size: .9rem; margin: 0 0 14px; }
+.acct-tabs { margin-bottom: 14px; width: 100%; display: flex; }
+.acct-tabs button { flex: 1; }
+.acct-google { width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px; }
+.acct-or { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: .8rem; margin: 14px 0; }
+.acct-or::before, .acct-or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.acct-form { display: grid; gap: 10px; }
+.acct-form .field { display: grid; gap: 4px; font-weight: 700; font-size: .86rem; }
+.acct-form .field .note { font-weight: 400; }
+.acct-form input { font: inherit; font-size: .92rem; width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--paper); color: var(--ink); font-weight: 400; }
+.acct-form input:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
+.acct-form .btn.primary { padding: 10px; }
+.acct-err { margin: 0; color: var(--red); background: var(--red-soft); border-radius: 8px; padding: 8px 10px; font-size: .86rem; }
+.acct-err.ok { color: var(--green); background: var(--green-soft); }
+.acct-link { background: none; border: 0; color: var(--blue); font: inherit; font-size: .86rem; cursor: pointer; justify-self: center; text-decoration: underline; }
+.acct-fine { margin: 14px 0 0; font-size: .78rem; text-align: center; }
+@media (max-width: 720px) { .acct { order: 1; } nav.tabs { order: 2; flex-basis: 100%; } }
+@media (max-width: 560px) { .acct-name { display: none; } .brand small { display: none; } }
+/* Find internships */
+.ix-filters { padding: 16px; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); align-items: end; }
+.ix-filters label { display: block; font-size: .82rem; font-weight: 700; margin-bottom: 4px; }
+.ix-filters select, .ix-filters input[type=search] { width: 100%; font: inherit; font-size: .92rem; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); }
+.ix-filters .ix-check { display: flex; align-items: center; gap: 8px; font-weight: 400; font-size: .92rem; margin: 0 0 9px; }
+.ix-stamp { color: var(--muted); font-size: .9rem; }
+.ix-count { margin: 18px 0 10px; font-weight: 700; }
+.ix-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.ix-job { padding: 14px 18px; display: flex; gap: 14px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+.ix-job > div:first-child { min-width: 0; flex: 1 1 320px; }
+.ix-job h3 { font-size: 1.02rem; margin: 0 0 2px; line-height: 1.35; }
+.ix-job h3 a { color: var(--ink); text-decoration: none; } .ix-job h3 a:hover { text-decoration: underline; }
+.ix-meta { color: var(--muted); font-size: .9rem; margin: 0; } .ix-co { font-weight: 700; color: var(--ink); }
+.ix-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.ix-tag { font-size: .76rem; background: var(--soft); border-radius: 99px; padding: 2px 10px; color: var(--muted); }
+.ix-new { font-size: .72rem; font-weight: 700; color: var(--green); border: 1px solid currentColor; border-radius: 99px; padding: 1px 8px; margin-left: 6px; vertical-align: 2px; }
+.ix-acts { display: flex; gap: 8px; flex: none; }
+.ix-acts .btn { text-decoration: none; }
+.ix-people { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; font-size: .84rem; align-items: center; }
+.ix-people b { font-size: .72rem; font-family: var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+.ix-people a { color: var(--blue); font-weight: 700; text-decoration: none; } .ix-people a:hover { text-decoration: underline; }
+.ix-type { font-weight: 700; color: var(--ink); background: var(--blue-soft); }
+.ix-empty { border: 1px dashed var(--line); border-radius: 12px; padding: 24px; text-align: center; color: var(--muted); }
+.ix-more { display: block; margin: 18px auto 0; }
+@media (max-width: 560px) { .ix-acts { width: 100%; } .ix-acts .btn { flex: 1; text-align: center; } }
+/* Template looks: all single-column and ATS-safe, just different typography */
+.tpl-head .look { font-size: .78rem; color: var(--muted); }
+.tpl-head .look b { color: var(--ink); font-weight: 700; }
+.doc.t-classic { font-family: Georgia, "Times New Roman", serif; }
+.doc.t-classic .d-name { font-family: Georgia, serif; font-weight: 700; }
+.doc.t-modern { font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif; }
+.doc.t-modern .d-name, .doc.t-modern .d-contact { text-align: left; }
+.doc.t-modern .d-name { color: #1d4fa3; }
+.doc.t-modern .d-h { color: #1d4fa3; border-bottom: 2px solid #1d4fa3; }
+.doc.t-bold { font-family: "Segoe UI", Arial, sans-serif; padding-top: 0; }
+.doc.t-bold .d-name { text-align: left; font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: .02em; border-top: 8px solid #18202b; padding-top: 14px; }
+.doc.t-bold .d-contact { text-align: left; }
+.doc.t-bold .d-h { background: #18202b; color: #fff; border: 0; padding: 3px 8px; margin-top: 12px; }
+.doc.t-minimal { font-family: "Helvetica Neue", Arial, sans-serif; line-height: 1.6; }
+.doc.t-minimal .d-name { text-align: left; font-weight: 300; font-size: 1.45rem; letter-spacing: .04em; }
+.doc.t-minimal .d-contact { text-align: left; }
+.doc.t-minimal .d-h { border: 0; color: #8a94a3; font-weight: 600; letter-spacing: .22em; margin-top: 14px; }
+.doc.t-minimal .d-role { font-weight: 600; }
+.doc.t-executive { font-family: Garamond, "EB Garamond", Georgia, serif; }
+.doc.t-executive .d-name { font-family: Garamond, Georgia, serif; font-weight: 400; text-transform: uppercase; letter-spacing: .24em; font-size: 1.3rem; }
+.doc.t-executive .d-contact { border-bottom: 3px double #18202b; padding-bottom: 8px; }
+.doc.t-executive .d-h { text-align: center; border: 0; letter-spacing: .3em; font-weight: 400; margin-top: 12px; }
+.doc.t-executive .d-h::before, .doc.t-executive .d-h::after { content: " — "; color: #8a94a3; letter-spacing: 0; }
+.doc.t-compact { font-family: Calibri, Carlito, Arial, sans-serif; font-size: .68rem; line-height: 1.3; padding: 16px 18px; }
+.doc.t-compact .d-name { text-align: left; font-size: 1.1rem; }
+.doc.t-compact .d-contact { text-align: left; margin-bottom: 4px; }
+.doc.t-compact .d-h { border: 0; border-left: 4px solid #0f766e; padding-left: 6px; color: #0f766e; margin-top: 8px; }
+.doc.t-care { font-family: "Segoe UI", Arial, sans-serif; }
+.doc.t-care .d-name { color: #217646; }
+.doc.t-care .d-h { color: #217646; border-bottom: 1px solid #9fd1b3; background: #eef8f2; padding: 2px 6px; }
+.doc.t-creative { font-family: "Trebuchet MS", "Segoe UI", sans-serif; }
+.doc.t-creative .d-name { text-align: left; font-size: 1.45rem; }
+.doc.t-creative .d-name::after { content: ""; display: block; width: 46px; height: 4px; background: #c0302b; margin-top: 4px; }
+.doc.t-creative .d-contact { text-align: left; }
+.doc.t-creative .d-h { border: 0; color: #c0302b; letter-spacing: .14em; }
+.doc.t-trade { font-family: Verdana, Arial, sans-serif; font-size: .7rem; }
+.doc.t-trade .d-name { text-align: left; font-weight: 800; }
+.doc.t-trade .d-contact { text-align: left; border-bottom: 2px solid #9a6100; padding-bottom: 6px; }
+.doc.t-trade .d-h { border-bottom: 1px dashed #9a6100; color: #7a4d00; }
 .tpl-foot { padding: 12px 18px; display: flex; gap: 8px; flex-wrap: wrap; border-top: 1px solid var(--line); }
 
 /* Examples */
@@ -298,19 +401,6 @@ fieldset.li-basics input { width: 17px; height: 17px; accent-color: var(--blue);
 .li-card-body b { font-family: var(--f-display); font-size: 1.1rem; }
 .li-card-body p { font-size: .88rem; }
 .li-about-prev { color: var(--muted); white-space: pre-line; border-top: 1px solid var(--line); padding-top: 8px; margin-top: 6px !important; }
-
-/* Sounds like you */
-.h-note { font-size: .88rem; }
-.h-level.strong { color: var(--red); } .h-level.some { color: var(--amber, #b45309); } .h-level.few { color: var(--green); }
-.h-level { font-size: 2.2rem; }
-.h-marked { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; font-size: .9rem; line-height: 1.7; max-height: 320px; overflow: auto; background: var(--paper); }
-.h-mark { background: var(--red-soft); color: inherit; border-bottom: 2px solid var(--red); padding: 0 2px; border-radius: 2px; }
-.h-mark sup { color: var(--red); font: 700 .62rem var(--f-mono); margin-left: 1px; }
-.h-list, .h-generic { margin: 0; padding-left: 20px; display: grid; gap: 8px; font-size: .88rem; }
-.h-list { list-style: none; padding-left: 0; }
-.h-plain { font-family: var(--f-body); font-size: .9rem; white-space: pre-wrap; background: var(--soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin: 0; max-height: 360px; overflow: auto; }
-[data-view="human"] .grader-out { display: grid; gap: 12px; align-content: start; }
-[data-view="human"] .grader > * { min-width: 0; }
 
 /* Legal */
 .legal { padding: 22px 26px; display: grid; gap: 10px; max-width: 760px; }
@@ -485,35 +575,54 @@ table.jobs tr.due td:nth-child(6) input { color: var(--red); font-weight: 700; }
 <a class="skip" href="#main" id="skipLink">Skip to content</a>
 <header class="top">
   <div class="wrap top-inner">
-    <a class="brand" href="#grade"><b>Grade<span>line</span></b><small>resume lab</small></a>
+    <a class="brand" href="#grade"><b>One<span> Stop</span></b><small>resume &amp; jobs</small></a>
     <nav class="tabs" aria-label="Sections">
       <a href="#grade">Grade yours</a>
       <a href="#build">Build yours</a>
+      <a href="#internships">Find jobs</a>
       <details class="more" id="moreMenu">
         <summary id="moreLabel">More</summary>
         <div class="more-menu">
-          <div class="grp">Check</div>
-          <a href="#linkedin">LinkedIn checker</a>
-          <a href="#match">Match check</a>
-          <a href="#robot">What the robot sees</a>
-          <a href="#tailor">Tailor to a job</a>
-          <a href="#human">Sounds like you?</a>
-          <div class="grp">Write</div>
-          <a href="#coach">Bullet coach</a>
-          <a href="#resumes">Resume templates</a>
-          <a href="#cover-letters">Cover letter templates</a>
-          <a href="#examples">Good vs. bad examples</a>
-          <div class="grp">Prepare</div>
-          <a href="#interview">Interview prep</a>
-          <a href="#tracker">Job tracker</a>
-          <a href="#review">Mentor review</a>
-          <div class="grp">Learn</div>
-          <a href="#tips">Tips &amp; checklist</a>
-          <a href="#how-we-grade">How we grade</a>
-          <a href="#resources">Resources</a>
+          <div class="col">
+            <div class="grp">Check</div>
+            <a href="#linkedin">LinkedIn checker</a>
+            <a href="#match">Match check</a>
+            <a href="#tailor">Tailor &amp; ATS check</a>
+          </div>
+          <div class="col">
+            <div class="grp">Write</div>
+            <a href="#coach">Bullet coach</a>
+            <a href="#resumes">Resume templates</a>
+            <a href="#cover-letters">Cover letter templates</a>
+            <a href="#examples">Good vs. bad examples</a>
+          </div>
+          <div class="col">
+            <div class="grp">Prepare</div>
+            <a href="#interview">Interview prep</a>
+            <a href="#tracker">Job tracker</a>
+            <a href="#review">Mentor review</a>
+          </div>
+          <div class="col">
+            <div class="grp">Learn</div>
+            <a href="#tips">Tips &amp; checklist</a>
+            <a href="#how-we-grade">How we grade</a>
+            <a href="#resources">Resources</a>
+          </div>
         </div>
       </details>
     </nav>
+    <div class="acct" id="acct">
+      <button type="button" class="btn small" id="acctIn">Sign in</button>
+      <button type="button" class="btn small primary" id="acctUp">Sign up</button>
+      <details class="acct-me" id="acctMe" hidden>
+        <summary><span class="acct-av" id="acctAv" aria-hidden="true"></span><span class="acct-name" id="acctName"></span></summary>
+        <div class="acct-pop">
+          <div class="acct-email" id="acctEmail"></div>
+          <div class="acct-sync" id="acctSync">Your work syncs to your account.</div>
+          <button type="button" class="btn small" id="acctOut">Sign out</button>
+        </div>
+      </details>
+    </div>
   </div>
 </header>
 
@@ -769,29 +878,6 @@ table.jobs tr.due td:nth-child(6) input { color: var(--red); font-weight: 700; }
 </section>
 
 <!-- ROBOT VIEW -->
-<section class="view" data-view="robot" hidden>
-  <div class="intro">
-    <span class="eyebrow">What the robot sees</span>
-    <h1>See your resume the way hiring software reads it.</h1>
-    <p>Applicant tracking systems pull plain text out of your file. Fancy layouts can scramble it: two columns get merged line by line, icons turn into junk characters, and contact details in a page header can vanish. Drop your file to see the raw text and what was recognized.</p>
-  </div>
-  <div class="dropzone" id="rDrop">
-    <b>Drop your resume PDF or Word file</b>
-    <span>Read in your browser, never uploaded</span>
-    <label class="btn small" for="rFile">Choose a file</label>
-    <input type="file" id="rFile" accept=".pdf,.docx,.txt" hidden>
-    <span class="drop-status" id="rStatus" aria-live="polite"></span>
-  </div>
-  <div class="robot" id="rOut" hidden>
-    <div class="sheet robot-text"><div class="toolbar"><b>Extracted text</b><button type="button" class="btn small" id="rToGrader">Grade this text</button></div><pre id="rText"></pre></div>
-    <div class="sheet robot-side">
-      <h3>What it recognized</h3>
-      <dl class="kv" id="rFields"></dl>
-      <h3>Layout warnings</h3>
-      <ul class="checks" id="rWarn"></ul>
-    </div>
-  </div>
-</section>
 
 <!-- BULLET COACH -->
 <section class="view" data-view="coach" hidden>
@@ -833,9 +919,28 @@ table.jobs tr.due td:nth-child(6) input { color: var(--red); font-weight: 700; }
 <section class="view" data-view="tailor" hidden>
   <div class="intro">
     <span class="eyebrow">Tailor to a job</span>
-    <h1>What does this job ask for, and where do you prove it?</h1>
-    <p>Each requirement in the posting is matched to your strongest bullet. "Proven" means a bullet covers it with a number, "mentioned" means the words appear but nothing proves it, and "missing" is a gap to fill if it's true for you. This uses the resume and posting from the Grade page.</p>
+    <h1>Make sure the software can read you, then match the job.</h1>
+    <p>Step 1 shows your resume the way applicant tracking systems read it. Step 2 matches each requirement in the posting to your strongest bullet: "proven" means a bullet covers it with a number, "mentioned" means the words appear but nothing proves it, and "missing" is a gap to fill if it's true for you.</p>
   </div>
+  <div class="section-title"><h2>Step 1 · What the robot sees</h2><p>Hiring software pulls plain text out of your file. Two columns can get merged line by line, icons turn into junk characters, and contact details in a page header can vanish.</p></div>
+  <div class="dropzone" id="rDrop">
+    <b>Drop your resume PDF or Word file</b>
+    <span>Read in your browser, never uploaded. Skip this if your resume is already on the Grade page.</span>
+    <label class="btn small" for="rFile">Choose a file</label>
+    <input type="file" id="rFile" accept=".pdf,.docx,.txt" hidden>
+    <span class="drop-status" id="rStatus" aria-live="polite"></span>
+  </div>
+  <div class="robot" id="rOut" hidden>
+    <div class="sheet robot-text"><div class="toolbar"><b>Extracted text</b><button type="button" class="btn small" id="rToGrader">Grade this text</button></div><pre id="rText"></pre></div>
+    <div class="sheet robot-side">
+      <h3>What it recognized</h3>
+      <dl class="kv" id="rFields"></dl>
+      <h3>Layout warnings</h3>
+      <ul class="checks" id="rWarn"></ul>
+    </div>
+  </div>
+  <div class="section-title" style="margin-top:28px"><h2>Step 2 · Match it to the posting</h2><p>Uses the resume on the Grade page (or the file you dropped above).</p></div>
+  <div class="field"><label for="tlJob">Job posting</label><textarea id="tlJob" style="min-height:110px" placeholder="Paste the full job posting here. It's shared with the Grade page."></textarea></div>
   <div class="stats" id="tlStats"></div>
   <div class="sheet table-wrap"><table class="rubric" id="tlTable"></table></div>
   <div class="sheet formula">
@@ -893,35 +998,6 @@ table.jobs tr.due td:nth-child(6) input { color: var(--red); font-weight: 700; }
 </section>
 
 <!-- SOUNDS LIKE YOU -->
-<section class="view" data-view="human" hidden>
-  <div class="intro">
-    <span class="eyebrow">Sounds like you?</span>
-    <h1>Does it read like a person wrote it?</h1>
-    <p>Recruiters see a lot of AI-drafted letters, and they all sound alike. This finds the phrases and rhythms that make writing sound generated, suggests plainer wording, and points to sentences that need a detail only you could add.</p>
-  </div>
-  <div class="sheet formula h-note"><p><b>This is not an AI detector.</b> No tool can prove who wrote something. Even OpenAI <a href="https://searchenginejournal.com/openai-shuts-down-flawed-ai-detector/492565" target="_blank" rel="noopener">withdrew its own AI-text classifier</a> for low accuracy, and detectors regularly flag human writing. Use this to sound specific and natural, not to judge anyone.</p></div>
-  <div class="grader">
-    <div class="sheet grader-in">
-      <label class="field" for="hText">Your text <span class="hint">A cover letter, summary or LinkedIn About section works best</span>
-        <textarea id="hText" style="min-height:320px"></textarea></label>
-      <div class="btns" style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn small" id="hFromGrade">Use my Grade page text</button></div>
-    </div>
-    <div class="sheet grader-out" id="hOut" hidden>
-      <div class="scorebox"><div class="score-num h-level" id="hLevel"></div><div class="score-verdict"><strong>AI-style signals</strong><span id="hLevelText"></span></div></div>
-      <ul class="checks" id="hSignals"></ul>
-      <h3>Highlighted phrases</h3>
-      <div class="h-marked" id="hMarked"></div>
-      <ol class="h-list" id="hList"></ol>
-      <h3>Plainer version</h3>
-      <p class="note">Swaps in the plain wording above. Phrases marked "rewrite in your own words" are left for you.</p>
-      <pre class="h-plain" id="hPlain"></pre>
-      <div class="btns" style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn small primary" id="hUse">Use on the Grade page</button><button type="button" class="btn small" id="hCopy">Copy</button></div>
-      <h3>Add a detail only you would know</h3>
-      <p class="note">These sentences have no name, number or specific thing in them. Add one: the product, the team size, the customer, the result.</p>
-      <ul class="h-generic" id="hGeneric"></ul>
-    </div>
-  </div>
-</section>
 
 <!-- PRIVACY -->
 <section class="view" data-view="privacy" hidden>
@@ -933,7 +1009,7 @@ table.jobs tr.due td:nth-child(6) input { color: var(--red); font-weight: 700; }
   <div class="sheet legal">
     <h2>The short version</h2>
     <ul>
-      <li>We don't have accounts, and we don't collect your name, email or resume.</li>
+      <li>Accounts are optional. If you don't sign in, we don't collect your name, email or resume.</li>
       <li>Files you drop are read inside your browser. They are never uploaded to us.</li>
       <li>Your work is saved in your browser's local storage on your device. Clearing your browser, or the button below, deletes it.</li>
       <li>We don't use advertising, tracking cookies or analytics.</li>
@@ -942,6 +1018,7 @@ table.jobs tr.due td:nth-child(6) input { color: var(--red); font-weight: 700; }
     <ul>
       <li><b>In your browser only:</b> the document you're grading, your job posting, builder content, LinkedIn checker entries, tracker rows, attached application packets, interview answers, your chosen field, and checklist ticks.</li>
       <li><b>Mentor review (only if you use it):</b> when you create a review link, the document text, your name and note, and reviewers' names and comments are saved in this site's online database (Google Firebase), so people with the link can see them. Review links are random and not listed anywhere, but anyone who has one can read and comment. Don't create a review for a document that contains anything you wouldn't share with your reviewers.</li>
+      <li><b>If you create an account (optional):</b> your name, email address and, if you use Google, your profile picture are stored by Google Firebase Authentication. While you're signed in, the same work the backup button saves (documents, builder content, tracker rows, saved internships and the rest of the list above) is copied to this site's database (Google Firebase) under your account so it syncs across your devices. Only you can read it. To delete it, sign in and contact us, or remove your work from every device and sign out.</li>
       <li><b>Backups:</b> "Download backup" saves a file to your device. We never see it.</li>
     </ul>
     <h2>Services this page loads</h2>
@@ -965,7 +1042,7 @@ table.jobs tr.due td:nth-child(6) input { color: var(--red); font-weight: 700; }
   </div>
   <div class="sheet legal">
     <h2>What this site is</h2>
-    <p>Gradeline gives automated, general feedback on resumes, cover letters and LinkedIn profiles, based on published guidance from the career centers and organizations listed on the How we grade page. It is not professional career, legal or hiring advice, and a high score doesn't guarantee an interview or a job.</p>
+    <p>One Stop gives automated, general feedback on resumes, cover letters and LinkedIn profiles, based on published guidance from the career centers and organizations listed on the How we grade page. It is not professional career, legal or hiring advice, and a high score doesn't guarantee an interview or a job.</p>
     <h2>Sources</h2>
     <p>We link to and summarize public guidance from universities, employers' associations and others. Those organizations don't endorse or sponsor this site. Their names belong to them.</p>
     <h2>Your content</h2>
@@ -1015,7 +1092,7 @@ table.jobs tr.due td:nth-child(6) input { color: var(--red); font-weight: 700; }
   <div class="intro">
     <span class="eyebrow">Resume templates</span>
     <h1>Pick the layout that fits where you are.</h1>
-    <p>Each template is plain, single-column and ATS-friendly. Copy the text into Word or Google Docs, replace everything in [brackets], then run it through the grader.</p>
+    <p>Nine layouts for different fields and career stages, each with its own look. All are single-column and ATS-friendly. Copy the text into Word or Google Docs, set the fonts listed on the card, replace everything in [brackets], then run it through the grader.</p>
   </div>
   <div class="tpl-grid" id="resumeTpls"></div>
   <div class="sheet formula">
@@ -1120,6 +1197,28 @@ Sign-off      Sincerely, [Full name] · [phone] · [email]</code>
 
 
 <!-- TRACKER -->
+<section class="view" data-view="internships" hidden>
+  <div class="intro">
+    <span class="eyebrow">Find jobs</span>
+    <h1>Internships and entry-level jobs, sorted by major.</h1>
+    <p>Pulled straight from company career pages several times a day. Pick your major, then apply on the company's own site. Every listing links to people worth contacting: the company's recruiters, alumni from your school, and people who work there near you.</p>
+    <p class="ix-stamp" id="ixStamp">Loading openings…</p>
+  </div>
+  <form class="sheet ix-filters" id="ixFilters" onsubmit="return false">
+    <div><label for="ixType">Job type</label><select id="ixType"><option value="">Internships + entry-level</option><option value="Internship">Internships</option><option value="Entry-level">Entry-level full-time</option></select></div>
+    <div><label for="ixMajor">Major</label><select id="ixMajor"><option value="">All majors</option></select></div>
+    <div><label for="ixIndustry">Industry</label><select id="ixIndustry"><option value="">All industries</option></select></div>
+    <div><label for="ixQ">Company, title or city</label><input type="search" id="ixQ" placeholder="e.g. marketing, Chicago"></div>
+    <div><label for="ixAge">Posted</label><select id="ixAge"><option value="">Any time</option><option value="3">Last 3 days</option><option value="7">Last 7 days</option><option value="30">Last 30 days</option></select></div>
+    <div><label for="ixSchool">Your school (for alumni contacts)</label><input type="search" id="ixSchool" placeholder="e.g. Ohio State University" autocomplete="organization"></div>
+    <div><label class="ix-check"><input type="checkbox" id="ixRemote"> Remote only</label></div>
+  </form>
+  <p class="ix-count" id="ixCount" aria-live="polite"></p>
+  <ul class="ix-list" id="ixList"></ul>
+  <button type="button" class="btn ix-more" id="ixMore" hidden>Show more</button>
+  <p class="note" style="margin-top:28px">Listings link to each employer's own careers page; One Stop doesn't post jobs or take applications. Openings can close at any time, so always confirm details on the employer's site. Contact links open a LinkedIn people search in a new tab. We don't collect or store anyone's profile; you choose who to reach out to.</p>
+</section>
+
 <section class="view" data-view="tracker" hidden>
   <div class="intro">
     <span class="eyebrow">Job tracker</span>
@@ -1159,8 +1258,28 @@ Sign-off      Sincerely, [Full name] · [phone] · [email]</code>
     <span>Download a backup to move it to another device, or keep it safe if you clear your browser.</span>
     <div class="btns"><button type="button" class="btn small" id="bkSave">Download backup</button><label class="btn small" for="bkFile">Restore from backup</label><input type="file" id="bkFile" accept=".json,application/json" hidden></div>
   </div>
-  <p>Gradeline · Grading runs entirely in your browser. Feedback is general guidance, not a guarantee of an interview. · <a href="#privacy">Privacy</a> · <a href="#terms">Terms</a></p>
+  <p>One Stop · Grading runs entirely in your browser. Feedback is general guidance, not a guarantee of an interview. · <a href="#privacy">Privacy</a> · <a href="#terms">Terms</a></p>
 </div></footer>
+<dialog class="acct-dlg" id="acctDlg" aria-labelledby="acctTitle">
+  <form method="dialog" class="acct-x"><button class="btn small" aria-label="Close">✕</button></form>
+  <h2 id="acctTitle">Sign in to One Stop</h2>
+  <p class="acct-why">Free, always. An account keeps your resume, builder draft, job tracker and saved internships synced across your devices. Everything still works without one.</p>
+  <div class="seg acct-tabs" role="group" aria-label="Sign in or create account">
+    <button type="button" data-acct-tab="in" aria-pressed="true">Sign in</button>
+    <button type="button" data-acct-tab="up" aria-pressed="false">Create account</button>
+  </div>
+  <button type="button" class="btn acct-google" id="acctGoogle"><svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.1C12.4 13.7 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C.9 16.6 0 20.2 0 24s.9 7.4 2.6 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.2-13.5-10l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>Continue with Google</button>
+  <div class="acct-or"><span>or use email</span></div>
+  <form id="acctForm" class="acct-form" novalidate>
+    <div class="field" id="acctNameRow" hidden><label for="acctNameIn">Name</label><input id="acctNameIn" autocomplete="name"></div>
+    <div class="field"><label for="acctEmailIn">Email</label><input id="acctEmailIn" type="email" autocomplete="email" required></div>
+    <div class="field"><label for="acctPw">Password</label><input id="acctPw" type="password" autocomplete="current-password" minlength="8" required><span class="note" id="acctPwHint" hidden>At least 8 characters.</span></div>
+    <p class="acct-err" id="acctErr" role="alert" hidden></p>
+    <button type="submit" class="btn primary" id="acctSubmit">Sign in</button>
+    <button type="button" class="acct-link" id="acctForgot">Forgot password?</button>
+  </form>
+  <p class="note acct-fine">By continuing you agree to the <a href="#terms">Terms</a> and <a href="#privacy">Privacy policy</a>.</p>
+</dialog>
 <div class="toast" id="toast" hidden></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
@@ -1243,7 +1362,7 @@ We're looking for a Marketing Coordinator to support our growing brand. You will
 };
 
 const RESUME_TEMPLATES = [
-{ name: "Reverse-chronological", best: "BEST FOR · STEADY WORK HISTORY", desc: "The classic. Recent experience first, results in every bullet.",
+{ name: "Reverse-chronological", look: "classic", lookName: "Classic", fonts: "Georgia headings and body, centered name", best: "BEST FOR · STEADY WORK HISTORY", desc: "The classic. Recent experience first, results in every bullet.",
 text: `FIRST LAST
 City, State · (555) 555-5555 · you@email.com · linkedin.com/in/yourname
 
@@ -1265,7 +1384,7 @@ EDUCATION
 
 SKILLS
 [Hard skill], [Software], [Tool], [Certification], [Language]` },
-{ name: "Entry-level / student", best: "BEST FOR · STUDENTS & NEW GRADS", desc: "Leads with education and projects when work history is short.",
+{ name: "Entry-level / student", look: "modern", lookName: "Modern blue", fonts: "Calibri, blue name and section rules", best: "BEST FOR · STUDENTS & NEW GRADS", desc: "Leads with education and projects when work history is short.",
 text: `FIRST LAST
 City, State · (555) 555-5555 · you@email.com · portfolio-or-linkedin.com
 
@@ -1290,7 +1409,7 @@ LEADERSHIP & ACTIVITIES
 
 SKILLS
 [Software], [Tools], [Languages], [Certifications]` },
-{ name: "Combination (hybrid)", best: "BEST FOR · CAREER CHANGERS & GAPS", desc: "Transferable skills with proof up top, compact history below.",
+{ name: "Combination (hybrid)", look: "bold", lookName: "Bold block", fonts: "Arial Black name, dark heading bars", best: "BEST FOR · CAREER CHANGERS & GAPS", desc: "Transferable skills with proof up top, compact history below.",
 text: `FIRST LAST
 City, State · (555) 555-5555 · you@email.com · linkedin.com/in/yourname
 
@@ -1317,7 +1436,7 @@ EDUCATION & TRAINING
 
 SKILLS
 [Software], [Tools], [Languages]` },
-{ name: "Technical", best: "BEST FOR · SOFTWARE, DATA, IT", desc: "Skills and shipped work first, with the stack named in each bullet.",
+{ name: "Technical", look: "compact", lookName: "Compact", fonts: "Calibri 10pt, teal side-bar headings", best: "BEST FOR · SOFTWARE, DATA, IT", desc: "Skills and shipped work first, with the stack named in each bullet.",
 text: `FIRST LAST
 City, State · (555) 555-5555 · you@email.com · github.com/you · linkedin.com/in/you
 
@@ -1340,7 +1459,134 @@ EDUCATION
 [B.S. Computer Science], [University] | [Year]
 
 CERTIFICATIONS
-[AWS Certified Cloud Practitioner] | [Year]` }
+[AWS Certified Cloud Practitioner] | [Year]` },
+{ name: "Healthcare & nursing", look: "care", lookName: "Clean clinical", fonts: "Segoe UI or Arial, soft green headings", best: "BEST FOR · RN, LPN, CNA, ALLIED HEALTH", desc: "Licenses up top, clinical rotations and patient outcomes in the bullets.",
+text: `FIRST LAST, [RN, BSN]
+City, State · (555) 555-5555 · you@email.com · linkedin.com/in/yourname
+
+LICENSES & CERTIFICATIONS
+[Registered Nurse], [State] License #[number] | Exp. [Mon YYYY]
+[BLS, ACLS, PALS], [American Heart Association] | Exp. [Mon YYYY]
+
+SUMMARY
+[Specialty] nurse with [X] years in [unit type, e.g. med-surg or ICU]. Cared for [N] patients per shift while [result, e.g. keeping falls below unit average].
+
+CLINICAL EXPERIENCE
+[Staff Nurse], [Hospital], [Unit], [City, State] | [Mon YYYY] – Present
+- [Managed / Assessed] [N] patients per shift on a [bed count]-bed [unit], [outcome]
+- [Educated / Coordinated] [patients or families] on [topic], [result such as readmission or satisfaction score]
+- [Charted / Trained] in [Epic, Cerner], [result such as peers onboarded]
+
+CLINICAL ROTATIONS
+[Unit], [Hospital] | [Hours] hours | [Semester YYYY]
+- [Skill practiced], [patient population]
+
+EDUCATION
+[BSN], [School of Nursing] | [Year]
+
+SKILLS
+[IV insertion], [Wound care], [Telemetry], [EHR system], [Language]` },
+{ name: "Sales & customer-facing", look: "creative", lookName: "Accent bar", fonts: "Trebuchet MS, red accent under the name", best: "BEST FOR · SALES, RETAIL, SERVICE", desc: "Numbers-forward: quota, revenue and customer results lead every role.",
+text: `FIRST LAST
+City, State · (555) 555-5555 · you@email.com · linkedin.com/in/yourname
+
+SUMMARY
+[Sales / Customer success] professional who [hit X% of quota or grew accounts by $X] in [industry]. Strong at [prospecting, closing, retention] with [CRM].
+
+KEY RESULTS
+- [X%] of quota for [N] straight quarters
+- [$X] in new revenue from [N] accounts
+- [Ranked #N of N] reps in [region or company]
+
+EXPERIENCE
+[Account Executive], [Company], [City, State] | [Mon YYYY] – Present
+- [Closed / Grew] [N] accounts worth [$X], [X%] above target
+- [Built / Ran] [outreach or process], raising [conversion or response rate] from [X%] to [Y%]
+- [Retained / Upsold] [customers], [renewal or satisfaction number]
+
+[Sales Associate], [Store], [City, State] | [Mon YYYY] – [Mon YYYY]
+- [Averaged $X per shift] or [ranked top N in add-on sales]
+
+EDUCATION
+[Degree], [School] | [Year]
+
+SKILLS
+[Salesforce or HubSpot], [Cold calling], [Negotiation], [Language]` },
+{ name: "Executive & management", look: "executive", lookName: "Executive serif", fonts: "Garamond, spaced capitals, double rule", best: "BEST FOR · MANAGERS, DIRECTORS, VPs", desc: "Leads with scope: team size, budget and business results.",
+text: `FIRST LAST
+City, State · (555) 555-5555 · you@email.com · linkedin.com/in/yourname
+
+EXECUTIVE SUMMARY
+[Title] with [X] years leading [function] at [company type]. Built and led teams of [N] with budgets up to [$X]. Known for [turnaround, growth, or efficiency] — [one headline result].
+
+CORE STRENGTHS
+[Strategy], [P&L ownership], [Team building], [Change management], [Industry expertise]
+
+LEADERSHIP EXPERIENCE
+[Director of Function], [Company], [City, State] | [YYYY] – Present
+Lead [N]-person team across [N] sites; own [$X] budget.
+- [Grew / Cut / Launched] [what], delivering [$X or X%] in [timeframe]
+- [Restructured / Built] [team or process], [result such as retention or cycle time]
+- [Partnered with] [executives or board] on [initiative], [outcome]
+
+[Senior Manager], [Company], [City, State] | [YYYY] – [YYYY]
+- [Biggest result in this role, with a number]
+
+EDUCATION
+[MBA], [School] | [Year]
+[Bachelor's], [School] | [Year]
+
+BOARDS & AFFILIATIONS
+[Board or association], [Role] | [YYYY] – Present` },
+{ name: "Creative & marketing", look: "minimal", lookName: "Minimal", fonts: "Helvetica Neue light, airy spacing, gray headings", best: "BEST FOR · DESIGN, CONTENT, MARKETING", desc: "Portfolio link up front and campaign results in every bullet.",
+text: `FIRST LAST
+City, State · (555) 555-5555 · you@email.com · yourportfolio.com
+
+PROFILE
+[Designer / Marketer / Writer] who [made what] for [brands or audiences]. Campaigns have [reached N people or lifted metric by X%].
+
+SELECTED WORK
+[Campaign or Project Name], [Client or Company] | [YYYY]
+- [Concepted / Designed / Wrote] [deliverable], [result such as engagement, sign-ups, awards]
+[Campaign or Project Name], [Client or Company] | [YYYY]
+- [Action verb] [deliverable], [result]
+
+EXPERIENCE
+[Marketing Coordinator], [Company], [City, State] | [Mon YYYY] – Present
+- [Grew / Launched] [channel], from [X] to [Y] [followers, subscribers, leads]
+- [Produced] [N pieces of content] a month, [result]
+
+EDUCATION
+[Degree in Field], [School] | [Year]
+
+TOOLS
+[Figma], [Adobe Creative Cloud], [Google Analytics], [Canva], [HubSpot]` },
+{ name: "Skilled trades", look: "trade", lookName: "Workshop", fonts: "Verdana, amber rules", best: "BEST FOR · ELECTRICIANS, HVAC, MECHANICS", desc: "Licenses, equipment and safety record are easy to spot at a glance.",
+text: `FIRST LAST
+City, State · (555) 555-5555 · you@email.com
+
+SUMMARY
+[Journeyman Electrician / HVAC Tech] with [X] years in [residential, commercial, industrial] work. [Safety record, e.g. zero lost-time incidents in X years].
+
+LICENSES & CERTIFICATIONS
+[License type], [State] #[number] | [Year]
+[OSHA 30], [EPA 608], [Forklift] | [Year]
+
+EXPERIENCE
+[Technician], [Company], [City, State] | [Mon YYYY] – Present
+- [Installed / Repaired / Maintained] [N systems or units] a [week or month], [result such as callbacks or on-time rate]
+- [Trained / Led] [N apprentices or a crew of N] on [job type]
+- [Cut / Improved] [downtime, cost, or time] by [X%] by [how]
+
+[Apprentice], [Company], [City, State] | [Mon YYYY] – [Mon YYYY]
+- [Completed] [N hours] under [license type] supervision
+
+TRAINING
+[Apprenticeship program or trade school] | [Year]
+
+EQUIPMENT & SKILLS
+[Tools], [Diagnostics], [Blueprint reading], [Codes, e.g. NEC 2023]` }
+
 ];
 
 const LETTER_TEMPLATES = [
@@ -1579,9 +1825,10 @@ function renderLetterDoc(text) {
 }
 
 /* ---------- Routing ---------- */
-const VIEWS = ["grade", "build", "linkedin", "how-we-grade", "resumes", "cover-letters", "examples", "tips", "tracker", "resources", "match", "robot", "coach", "tailor", "interview", "review", "privacy", "terms", "human"];
+const VIEWS = ["grade", "build", "internships", "linkedin", "how-we-grade", "resumes", "cover-letters", "examples", "tips", "tracker", "resources", "match", "coach", "tailor", "interview", "review", "privacy", "terms"];
 function route() {
-  const h = location.hash.slice(1);
+  const ALIAS = { robot: "tailor", human: "grade" };
+  const h = ALIAS[location.hash.slice(1)] || location.hash.slice(1);
   const sub = h.startsWith("review-") ? h.slice(7) : null;
   const v = sub ? "review" : VIEWS.includes(h) ? h : "grade";
   document.querySelectorAll("[data-view]").forEach(s => s.hidden = s.dataset.view !== v);
@@ -1813,7 +2060,7 @@ function gradeResume(t, job, role) {
   C.push(keywordCheck(t, job, 0.65, 0.4, "r-keywords"));
   if (role && role.trim()) { const ok = new RegExp(role.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i").test(t); C.push({ id: "r-title", cat: "Keywords", w: 1, status: ok ? "pass" : "warn", title: ok ? "Uses the exact job title" : "Doesn't use the posting's job title", detail: ok ? "Recruiters often search by title." : `Add "${esc(role.trim())}" where it's honest, for example in your summary. Recruiters often search by job title.` }); }
   C.push(...fieldChecks(t));
-  { const A = aiSignals(t); if (A.level !== "Few") C.push({ id: "x-ai", cat: "Language", w: 0, skip: true, status: "warn", title: `Some phrasing sounds AI-written (${A.finds.length} phrase${A.finds.length === 1 ? "" : "s"})`, detail: "Recruiters notice generic AI phrasing. Open \"Sounds like you?\" in the More menu for plainer wording.", html: false }); }
+  { const A = aiSignals(t); if (A.level !== "Few") C.push({ id: "x-ai", cat: "Language", w: 0, skip: true, status: "warn", title: `Some phrasing sounds AI-written (${A.finds.length} phrase${A.finds.length === 1 ? "" : "s"})`, detail: "Recruiters notice generic AI phrasing. Swap stock phrases for the specific thing you did.", html: false }); }
   return C.map(withRubric);
 }
 
@@ -1894,7 +2141,7 @@ function gradeLetter(t, job, company, role) {
     detail: typos.length ? typos.map(w => `${w} → ${MISSPELL[w]}`).join("; ") : "Still read it aloud before sending." });
 
   C.push(keywordCheck(t, job, 0.45, 0.25, "l-keywords"));
-  { const A = aiSignals(t); if (A.level !== "Few") C.push({ id: "x-ai", cat: "Language", w: 0, skip: true, status: "warn", title: `Some phrasing sounds AI-written (${A.finds.length} phrase${A.finds.length === 1 ? "" : "s"})`, detail: "Recruiters notice generic AI phrasing. Open \"Sounds like you?\" in the More menu for plainer wording.", html: false }); }
+  { const A = aiSignals(t); if (A.level !== "Few") C.push({ id: "x-ai", cat: "Language", w: 0, skip: true, status: "warn", title: `Some phrasing sounds AI-written (${A.finds.length} phrase${A.finds.length === 1 ? "" : "s"})`, detail: "Recruiters notice generic AI phrasing. Swap stock phrases for the specific thing you did.", html: false }); }
   return C.map(withRubric);
 }
 
@@ -2094,8 +2341,8 @@ document.querySelectorAll("[data-filter]").forEach(b => b.onclick = () => {
 function tplCard(t, kind) {
   const el = document.createElement("article");
   el.className = "sheet tpl";
-  el.innerHTML = `<div class="tpl-head"><span class="best">${esc(t.best)}</span><h3>${esc(t.name)}</h3><p>${esc(t.desc)}</p></div>
-    <div class="tpl-paper"><div class="doc ${kind === "letter" ? "letter" : ""}">${kind === "letter" ? renderLetterDoc(t.text) : renderResumeDoc(t.text)}</div></div>
+  el.innerHTML = `<div class="tpl-head"><span class="best">${esc(t.best)}</span><h3>${esc(t.name)}</h3><p>${esc(t.desc)}</p>${t.lookName ? `<span class="look">Look: <b>${esc(t.lookName)}</b> · ${esc(t.fonts)}</span>` : ""}</div>
+    <div class="tpl-paper"><div class="doc ${kind === "letter" ? "letter" : ""} ${t.look ? "t-" + t.look : ""}">${kind === "letter" ? renderLetterDoc(t.text) : renderResumeDoc(t.text)}</div></div>
     <div class="tpl-foot"><button type="button" class="btn small primary">Copy text</button><button type="button" class="btn small">Edit in grader</button></div>`;
   const [copyB, gradeB] = el.querySelectorAll(".tpl-foot button");
   copyB.onclick = () => copyText(t.text);
@@ -3205,6 +3452,12 @@ async function robotRead(file) {
   $("#rText").innerHTML = text.split("\n").map(l => `<span>${esc(l).replace(/[\uE000-\uF8FF\uFFFD]/g, m => `<mark>${m === "\uFFFD" ? "?" : "□"}</mark>`) || " "}</span>`).join("");
   $("#rOut").hidden = false;
   st.textContent = `Showing ${file.name}. Nothing was uploaded.`;
+  if (text.trim()) {
+    const cur = $("#resumeText").value, clean = cleanImported(text);
+    if (cur.trim() && cur !== clean) MK.history.push(cur);
+    setMode("resume"); $("#resumeText").value = clean; $("#sampleTag").hidden = true; grade(); runTailor();
+    st.textContent = `Showing ${file.name}. Nothing was uploaded. Step 2 below now uses this file.`;
+  }
 }
 const rDz = $("#rDrop");
 ["dragenter", "dragover"].forEach(ev => rDz.addEventListener(ev, e => { e.preventDefault(); rDz.classList.add("over"); }));
@@ -3305,10 +3558,12 @@ function resumeYears(R) {
   R.roles.forEach(r => { const ys = r.years.map(Number); if (!ys.length) return; const end = /present|current|now/i.test(r.dates) ? now : Math.max(...ys); y += Math.max(0.25, end - Math.min(...ys)); });
   return Math.round(y * 10) / 10;
 }
+$("#tlJob").addEventListener("input", () => { $("#jobText").value = $("#tlJob").value; clearTimeout(window.tlDeb); window.tlDeb = setTimeout(() => { grade(); runTailor(); }, 300); });
 function runTailor() {
+  if (document.activeElement !== $("#tlJob")) $("#tlJob").value = $("#jobText").value;
   const t = mode === "resume" ? $("#resumeText").value : "", job = $("#jobText").value;
   if (!t.trim() || !job.trim()) {
-    $("#tlStats").innerHTML = ""; $("#tlTable").innerHTML = `<tbody><tr><td class="empty">Load a resume and paste a job posting on the <a href="#grade">Grade page</a> first.</td></tr></tbody>`; $("#tlOrder").innerHTML = ""; $("#tlApply").disabled = true; return;
+    $("#tlStats").innerHTML = ""; $("#tlTable").innerHTML = `<tbody><tr><td class="empty">Drop your resume in Step 1 (or load it on the <a href="#grade">Grade page</a>) and paste the job posting above.</td></tr></tbody>`; $("#tlOrder").innerHTML = ""; $("#tlApply").disabled = true; return;
   }
   const R = parseResume(t), reqs = requirements(job);
   const listed = (R.skills.join(" ") + " " + R.summary);
@@ -3534,9 +3789,80 @@ async function showReview(id) {
   else { rvUnsubs.forEach(u => u()); rvUnsubs = []; rvId = null; $("#rvRoom").hidden = true; $("#rvCreate").hidden = false; $("#rvTitle").textContent = "Get a second set of eyes."; $("#rvIntro").textContent = "Send the document in Grade yours to a mentor, friend or career coach. They click any line to leave a comment, and you see comments appear live."; rvRenderHome(); }
 }
 
+/* ================= Find internships ================= */
+const IX = { all: [], shown: 40, loaded: false, loading: false };
+function ixInit() {
+  if (IX.loaded || IX.loading) return;
+  IX.loading = true;
+  fetch("/internships/data.json", { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(data => {
+    IX.all = data.postings || []; IX.loaded = true;
+    const majors = new Set(), inds = new Set();
+    IX.all.forEach(j => { (j.majors || []).forEach(m => majors.add(m)); inds.add(j.industry); });
+    const other = "Other / Any major", fill = (sel, vals) => vals.forEach(v => { const o = document.createElement("option"); o.value = o.textContent = v; sel.appendChild(o); });
+    fill($("#ixMajor"), [...majors].filter(m => m !== other).sort().concat(majors.has(other) ? [other] : []));
+    fill($("#ixIndustry"), [...inds].filter(Boolean).sort());
+    $("#ixStamp").textContent = `${(data.count || IX.all.length).toLocaleString()} openings${data.entry_level != null ? ` (${(data.internships || 0).toLocaleString()} internships, ${data.entry_level.toLocaleString()} entry-level)` : ""} at ${(data.companies || 0).toLocaleString()} employers · updated ${new Date(data.updated).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}`;
+    ixRender();
+  }).catch(() => { IX.loading = false; $("#ixStamp").textContent = "The openings list could not load right now. Please try again in a few minutes."; });
+}
+function ixMatches(j, now) {
+  const DAY = 864e5, q = $("#ixQ").value.trim().toLowerCase();
+  if ($("#ixType").value && (j.type || "Internship") !== $("#ixType").value) return false;
+  if ($("#ixMajor").value && !(j.majors || []).includes($("#ixMajor").value)) return false;
+  if ($("#ixIndustry").value && j.industry !== $("#ixIndustry").value) return false;
+  if ($("#ixRemote").checked && !j.remote) return false;
+  if ($("#ixAge").value && now - Date.parse(j.posted) > $("#ixAge").value * DAY) return false;
+  return !q || `${j.company} ${j.title} ${j.location}`.toLowerCase().includes(q);
+}
+function ixAgo(iso, now) {
+  const d = Math.floor((now - Date.parse(iso)) / 864e5);
+  if (isNaN(d)) return "";
+  return d <= 0 ? "today" : d === 1 ? "yesterday" : d < 60 ? d + " days ago" : new Date(iso).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+}
+let IX_HITS = [];
+// People to contact: LinkedIn people searches the job seeker opens themselves. Nothing is scraped or stored.
+const LI_PEOPLE = q => "https://www.linkedin.com/search/results/people/?keywords=" + encodeURIComponent(q);
+function ixCity(loc) { return String(loc || "").split(/;|\|/)[0].replace(/\b(remote|hybrid|on-?site|united states|usa|us)\b/gi, "").split(",")[0].replace(/[()\-–·]+/g, " ").trim(); }
+function ixPeople(j) {
+  const co = String(j.company || "").replace(/\s*\((?:example)\)\s*/i, "").trim(), school = $("#ixSchool").value.trim(), city = ixCity(j.location);
+  const out = [[(j.type || "Internship") === "Internship" ? "University recruiters" : "Recruiters", `${co} ${(j.type || "Internship") === "Internship" ? "university recruiter" : "recruiter"}`]];
+  out.push(school ? [`${school} alumni at ${co}`, `${co} ${school}`] : [`Alumni at ${co} (add your school above)`, `${co} alumni`]);
+  if (city && city.length > 2) out.push([`${co} people in ${city}`, `${co} ${city}`]);
+  return out.map(([l, q]) => [l, LI_PEOPLE(q)]);
+}
+try { $("#ixSchool").value = store.get("rp-school", "") || ""; } catch {}
+$("#ixSchool").addEventListener("change", () => store.set("rp-school", $("#ixSchool").value.trim()));
+function ixRender() {
+  const E = v => esc(String(v ?? ""));
+  const now = Date.now(), safe = u => /^https:\/\//i.test(u || "") ? u : "#";
+  IX_HITS = IX.all.filter(j => ixMatches(j, now));
+  $("#ixCount").textContent = IX_HITS.length.toLocaleString() + (IX_HITS.length === 1 ? " opening" : " openings");
+  $("#ixList").innerHTML = IX_HITS.length ? IX_HITS.slice(0, IX.shown).map((j, i) => {
+    const fresh = now - Date.parse(j.first_seen) < 2 * 864e5;
+    const where = [j.location, j.remote && !/remote/i.test(j.location || "") ? "Remote" : ""].filter(Boolean).join(" · ");
+    const saved = JOBS.some(x => x.link && x.link === j.url);
+    return `<li class="sheet ix-job"><div><h3><a href="${E(safe(j.url))}" target="_blank" rel="noopener noreferrer nofollow">${E(j.title)}</a>${fresh ? '<span class="ix-new">New</span>' : ""}</h3>
+      <p class="ix-meta"><span class="ix-co">${E(j.company)}</span>${where ? " · " + E(where) : ""} · posted ${E(ixAgo(j.posted, now))}</p>
+      <div class="ix-tags"><span class="ix-tag ix-type">${E(j.type || "Internship")}</span><span class="ix-tag">${E(j.industry)}</span>${(j.majors || []).map(m => `<span class="ix-tag">${E(m)}</span>`).join("")}</div>
+      <div class="ix-people"><b>Who to contact</b>${ixPeople(j).map(([label, url]) => `<a href="${E(url)}" target="_blank" rel="noopener noreferrer">${E(label)} ↗</a>`).join("")}</div></div>
+      <div class="ix-acts"><button type="button" class="btn small" data-ix-save="${i}"${saved ? " disabled" : ""}>${saved ? "Saved" : "Save to tracker"}</button><a class="btn small primary" href="${E(safe(j.url))}" target="_blank" rel="noopener noreferrer nofollow">Apply</a></div></li>`;
+  }).join("") : `<li class="ix-empty">${$("#ixType").value === "Entry-level" && !IX.all.some(j => j.type === "Entry-level") ? "Entry-level jobs are added on the next listing update (every 6 hours). Check back soon." : "No openings match those filters yet. Try another major or a wider date range."}</li>`;
+  $("#ixMore").hidden = IX_HITS.length <= IX.shown;
+}
+["change", "input"].forEach(ev => $("#ixFilters").addEventListener(ev, () => { IX.shown = 40; ixRender(); }));
+$("#ixMore").onclick = () => { IX.shown += 40; ixRender(); };
+$("#ixList").addEventListener("click", e => {
+  const b = e.target.closest("[data-ix-save]"); if (!b) return;
+  const j = IX_HITS[+b.dataset.ixSave]; if (!j) return;
+  JOBS.unshift({ company: j.company, role: j.title, status: "Saved", applied: "", link: j.url, follow: "", notes: [j.location, "Found on One Stop"].filter(Boolean).join(" · ") });
+  saveJobs(); renderJobs(); b.textContent = "Saved"; b.disabled = true;
+  if (typeof toast === "function") toast("Saved to your Job tracker.");
+});
+
 /* ================= View hooks ================= */
 function onView(v, sub) {
-  if (v === "match") initMatch();
+  if (v === "internships") ixInit();
+  else if (v === "match") initMatch();
   else if (v === "coach") { coachFill(); coachCats(); coachBuild(); }
   else if (v === "tailor") runTailor();
   else if (v === "interview") renderInterview();
@@ -3641,7 +3967,7 @@ $("#wipeData").onclick = () => {
   location.hash = "grade"; location.reload();
 };
 
-/* ================= Sounds like you (AI-style writing check) ================= */
+/* ================= AI-style writing signals (used by the grader) ================= */
 // Phrases that show up far more in AI-drafted job documents than in plain human writing. [pattern, plain replacement or null, why]
 const AI_PHRASES = [
   [/\bin today's (?:[\w-]+ ){0,3}(world|landscape|environment|market|economy|age|workplace)\b,?\s*/gi, "", "A stock AI opener. Start with your point."],
@@ -3704,36 +4030,127 @@ function aiSignals(text) {
   const level = sig.filter(s => s.on).length;
   return { sig, finds, level: level >= 3 ? "Strong" : level >= 1 ? "Some" : "Few", S, words };
 }
-function humanRun() {
-  const t = $("#hText").value;
-  if (!t.trim()) { $("#hOut").hidden = true; return; }
-  $("#hOut").hidden = false;
-  const R = aiSignals(t);
-  $("#hLevel").textContent = R.level; $("#hLevel").className = "h-level " + R.level.toLowerCase();
-  $("#hLevelText").textContent = R.level === "Strong" ? "This reads a lot like an AI draft. Recruiters notice, and it makes you sound like everyone else." : R.level === "Some" ? "A few patterns could make this sound generated. Fix the highlights and add specifics." : "Few AI-style patterns. It reads like a person wrote it.";
-  $("#hSignals").innerHTML = R.sig.map(s => `<li><span class="chip ${s.on ? "warn" : "pass"}">${s.on ? "check" : "ok"}</span><div><h2 class="ck">${esc(s.title)}</h2><p>${esc(s.detail)}</p></div></li>`).join("");
-  let html = "", last = 0;
-  R.finds.forEach((f, i) => { html += esc(t.slice(last, f.start)) + `<mark class="h-mark" title="${esc(f.why)}">${esc(f.text)}<sup>${i + 1}</sup></mark>`; last = f.end; });
-  $("#hMarked").innerHTML = (html + esc(t.slice(last))).replace(/\n/g, "<br>");
-  $("#hList").innerHTML = R.finds.map((f, i) => `<li><b>${i + 1}. "${esc(f.text.trim())}"</b> ${f.replacement == null ? "<span class='note'>rewrite in your own words</span>" : f.replacement === "" ? "→ <i>cut it</i>" : `→ "${esc(f.replacement)}"`}<br><span class="note">${esc(f.why)}</span></li>`).join("") || `<li class="note">No common AI phrases found.</li>`;
-  const capFirst = s => s.replace(/^(\s*)([a-z])/, (m, a, c) => a + c.toUpperCase());
-  let plain = "", pos = 0, capNext = false;
-  R.finds.forEach(f => {
-    const seg = t.slice(pos, f.start); plain += capNext ? capFirst(seg) : seg; capNext = false;
-    if (f.replacement == null) plain += f.text; else { plain += f.replacement; capNext = f.replacement === ""; }
-    pos = f.end;
-  });
-  plain += capNext ? capFirst(t.slice(pos)) : t.slice(pos);
-  HUMAN_PLAIN = plain;
-  $("#hPlain").textContent = plain;
-  const generic = R.S.filter(s => !/\d|[A-Z][a-z]+/.test(s.slice(1)) && (s.match(/\S+/g) || []).length >= 8).slice(0, 5);
-  $("#hGeneric").innerHTML = generic.length ? generic.map(s => `<li>"${esc(s)}"</li>`).join("") : `<li class="note">Every longer sentence has at least one specific detail. Nice.</li>`;
+
+/* ================= Accounts (Firebase Auth) + sync ================= */
+// Optional sign-in. When signed in, the same rp-* data the backup button saves is mirrored to
+// Firestore at users/{uid} so it follows the person across devices. Signed out, nothing leaves the browser.
+const ACCT = { auth: null, db: null, user: null, tab: "in", pushT: null, ready: null, applying: false };
+const acctMark = { get() { try { return JSON.parse(localStorage.getItem("gl-acct") || "null"); } catch { return null; } }, set(v) { try { v ? localStorage.setItem("gl-acct", JSON.stringify(v)) : localStorage.removeItem("gl-acct"); } catch {} } };
+function acctLoad() {
+  return ACCT.ready ||= (async () => {
+    if (!window.firebase?.auth) {
+      if (!window.firebase) await loadScript(FIREBASE_SDK + "firebase-app-compat.js");
+      await loadScript(FIREBASE_SDK + "firebase-auth-compat.js");
+      if (!window.firebase.firestore) await loadScript(FIREBASE_SDK + "firebase-firestore-compat.js");
+    }
+    const app = firebase.apps.length ? firebase.app() : firebase.initializeApp(FIREBASE_CONFIG);
+    ACCT.auth = app.auth(); ACCT.db = app.firestore();
+    ACCT.auth.onAuthStateChanged(acctChanged);
+  })().catch(e => { ACCT.ready = null; throw e; });
 }
-let HUMAN_PLAIN = "";
-$("#hText").addEventListener("input", () => { clearTimeout(window.hDeb); window.hDeb = setTimeout(humanRun, 250); });
-$("#hFromGrade").onclick = () => { $("#hText").value = $("#resumeText").value; humanRun(); };
-$("#hCopy").onclick = () => copyText(HUMAN_PLAIN);
-$("#hUse").onclick = () => { const cur = $("#resumeText").value; if (cur.trim() && cur !== $("#hText").value && !confirm("Replace the text on the Grade page with this version?")) return; MK.history.push(cur); $("#resumeText").value = HUMAN_PLAIN; $("#sampleTag").hidden = true; location.hash = "grade"; grade(); toast("Plainer version is on the Grade page. Undo is in the markup panel."); };
+const ACCT_ERR = {
+  "auth/invalid-credential": "That email and password don't match. Try again or reset your password.",
+  "auth/wrong-password": "That email and password don't match. Try again or reset your password.",
+  "auth/user-not-found": "No account uses that email yet. Switch to Create account.",
+  "auth/email-already-in-use": "An account already uses that email. Switch to Sign in.",
+  "auth/weak-password": "Use at least 8 characters for your password.",
+  "auth/invalid-email": "That email address doesn't look right.",
+  "auth/missing-password": "Enter your password.",
+  "auth/too-many-requests": "Too many tries. Wait a few minutes, or reset your password.",
+  "auth/network-request-failed": "Couldn't reach the sign-in service. Check your connection.",
+  "auth/popup-blocked": "Your browser blocked the Google window. Allow pop-ups for this site and try again.",
+  "auth/operation-not-allowed": "This sign-in method isn't turned on yet.",
+  "auth/unauthorized-domain": "Sign-in isn't set up for this web address yet."
+};
+function acctErr(e) {
+  if (!e || e.code === "auth/popup-closed-by-user" || e.code === "auth/cancelled-popup-request") { $("#acctErr").hidden = true; return; }
+  const m = $("#acctErr"); m.classList.remove("ok"); m.textContent = ACCT_ERR[e.code] || "Something went wrong. Please try again."; m.hidden = false;
+}
+function acctTab(t) {
+  ACCT.tab = t;
+  document.querySelectorAll("[data-acct-tab]").forEach(b => b.setAttribute("aria-pressed", b.dataset.acctTab === t));
+  $("#acctTitle").textContent = t === "up" ? "Create your free account" : "Sign in to One Stop";
+  $("#acctSubmit").textContent = t === "up" ? "Create account" : "Sign in";
+  $("#acctNameRow").hidden = t !== "up"; $("#acctPwHint").hidden = t !== "up"; $("#acctForgot").hidden = t === "up";
+  $("#acctPw").autocomplete = t === "up" ? "new-password" : "current-password";
+  $("#acctErr").hidden = true;
+}
+function acctOpen(t) { acctTab(t); $("#acctDlg").showModal(); acctLoad().catch(() => acctErr({ code: "auth/network-request-failed" })); setTimeout(() => (t === "up" ? $("#acctNameIn") : $("#acctEmailIn")).focus(), 30); }
+$("#acctIn").onclick = () => acctOpen("in");
+$("#acctUp").onclick = () => acctOpen("up");
+document.querySelectorAll("[data-acct-tab]").forEach(b => b.onclick = () => acctTab(b.dataset.acctTab));
+$("#acctDlg").addEventListener("click", e => { if (e.target === $("#acctDlg")) $("#acctDlg").close(); });
+$("#acctDlg").querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", () => $("#acctDlg").close()));
+async function acctBusy(fn) {
+  const btns = $("#acctDlg").querySelectorAll("button"); btns.forEach(b => b.disabled = true);
+  try { await acctLoad(); await fn(); } catch (e) { acctErr(e); } finally { btns.forEach(b => b.disabled = false); }
+}
+$("#acctGoogle").onclick = () => acctBusy(async () => { await ACCT.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); });
+$("#acctForm").onsubmit = e => {
+  e.preventDefault();
+  const email = $("#acctEmailIn").value.trim(), pw = $("#acctPw").value;
+  if (ACCT.tab === "up" && pw.length < 8) { acctErr({ code: "auth/weak-password" }); return; }
+  acctBusy(async () => {
+    if (ACCT.tab === "up") {
+      const cred = await ACCT.auth.createUserWithEmailAndPassword(email, pw);
+      const name = $("#acctNameIn").value.trim();
+      if (name) { await cred.user.updateProfile({ displayName: name }); acctPaint(cred.user); }
+    } else await ACCT.auth.signInWithEmailAndPassword(email, pw);
+  });
+};
+$("#acctForgot").onclick = () => {
+  const email = $("#acctEmailIn").value.trim();
+  if (!email) { acctErr({ code: "auth/invalid-email" }); $("#acctEmailIn").focus(); return; }
+  acctBusy(async () => { await ACCT.auth.sendPasswordResetEmail(email); const m = $("#acctErr"); m.textContent = `If an account uses ${email}, a reset link is on its way.`; m.classList.add("ok"); m.hidden = false; });
+};
+$("#acctOut").onclick = async () => {
+  const wipe = confirm("Signed out. Also remove your work from this browser?\n\nOK removes it here (it stays saved in your account). Cancel keeps it on this device.");
+  await acctPush(); await ACCT.auth.signOut();
+  if (wipe) { try { Object.keys(localStorage).filter(k => k.startsWith("rp-")).forEach(k => localStorage.removeItem(k)); } catch {} location.reload(); }
+};
+document.addEventListener("click", e => { const m = $("#acctMe"); if (m.open && !m.contains(e.target)) m.open = false; });
+function acctPaint(u) {
+  $("#acctIn").hidden = $("#acctUp").hidden = !!u; $("#acctMe").hidden = !u;
+  if (!u) return;
+  const name = u.displayName || (u.email || "").split("@")[0];
+  $("#acctName").textContent = name; $("#acctEmail").textContent = u.email || name;
+  const av = $("#acctAv");
+  if (u.photoURL && /^https:\/\//.test(u.photoURL)) { av.style.backgroundImage = `url("${u.photoURL.replace(/"/g, "")}")`; av.textContent = ""; }
+  else { av.style.backgroundImage = ""; av.textContent = (name[0] || "?").toUpperCase(); }
+}
+function acctHasWork() { try { return Object.keys(localStorage).some(k => k.startsWith("rp-") && k !== "rp-grade") || !!(store.get("rp-grade", {}) || {}).text; } catch { return false; } }
+async function acctChanged(u) {
+  ACCT.user = u; acctPaint(u);
+  if (!u) { acctMark.set(null); return; }
+  if ($("#acctDlg").open) $("#acctDlg").close();
+  const ref = ACCT.db.collection("users").doc(u.uid);
+  let snap; try { snap = await ref.get(); } catch { $("#acctSync").textContent = "Signed in. Syncing is paused (couldn't reach your saved work)."; return; }
+  const mark = acctMark.get() || {}, cloud = snap.exists ? snap.data() : null;
+  if (!cloud) { await acctPush(); toast("Signed in. Your work now syncs to your account."); return; }
+  const sameDevice = mark.uid === u.uid;
+  if (sameDevice && mark.syncedAt >= cloud.savedAt) { acctStatus(cloud.savedAt); return; }
+  if (!sameDevice && acctHasWork() && !confirm(`Your account has work saved ${new Date(cloud.savedAt).toLocaleString()}.\n\nOK loads your account's work here. Cancel keeps what's in this browser and saves it to your account instead.`)) { await acctPush(); return; }
+  let data; try { data = JSON.parse(cloud.data); } catch { return; }
+  ACCT.applying = true;
+  try { Object.keys(localStorage).filter(k => k.startsWith("rp-")).forEach(k => localStorage.removeItem(k)); } catch {}
+  Object.entries(data.data || {}).forEach(([k, v]) => { if (k.startsWith("rp-")) store.set(k, v); });
+  acctMark.set({ uid: u.uid, syncedAt: cloud.savedAt });
+  location.reload();
+}
+function acctStatus(at) { $("#acctSync").textContent = `Synced ${new Date(at).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}. Your work follows you to any device you sign in on.`; }
+async function acctPush() {
+  clearTimeout(ACCT.pushT);
+  if (!ACCT.user || ACCT.applying) return;
+  const json = JSON.stringify(backupData()), savedAt = new Date().toISOString();
+  if (json.length > 900000) { $("#acctSync").textContent = "Your saved work is too large to sync (often big attached files in the tracker). It's still saved in this browser."; return; }
+  try { await ACCT.db.collection("users").doc(ACCT.user.uid).set({ data: json, savedAt }); acctMark.set({ uid: ACCT.user.uid, syncedAt: savedAt }); acctStatus(savedAt); }
+  catch { $("#acctSync").textContent = "Couldn't sync just now. Your work is still saved in this browser; we'll try again."; }
+}
+function acctQueue() { if (!ACCT.user || ACCT.applying) return; clearTimeout(ACCT.pushT); ACCT.pushT = setTimeout(acctPush, 4000); }
+{ const set0 = store.set; store.set = (k, v) => { set0.call(store, k, v); if (k.startsWith("rp-")) acctQueue(); }; }
+["resumeText", "jobText"].forEach(id => $("#" + id).addEventListener("input", acctQueue));
+window.addEventListener("pagehide", () => { if (ACCT.pushT) acctPush(); });
+if (acctMark.get()) acctLoad().catch(() => {});
 
 /* ================= Backup and restore ================= */
 function backupData() {
@@ -3742,11 +4159,11 @@ function backupData() {
   data["rp-grade"] = { mode, text: $("#resumeText").value, job: $("#jobText").value, company: $("#companyName").value, role: $("#roleName").value };
   return { app: "gradeline", version: 1, savedAt: new Date().toISOString(), data };
 }
-$("#bkSave").onclick = () => saveFile(`gradeline-backup-${today()}.json`, new Blob([JSON.stringify(backupData(), null, 2)], { type: "application/json" }));
+$("#bkSave").onclick = () => saveFile(`onestop-backup-${today()}.json`, new Blob([JSON.stringify(backupData(), null, 2)], { type: "application/json" }));
 $("#bkFile").onchange = async e => {
   const f = e.target.files[0]; e.target.value = ""; if (!f) return;
-  let b; try { b = JSON.parse(await f.text()); } catch { toast("That file isn't a Gradeline backup."); return; }
-  if (!b || !["gradeline", "red-pen-resume-lab"].includes(b.app) || typeof b.data !== "object") { toast("That file isn't a Gradeline backup."); return; }
+  let b; try { b = JSON.parse(await f.text()); } catch { toast("That file isn't a One Stop backup."); return; }
+  if (!b || !["gradeline", "red-pen-resume-lab"].includes(b.app) || typeof b.data !== "object") { toast("That file isn't a One Stop backup."); return; }
   if (!confirm("Replace the work saved in this browser with this backup?")) return;
   Object.entries(b.data).forEach(([k, v]) => { if (k.startsWith("rp-")) store.set(k, v); });
   location.reload();
@@ -3772,6 +4189,6 @@ route();
 if (!restoreGradeDoc()) loadSample("weakResume");
 </script>
 
-<nav id="seoLinks" aria-label="Free tools" class="wrap" style="padding-bottom:28px;font-size:.84rem;color:var(--muted)">Free tools: <a href="/free-resume-checker/" style="color:inherit">Resume checker</a> · <a href="/ats-resume-checker/" style="color:inherit">ATS check</a> · <a href="/resume-keyword-scanner/" style="color:inherit">Keyword scanner</a> · <a href="/cover-letter-checker/" style="color:inherit">Cover letter checker</a> · <a href="/linkedin-profile-checker/" style="color:inherit">LinkedIn checker</a> · <a href="/free-resume-builder/" style="color:inherit">Resume builder</a> · <a href="/free-alternative-to-paid-resume-checkers/" style="color:inherit">Free alternative</a></nav>
+<nav id="seoLinks" aria-label="Free tools" class="wrap" style="padding-bottom:28px;font-size:.84rem;color:var(--muted)">Free tools: <a href="/free-resume-checker/" style="color:inherit">Resume checker</a> · <a href="/ats-resume-checker/" style="color:inherit">ATS check</a> · <a href="/resume-keyword-scanner/" style="color:inherit">Keyword scanner</a> · <a href="/cover-letter-checker/" style="color:inherit">Cover letter checker</a> · <a href="/linkedin-profile-checker/" style="color:inherit">LinkedIn checker</a> · <a href="/free-resume-builder/" style="color:inherit">Resume builder</a> · <a href="/job-search/" style="color:inherit">Job search</a> · <a href="/resume-maker/" style="color:inherit">Resume maker</a> · <a href="/free-alternative-to-paid-resume-checkers/" style="color:inherit">Free alternative</a></nav>
 </body>
 </html>
