@@ -1,9 +1,9 @@
 {
- "run": "2026-10-29T18:07:17Z",
- "boards_ok": 1142,
- "boards_failed": 67,
+ "run": "2026-10-29T18:09:49Z",
+ "boards_ok": 1151,
+ "boards_failed": 58,
  "usajobs": "skipped (USAJOBS_KEY / USAJOBS_EMAIL not set)",
- "postings": 3781,
+ "postings": 3788,
  "failures": [
   {
    "name": "Age of Learning",
@@ -138,12 +138,6 @@
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
-   "name": "Hippocratic AI",
-   "ats": "ashby",
-   "token": "hippocratic%20ai",
-   "error": "HTTPError: HTTP Error 404: Not Found"
-  },
-  {
    "name": "iHerb",
    "ats": "greenhouse",
    "token": "iherb",
@@ -159,12 +153,6 @@
    "name": "Interactive Brokers",
    "ats": "greenhouse",
    "token": "ibkr",
-   "error": "HTTPError: HTTP Error 404: Not Found"
-  },
-  {
-   "name": "Latent Defense",
-   "ats": "ashby",
-   "token": "latent%20defense",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
@@ -195,12 +183,6 @@
    "name": "MaintainX",
    "ats": "greenhouse",
    "token": "maintainx",
-   "error": "HTTPError: HTTP Error 404: Not Found"
-  },
-  {
-   "name": "Marathon Fusion",
-   "ats": "ashby",
-   "token": "marathon%20fusion",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
@@ -276,12 +258,6 @@
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
-   "name": "Remedy Scientific",
-   "ats": "ashby",
-   "token": "remedy%20scientific",
-   "error": "HTTPError: HTTP Error 404: Not Found"
-  },
-  {
    "name": "Saronic",
    "ats": "lever",
    "token": "saronic",
@@ -300,27 +276,9 @@
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
-   "name": "Skyband Systems",
-   "ats": "ashby",
-   "token": "skyband%20systems",
-   "error": "HTTPError: HTTP Error 404: Not Found"
-  },
-  {
    "name": "Superbet",
    "ats": "greenhouse",
    "token": "superbet",
-   "error": "HTTPError: HTTP Error 404: Not Found"
-  },
-  {
-   "name": "Superhuman",
-   "ats": "ashby",
-   "token": "superhuman%20platform%20inc",
-   "error": "HTTPError: HTTP Error 404: Not Found"
-  },
-  {
-   "name": "The Browser Company",
-   "ats": "ashby",
-   "token": "the%20browser%20company",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
@@ -339,12 +297,6 @@
    "name": "Veeda AI",
    "ats": "ashby",
    "token": "veeda-labs",
-   "error": "HTTPError: HTTP Error 404: Not Found"
-  },
-  {
-   "name": "Verne Robotics",
-   "ats": "ashby",
-   "token": "verne%20robotics",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
@@ -369,12 +321,6 @@
    "name": "Xpansiv",
    "ats": "lever",
    "token": "xpansiv",
-   "error": "HTTPError: HTTP Error 404: Not Found"
-  },
-  {
-   "name": "Xterra AI",
-   "ats": "ashby",
-   "token": "xterra%20ai",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
