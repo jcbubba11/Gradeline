@@ -1,0 +1,411 @@
+{
+ "run": "2026-10-29T18:07:17Z",
+ "boards_ok": 1142,
+ "boards_failed": 67,
+ "usajobs": "skipped (USAJOBS_KEY / USAJOBS_EMAIL not set)",
+ "postings": 3781,
+ "failures": [
+  {
+   "name": "Age of Learning",
+   "ats": "lever",
+   "token": "aofl",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "AI Fund",
+   "ats": "lever",
+   "token": "aifund",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Applied Intuition",
+   "ats": "greenhouse",
+   "token": "appliedintuition",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Aprio",
+   "ats": "lever",
+   "token": "aprio",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Arine",
+   "ats": "greenhouse",
+   "token": "arine",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Atomic Semi",
+   "ats": "ashby",
+   "token": "atomicsemi",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Beacon Software",
+   "ats": "ashby",
+   "token": "beaconsoftware",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Best Egg",
+   "ats": "lever",
+   "token": "bestegg",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Breeze Airways",
+   "ats": "greenhouse",
+   "token": "breezeairways",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "CALSTART",
+   "ats": "lever",
+   "token": "calstart",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Capital Rx",
+   "ats": "greenhouse",
+   "token": "capitalrx",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "CesiumAstro",
+   "ats": "lever",
+   "token": "cesiumastro",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Chainlink Labs",
+   "ats": "ashby",
+   "token": "chainlink-labs",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "DESIGNME Hair",
+   "ats": "greenhouse",
+   "token": "designmehair",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Dusty Robotics",
+   "ats": "greenhouse",
+   "token": "dustyrobotics",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Egra",
+   "ats": "ashby",
+   "token": "egra",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Energy Vault",
+   "ats": "lever",
+   "token": "energyvault",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Fireworks AI",
+   "ats": "greenhouse",
+   "token": "fireworksai",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Forerunner",
+   "ats": "greenhouse",
+   "token": "forerunner",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Genesis Therapeutics",
+   "ats": "ashby",
+   "token": "genesis-therapeutics",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "GlossGenius",
+   "ats": "greenhouse",
+   "token": "glossgenius",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Grid",
+   "ats": "lever",
+   "token": "grid",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Hippocratic AI",
+   "ats": "ashby",
+   "token": "hippocratic%20ai",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "iHerb",
+   "ats": "greenhouse",
+   "token": "iherb",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Inspiration Commerce Group",
+   "ats": "ashby",
+   "token": "inspiration-commerce-group",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Interactive Brokers",
+   "ats": "greenhouse",
+   "token": "ibkr",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Latent Defense",
+   "ats": "ashby",
+   "token": "latent%20defense",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Latitude.io",
+   "ats": "ashby",
+   "token": "latitude",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Lindy",
+   "ats": "ashby",
+   "token": "lindy",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Mach Industries",
+   "ats": "ashby",
+   "token": "mach",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Machina Labs",
+   "ats": "lever",
+   "token": "machinalabs",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "MaintainX",
+   "ats": "greenhouse",
+   "token": "maintainx",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Marathon Fusion",
+   "ats": "ashby",
+   "token": "marathon%20fusion",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Marqeta",
+   "ats": "greenhouse",
+   "token": "mqreferrals",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Maximor AI",
+   "ats": "ashby",
+   "token": "maximor",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Memphis Meats",
+   "ats": "greenhouse",
+   "token": "memphismeats",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Mentis AI",
+   "ats": "ashby",
+   "token": "mentis",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Mercedes-Benz",
+   "ats": "lever",
+   "token": "mbrdna",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Mistral AI",
+   "ats": "ashby",
+   "token": "mtesting.ai",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "New Jersey Innovation Authority",
+   "ats": "lever",
+   "token": "njstateofficeofinnovation",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Nomagic",
+   "ats": "lever",
+   "token": "nomagic",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Odin Dynamics, Inc",
+   "ats": "ashby",
+   "token": "odin-dynamics",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Postman",
+   "ats": "greenhouse",
+   "token": "postman",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Quantum Workplace",
+   "ats": "lever",
+   "token": "quantumworkplace",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Realtor.com",
+   "ats": "greenhouse",
+   "token": "rdccareers",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Remedy Scientific",
+   "ats": "ashby",
+   "token": "remedy%20scientific",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Saronic",
+   "ats": "lever",
+   "token": "saronic",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Seamless.AI",
+   "ats": "greenhouse",
+   "token": "seamlessai",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Simbe Robotics",
+   "ats": "lever",
+   "token": "simberobotics",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Skyband Systems",
+   "ats": "ashby",
+   "token": "skyband%20systems",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Superbet",
+   "ats": "greenhouse",
+   "token": "superbet",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Superhuman",
+   "ats": "ashby",
+   "token": "superhuman%20platform%20inc",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "The Browser Company",
+   "ats": "ashby",
+   "token": "the%20browser%20company",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Transcarent",
+   "ats": "greenhouse",
+   "token": "transcarent",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Tuesday Lab",
+   "ats": "ashby",
+   "token": "tuesday-lab",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Veeda AI",
+   "ats": "ashby",
+   "token": "veeda-labs",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Verne Robotics",
+   "ats": "ashby",
+   "token": "verne%20robotics",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Visier Solutions",
+   "ats": "greenhouse",
+   "token": "visiersolutionsinc",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Whatnot",
+   "ats": "ashby",
+   "token": "whatnot",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Withum",
+   "ats": "greenhouse",
+   "token": "campusopportunities",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Xpansiv",
+   "ats": "lever",
+   "token": "xpansiv",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Xterra AI",
+   "ats": "ashby",
+   "token": "xterra%20ai",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "BuzzFeed",
+   "ats": "greenhouse",
+   "token": "buzzfeed",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Warby Parker",
+   "ats": "greenhouse",
+   "token": "warbyparker",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Allbirds",
+   "ats": "greenhouse",
+   "token": "allbirds",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Headway",
+   "ats": "greenhouse",
+   "token": "headway",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Tempus",
+   "ats": "greenhouse",
+   "token": "tempus",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  }
+ ]
+}
