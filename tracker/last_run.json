@@ -1,9 +1,9 @@
 {
- "run": "2026-10-30T13:02:18Z",
- "boards_ok": 1150,
- "boards_failed": 59,
+ "run": "2026-10-30T18:53:28Z",
+ "boards_ok": 1149,
+ "boards_failed": 60,
  "usajobs": "skipped (USAJOBS_KEY / USAJOBS_EMAIL not set)",
- "postings": 5468,
+ "postings": 5499,
  "failures": [
   {
    "name": "Age of Learning",
@@ -285,6 +285,12 @@
    "name": "Superbet",
    "ats": "greenhouse",
    "token": "superbet",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Tilde Research",
+   "ats": "ashby",
+   "token": "tilderesearch",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
