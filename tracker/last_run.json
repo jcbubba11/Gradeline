@@ -1,9 +1,9 @@
 {
- "run": "2026-10-30T07:04:42Z",
- "boards_ok": 1151,
- "boards_failed": 58,
+ "run": "2026-10-30T13:02:18Z",
+ "boards_ok": 1150,
+ "boards_failed": 59,
  "usajobs": "skipped (USAJOBS_KEY / USAJOBS_EMAIL not set)",
- "postings": 5464,
+ "postings": 5468,
  "failures": [
   {
    "name": "Age of Learning",
@@ -105,6 +105,12 @@
    "name": "Energy Vault",
    "ats": "lever",
    "token": "energyvault",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Firetiger",
+   "ats": "ashby",
+   "token": "firetiger",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
