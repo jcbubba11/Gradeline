@@ -127,7 +127,12 @@ footer{margin-top:48px;border-top:1px solid var(--line);padding:20px 0 40px;colo
   ['change', 'input'].forEach(function (ev) { el('filters').addEventListener(ev, update); });
   el('more').addEventListener('click', function () { shown += PAGE; render(); });
 
-  fetch('data.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (data) {
+  // The GitHub copy updates every few hours even when the site itself hasn't been redeployed.
+  function load(urls) {
+    return fetch(urls[0], { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(function (e) { if (urls.length > 1) return load(urls.slice(1)); throw e; });
+  }
+  load(['https://raw.githubusercontent.com/jcbubba11/Gradeline/main/public/internships/data.json', 'data.json']).then(function (data) {
     all = data.postings || [];
     var majors = {}, industries = {};
     all.forEach(function (j) { j.majors.forEach(function (m) { majors[m] = 1; }); industries[j.industry] = 1; });
