@@ -1,9 +1,9 @@
 {
- "run": "2026-11-03T07:18:28Z",
+ "run": "2026-11-03T13:11:06Z",
  "boards_ok": 1149,
  "boards_failed": 60,
  "usajobs": "skipped (USAJOBS_KEY / USAJOBS_EMAIL not set)",
- "postings": 5435,
+ "postings": 5429,
  "failures": [
   {
    "name": "Age of Learning",
