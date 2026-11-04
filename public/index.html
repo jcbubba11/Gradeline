@@ -1306,12 +1306,24 @@ footer { border-top: 1px solid var(--line); padding-block: 22px 26px; font-size:
 <section class="view" data-view="interview" hidden>
   <div class="intro">
     <span class="eyebrow">Interview prep</span>
-    <h1>Practice the questions your resume invites.</h1>
-    <p>Every bullet is a claim an interviewer may ask about. Build each answer with STAR (situation, task, action, result), keep it to about one to two minutes, and end with the result.</p>
+    <h1>Practice for the interview you actually have.</h1>
+    <p>Hundreds of practice questions by field, questions built from your own resume, and guides to how big employers interview. Build each answer with STAR (situation, task, action, result), keep it to about one to two minutes, and end with the result. Answers save in your browser.</p>
   </div>
-  <div class="toolbar"><span class="page-meta" id="iCount"></span><div class="btns"><button type="button" class="btn small primary" id="iPractice">Practice a random question</button></div></div>
+  <div class="seg ip-tabs" role="group" aria-label="Interview prep sections">
+    <button type="button" data-ip-tab="bank" aria-pressed="true">Question bank</button>
+    <button type="button" data-ip-tab="company" aria-pressed="false">By company</button>
+    <button type="button" data-ip-tab="resume" aria-pressed="false">From your resume</button>
+    <button type="button" data-ip-tab="star" aria-pressed="false">STAR &amp; tips</button>
+  </div>
   <div class="sheet practice" id="iPracticeBox" hidden><span class="lbl">Practice question</span><h2 id="iPQ"></h2><div class="timer" id="iTimer">2:00</div><div class="btns"><button type="button" class="btn small" id="iNext">Next question</button><button type="button" class="btn small" id="iStop">Stop</button></div></div>
-  <div class="qlist" id="iList"></div>
+  <div data-ip-pane="bank" id="ipBank"></div>
+  <div data-ip-pane="company" id="ipCompany" hidden></div>
+  <div data-ip-pane="resume" hidden>
+    <p class="ip-note">Every bullet on your resume is a claim an interviewer may ask about. These questions come from the resume on the Grade page.</p>
+    <div class="toolbar"><span class="page-meta" id="iCount"></span><div class="btns"><button type="button" class="btn small primary" id="iPractice">Practice a random question</button></div></div>
+    <div class="qlist" id="iList"></div>
+  </div>
+  <div data-ip-pane="star" id="ipStar" hidden></div>
 </section>
 
 <!-- REVIEW -->
@@ -5916,6 +5928,8 @@ renderRubric();
 route();
 if (!restoreGradeDoc()) loadSample("weakResume");
 </script>
+<script src="interview-bank.js"></script>
+<script src="interview-prep.js"></script>
 <script src="assets/job-tools.js"></script>
 
 <nav id="seoLinks" aria-label="Free tools" class="wrap" style="padding-bottom:28px;font-size:.84rem;color:var(--muted)">Free tools: <a href="/free-resume-checker/" style="color:inherit">Resume checker</a> · <a href="/ats-resume-checker/" style="color:inherit">ATS check</a> · <a href="/resume-keyword-scanner/" style="color:inherit">Keyword scanner</a> · <a href="/cover-letter-checker/" style="color:inherit">Cover letter checker</a> · <a href="/linkedin-profile-checker/" style="color:inherit">LinkedIn checker</a> · <a href="/free-resume-builder/" style="color:inherit">Resume builder</a> · <a href="/job-search/" style="color:inherit">Job search</a> · <a href="/resume-maker/" style="color:inherit">Resume maker</a> · <a href="/free-alternative-to-paid-resume-checkers/" style="color:inherit">Free alternative</a></nav>
