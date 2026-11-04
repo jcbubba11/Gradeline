@@ -594,6 +594,14 @@ dl.kv dd.no { color: var(--red); font-weight: 700; }
 .lp-fields { display: grid; gap: 14px; }
 .lp-fields div.field { display: grid; gap: 6px; font-weight: 700; font-size: .9rem; }
 .lp-fields div.field .lp-chips button { font-weight: 400; }
+.lp-guide { background: var(--soft); border: 1px solid var(--line); border-radius: 4px; padding: 10px 14px; font-size: .86rem; }
+.lp-guide summary { cursor: pointer; font-weight: 700; font-size: .9rem; }
+.lp-guide-in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; margin-top: 10px; }
+.lp-guide-in b { font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; color: var(--blue); }
+.lp-guide ul { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 4px; color: var(--ink); }
+@media (max-width: 720px) { .lp-guide-in { grid-template-columns: minmax(0, 1fr); } }
+.lp-sugg { display: grid; gap: 6px; font-weight: 400; }
+.lp-sugg .lp-chips button { font-size: .78rem; padding: 3px 9px; color: var(--blue); border-color: var(--blue-soft); background: var(--blue-soft); }
 .lp-fields .opt { font-weight: 400; color: var(--muted); font-size: .8rem; }
 .lp-fields textarea { min-height: 64px; }
 .lp-toggle { display: flex; gap: 8px; align-items: center; font-size: .9rem; cursor: pointer; }
@@ -1102,6 +1110,7 @@ footer { border-top: 1px solid var(--line); padding-block: 22px 26px; font-size:
       </div>
       <div class="field"><b>What are you posting about?</b>
         <div class="lp-chips" id="lpTypes" role="group" aria-label="Post type"></div></div>
+      <details class="lp-guide" id="lpGuide" open></details>
       <div class="lp-fields" id="lpFields"></div>
       <div class="fields-2">
         <div class="field"><b>Tone</b>
@@ -3875,11 +3884,12 @@ const LP_TYPES = {
       ["o", "Where", "City, region or remote", "", "in Columbus or remote"],
       ["b", "What you bring", "Skills and one result", "what you bring", "I've run social accounts with 12,000 followers, written weekly email newsletters, and I'm fluent in Canva, Google Analytics and Mailchimp."],
       ["c", "A bit of your story", "Used for the Story opening", "", "I spent three years in retail, and the part I loved most was getting people excited about a new product."],
+      ["d", "Who to thank", "People who referred you, gave advice or reviewed your resume", "", "Ms. Rivera in Career Services"],
       ["e", "Your ask", "Be specific: an intro, a share, a referral", "", "If you know a team that's hiring, I'd be grateful for an introduction or a share."]],
     news: (g, w) => `I'm looking for ${lpJob(g)}${g("o", true) ? " " + g("o") : ""}${w ? ", and I'd love your help" : ""}.`,
     direct: g => `I'm job hunting, and I could use your help.`,
     bridge: g => `Now I'm looking for ${lpJob(g)}${g("o", true) ? " " + g("o") : ""}.`,
-    thanks: "" },
+    thanks: "for the help so far" },
   lesson: { label: "A lesson or tip", emoji: "💡", tags: ["CareerAdvice", "LessonsLearned"],
     fields: [["a", "The lesson, in one line", "", "your lesson", "Most of my interviews came from one message, not from applying"],
       ["b", "What happened", "The details that back it up, with a number", "what happened", "I sent 80 applications this fall and got 2 replies. Then I messaged 15 alumni at companies I liked, and 4 of those chats turned into interviews."],
@@ -3927,20 +3937,63 @@ function lpCompose() {
   if (tags.length) P.push(tags.join(" "));
   return P.filter(Boolean).join("\n\n");
 }
+// Recommendations shown with each post type: people to thank (tap to add), how to write it, and what else to include.
+const LP_GUIDE = {
+  job: { thank: ["my manager", "the recruiter who hired me", "my references", "my professors", "Career Services", "my mentors", "my family"],
+    tips: ["Put the title and company in the first line. That's what people skim for.", "Say what you'll actually do in one sentence. \"I'll run email campaigns for 40 stores\" says more than \"I'm excited for this opportunity.\"", "Thank people by name, then tag them with @ in LinkedIn. It's kind, and the post shows up for their connections too.", "Tag the company: type @ and pick its page from the list.", "Wait until your offer is signed and you know the company is fine with you sharing. Many people post on their first day."],
+    extras: ["A photo from your first day: your desk, badge or the building.", "Update your headline and Experience section first, so people who click your name see the new job.", "One skill you'll use or learn in the role.", "Turn off Open to Work if it's still on."] },
+  internStart: { thank: ["the recruiter", "the hiring team", "my professors", "my academic advisor", "Career Services", "the friend who referred me", "my family"],
+    tips: ["Name the company, team and role in the first line.", "Say what you'll work on or hope to learn, in one or two sentences.", "Thank whoever helped you get it: the recruiter, a professor who was a reference, Career Services, a friend who referred you.", "Tag the company with @ so its recruiters and employees see the post.", "Not sure you can share project details? Describe the team, not the project."],
+    extras: ["When and where: \"this summer in Chicago\".", "Your school and major, so classmates and alumni find you.", "A photo once you start.", "Add the internship to your Experience section."] },
+  internEnd: { thank: ["my manager", "my mentor", "my team", "my fellow interns", "the recruiter"],
+    tips: ["Open with your biggest result or takeaway, not \"my internship is over.\"", "Give one specific thing you did, with a number if you can.", "Thank your manager and mentor by name and tag them. They're the people most likely to give you a reference or a return offer.", "Keep confidential work vague: describe the kind of work, not internal numbers or unreleased products.", "Say what you're looking for next. Recruiters read these posts."],
+    extras: ["A team photo (ask your team first).", "Two or three skills you learned.", "Ask your manager for a LinkedIn recommendation while the work is fresh.", "Update your Experience section with bullets and results."] },
+  grad: { thank: ["my family", "my professors", "my academic advisor", "my friends", "my roommates", "my coaches", "my mentors"],
+    tips: ["Say your degree and school in the first line.", "Pick one or two highlights instead of listing everything: a project, a job you worked through school, an honor.", "Thank family, professors and friends by name. That's what makes a graduation post personal.", "Say what's next: a job, grad school, or that you're looking. If you're looking, say for what kind of role."],
+    extras: ["A cap-and-gown photo.", "Honors such as Dean's List or cum laude.", "Clubs, sports or leadership roles.", "Update your Education section and headline."] },
+  project: { thank: ["my teammates", "my professor", "everyone who tested it", "my mentor", "the friends who gave feedback"],
+    tips: ["Open with the problem it solves, not the tech stack.", "Say who it's for and one result: users, time saved, a grade, a prize.", "Name the tools in one line. Recruiters search for those skills.", "Put the link in the first comment and write \"link in the comments.\"", "Ask for something specific: feedback, testers or ideas."],
+    extras: ["A screenshot or short demo video.", "Tag your teammates.", "Add it to the Projects section of your profile.", "What you'd build or fix next."] },
+  cert: { thank: ["my manager", "my instructor", "my study group", "my mentor", "my family"],
+    tips: ["Name the exact certificate and who issued it.", "Say why you went for it and one thing you can do now that you couldn't before.", "Mention a project you finished while earning it, if there was one.", "Tag the issuer, such as @Google or @Coursera."],
+    extras: ["The certificate or badge image.", "Add it to Licenses & certifications on your profile.", "Add the new skills to your Skills section.", "What you plan to learn next."] },
+  event: { thank: ["the organizers", "the speakers", "the recruiters I met", "the classmates who came with me", "Career Services"],
+    tips: ["Share one or two specific takeaways, not just \"had a great time.\"", "Tag people you actually talked to, and say what you talked about.", "Post within a day or two, while the people you met still remember you.", "Tag the event or the group that ran it."],
+    extras: ["A photo from the event.", "The event's own hashtag.", "Send connection requests with a short note to the people you met.", "What you'll do with what you learned."] },
+  search: { thank: ["the people who referred me", "my former manager", "my mentors", "Career Services", "everyone who reviewed my resume"],
+    tips: ["Say exactly what you want: the job or field, the job type and the location. Vague posts get vague help.", "Give two or three specifics about what you bring, including one result.", "Make one clear, easy ask: an introduction, a referral or a share.", "If you were laid off, keep it short and positive about your last employer."],
+    extras: ["Turn on Open to Work (you can show it to recruiters only).", "A short list of companies you'd love to work for.", "How to reach you: \"message me\" or your email.", "Ask a few friends to share or comment so it travels further."] },
+  lesson: { thank: ["the person who taught me this", "my mentor", "my manager", "my classmates"],
+    tips: ["Put the lesson in the first line so people know why to keep reading.", "Back it up with what actually happened, including numbers.", "Tell it as your own experience rather than telling others what to do.", "End with a question so readers share theirs."],
+    extras: ["Short numbered steps people can try.", "A before-and-after.", "Credit and tag the person who taught you.", "One thing readers can do today."] }
+};
+function lpRenderGuide() {
+  const G = LP_GUIDE[LP.type], T = LP_TYPES[LP.type];
+  $("#lpGuide").innerHTML = `<summary>How to write a "${esc(T.label.toLowerCase())}" post</summary><div class="lp-guide-in"><div><b>Tips</b><ul>${G.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div><div><b>Also think about adding</b><ul>${G.extras.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div></div>`;
+}
+// Tapping a "who to thank" chip adds it to the thanks field: "A", "A and B", "A, B and C".
+function lpAddThanks(who) {
+  const v = lpVals(), cur = (v.d || "").trim();
+  if (cur.toLowerCase().includes(who.toLowerCase())) return;
+  const parts = cur ? cur.split(/,\s*|\s+and\s+/).filter(Boolean) : [];
+  parts.push(who);
+  v.d = parts.length > 1 ? parts.slice(0, -1).join(", ") + " and " + parts[parts.length - 1] : parts[0];
+}
 function lpRenderForm() {
   $("#lpTypes").innerHTML = Object.entries(LP_TYPES).map(([k, T]) => `<button type="button" data-lptype="${k}" aria-pressed="${k === LP.type}">${esc(T.label)}</button>`).join("");
   const v = lpVals();
   $("#lpFields").innerHTML = LP_TYPES[LP.type].fields.map(([k, label, hint, ph, ex, opts]) => {
     if (opts) return `<div class="field"><span>${esc(label)} <span class="opt">optional</span></span><div class="lp-chips" role="group" aria-label="${esc(label)}">${opts.map(o => `<button type="button" data-lpopt="${k}" data-val="${esc(o)}" aria-pressed="${v[k] === o}">${esc(o)}</button>`).join("")}</div></div>`;
     const long = ["b", "c", "e"].includes(k), opt = !ph;
+    const chips = k === "d" ? `<span class="lp-sugg"><span class="hint">Not sure who? Tap to add, then swap in real names so you can tag them:</span><span class="lp-chips">${LP_GUIDE[LP.type].thank.map(w => `<button type="button" data-lpthank="${esc(w)}">+ ${esc(w)}</button>`).join("")}</span></span>` : "";
     const tag = long ? `<textarea id="lpf-${k}" data-lpf="${k}" placeholder="${esc(ex)}">${esc(v[k] || "")}</textarea>` : `<input type="text" id="lpf-${k}" data-lpf="${k}" placeholder="${esc(ex)}" value="${esc(v[k] || "")}">`;
-    return `<label class="field" for="lpf-${k}"><span>${esc(label)}${opt ? ' <span class="opt">optional</span>' : ""}</span>${hint ? ` <span class="hint">${esc(hint)}</span>` : ""}${tag}</label>`;
+    return `<label class="field" for="lpf-${k}"><span>${esc(label)}${opt ? ' <span class="opt">optional</span>' : ""}</span>${hint ? ` <span class="hint">${esc(hint)}</span>` : ""}${tag}${chips}</label>`;
   }).join("");
   document.querySelectorAll("#lpTone button").forEach(b => b.setAttribute("aria-pressed", b.dataset.tone === LP.tone));
   document.querySelectorAll("#lpHook button").forEach(b => b.setAttribute("aria-pressed", b.dataset.hook === LP.hook));
   $("#lpEmoji").checked = !!LP.emoji; $("#lpTopics").value = LP.topics || "";
   $("#lpSampleTag").hidden = !LP.example;
-  lpRenderTags();
+  lpRenderGuide(); lpRenderTags();
 }
 function lpRenderTags() {
   const picked = lpPicked();
@@ -3997,7 +4050,7 @@ function lpCheck() {
 function lpInit() { lpRenderForm(); lpUpdate(false); }
 $("#lpTypes").addEventListener("click", e => { const k = e.target.closest("[data-lptype]")?.dataset.lptype; if (!k || k === LP.type) return; LP.type = k; LP.picked = null; LP.edited = false; lpRenderForm(); lpUpdate(true); });
 $("#lpFields").addEventListener("input", e => { const k = e.target.dataset.lpf; if (!k) return; lpVals()[k] = e.target.value; LP.example = false; $("#lpSampleTag").hidden = true; lpUpdate(false); });
-$("#lpFields").addEventListener("click", e => { const b = e.target.closest("[data-lpopt]"); if (!b) return; const k = b.dataset.lpopt, v = lpVals(); v[k] = v[k] === b.dataset.val ? "" : b.dataset.val; LP.example = false; lpRenderForm(); lpUpdate(false); });
+$("#lpFields").addEventListener("click", e => { const th = e.target.closest("[data-lpthank]"); if (th) { e.preventDefault(); lpAddThanks(th.dataset.lpthank); LP.example = false; $("#lpf-d").value = lpVals().d; $("#lpSampleTag").hidden = true; lpUpdate(false); return; } const b = e.target.closest("[data-lpopt]"); if (!b) return; const k = b.dataset.lpopt, v = lpVals(); v[k] = v[k] === b.dataset.val ? "" : b.dataset.val; LP.example = false; lpRenderForm(); lpUpdate(false); });
 $("#lpTone").addEventListener("click", e => { const k = e.target.closest("[data-tone]")?.dataset.tone; if (!k) return; LP.tone = k; lpRenderForm(); lpUpdate(false); });
 $("#lpHook").addEventListener("click", e => { const k = e.target.closest("[data-hook]")?.dataset.hook; if (!k) return; LP.hook = k; lpRenderForm(); lpUpdate(false); });
 $("#lpTags").addEventListener("click", e => { const t = e.target.closest("[data-lptag]")?.dataset.lptag; if (!t) return; const p = lpPicked(); LP.picked = p.includes(t) ? p.filter(x => x !== t) : [...p, t]; lpRenderTags(); lpUpdate(false); });
