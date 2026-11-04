@@ -19,28 +19,30 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Caveat:wght@600&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Caveat:wght@600&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
 /* Layout: sticky tab bar over a cool desk-grey ground; white "paper" sheets hold content; red pen marks feedback. */
 :root {
-  --bg: #ffffff;
+  --bg: #f6f5f0;
   --paper: #ffffff;
-  --ink: #18202b;
-  --muted: #586273;
-  --line: #dde3ea;
-  --soft: #f3f6fa;
+  --ink: #16232c;
+  --muted: #5b6670;
+  --line: #e3e1d9;
+  --soft: #efeee8;
+  --panel: #ebeae3;
+  --night: #19303a;
   color-scheme: light;
-  --blue: #1d4fa3;
-  --blue-soft: #e4ecfa;
+  --blue: #2549d3;
+  --blue-soft: #e8edfd;
   --red: #c0302b;
   --red-soft: #fbe9e8;
   --green: #217646;
   --green-soft: #e3f3ea;
   --amber: #9a6100;
   --amber-soft: #fbf0db;
-  --shadow: 0 1px 2px rgba(24,32,43,.06), 0 6px 20px rgba(24,32,43,.06);
-  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --shadow: 0 1px 2px rgba(22,35,44,.04);
+  --f-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-body: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
   --f-pen: "Caveat", "Comic Sans MS", cursive;
 }
@@ -208,74 +210,126 @@ label.field select { font: inherit; font-weight: 400; font-size: .92rem; width: 
 @media (max-width: 720px) { .acct { order: 1; } nav.tabs { order: 2; flex-basis: 100%; } }
 @media (max-width: 560px) { .acct-name { display: none; } .brand small { display: none; } }
 /* Find internships: search bar, list on the left, details on the right */
-.ix-bar { padding: 14px; display: grid; gap: 12px; margin-top: 18px; }
-.ix-search { display: flex; flex-wrap: wrap; gap: 10px; }
-.ix-field { flex: 2 1 260px; display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; background: var(--paper); }
-.ix-field.loc { flex: 1 1 200px; }
-.ix-field:focus-within { outline: 2px solid var(--blue); outline-offset: 1px; }
-.ix-field svg { flex: none; color: var(--muted); }
-.ix-field input { border: 0; outline: 0; background: transparent; font: inherit; font-size: .95rem; padding: 11px 0; width: 100%; color: var(--ink); min-width: 0; }
-.ix-pills { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.ix-pill { position: relative; }
-.ix-pill select { appearance: none; -webkit-appearance: none; font: inherit; font-size: .86rem; font-weight: 700; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 99px; padding: 7px 30px 7px 14px; cursor: pointer; max-width: 240px; }
-.ix-pill::after { content: ""; position: absolute; right: 13px; top: 50%; width: 6px; height: 6px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: translateY(-70%) rotate(45deg); pointer-events: none; }
-.ix-pill.on select { background: var(--blue-soft); border-color: var(--blue); color: var(--blue); }
-.ix-toggle { display: inline-flex; align-items: center; gap: 6px; font-size: .86rem; font-weight: 700; border: 1px solid var(--line); border-radius: 99px; padding: 7px 14px; cursor: pointer; background: var(--paper); }
-.ix-toggle input { margin: 0; accent-color: var(--blue); }
-.ix-toggle.on { background: var(--blue-soft); border-color: var(--blue); color: var(--blue); }
-.ix-school { display: inline-flex; align-items: center; gap: 6px; font-size: .84rem; color: var(--muted); margin-left: auto; }
-.ix-school input { font: inherit; font-size: .86rem; border: 1px solid var(--line); border-radius: 99px; padding: 6px 12px; width: 220px; max-width: 100%; background: var(--paper); color: var(--ink); }
-.ix-clear { background: none; border: 0; font: inherit; font-size: .86rem; color: var(--blue); cursor: pointer; text-decoration: underline; padding: 4px; }
-.ix-stamp { color: var(--muted); font-size: .9rem; }
-.ix-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 18px; margin-top: 16px; align-items: start; }
-.ix-count { margin: 0 0 10px; font-weight: 700; font-size: .92rem; color: var(--muted); }
-.ix-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
-.ix-card { position: relative; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; transition: border-color .12s, box-shadow .12s; }
-.ix-card:hover { border-color: var(--muted); }
-.ix-card.sel { border-color: var(--blue); box-shadow: inset 4px 0 0 var(--blue); }
-.ix-pick { all: unset; box-sizing: border-box; display: flex; gap: 12px; width: 100%; padding: 14px 52px 14px 14px; cursor: pointer; border-radius: 12px; }
+/* Find jobs */
+.ix-hero { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 40px; align-items: start; }
+.ix-hero .intro { max-width: 62ch; }
+.ix-hero h1 { font-size: clamp(2rem, 4.4vw, 3rem); }
+.ix-index { background: var(--night); color: #fff; border-radius: 4px; padding: 22px 24px 18px; display: grid; gap: 14px; }
+.ix-index .k { font-size: .66rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #b9c8ce; }
+.ix-index .big { display: flex; align-items: baseline; gap: 10px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,.16); }
+.ix-index .big b { font-family: var(--f-display); font-weight: 400; font-size: 3rem; line-height: 1; letter-spacing: -.01em; font-variant-numeric: lining-nums; }
+.ix-index .big span { font-size: .9rem; color: #d8e1e4; }
+.ix-index dl { display: flex; gap: 22px; margin: 0; flex-wrap: wrap; }
+.ix-index dt { font-size: 1.05rem; font-weight: 600; order: 1; }
+.ix-index dl div { display: flex; flex-direction: column; }
+.ix-index dd { margin: 0; font-size: .72rem; color: #b9c8ce; order: 2; }
+.ix-index .upd { font-size: .7rem; color: #a5b6bc; }
+.ix-bar { background: var(--panel); border-radius: 4px; padding: 16px 18px; display: grid; gap: 12px; }
+.ix-row { display: grid; grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(0, 1fr)) minmax(0, 1.5fr) minmax(0, .95fr) auto; gap: 10px; align-items: end; }
+.ix-f { display: grid; gap: 5px; min-width: 0; }
+.ix-f > span { font-size: .7rem; font-weight: 600; color: var(--ink); }
+.ix-f select, .ix-f input { appearance: none; -webkit-appearance: none; font: inherit; font-size: .82rem; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 3px; padding: 9px 10px; width: 100%; min-width: 0; height: 38px; }
+.ix-f select { padding-right: 28px; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235b6670' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; text-overflow: ellipsis; }
+.ix-f.on select, .ix-f.on input { border-color: var(--blue); box-shadow: inset 0 0 0 1px var(--blue); }
+.ix-f input::placeholder { color: #8a939b; }
+.ix-go { height: 38px; display: inline-flex; align-items: center; gap: 8px; border-radius: 3px; padding: 0 16px; white-space: nowrap; }
+.ix-row2 { display: flex; align-items: center; gap: 12px 22px; flex-wrap: wrap; }
+.ix-school { display: flex; align-items: center; gap: 10px; }
+.ix-school svg { color: var(--muted); flex: none; }
+.ix-school .lbl { display: grid; line-height: 1.25; }
+.ix-school .lbl b { font-size: .72rem; font-weight: 600; }
+.ix-school .lbl small { font-size: .66rem; color: var(--muted); }
+.ix-school .inp { position: relative; }
+.ix-school input { font: inherit; font-size: .82rem; border: 1px solid var(--line); border-radius: 3px; padding: 7px 30px 7px 10px; width: 210px; max-width: 100%; background: var(--paper); color: var(--ink); }
+.ix-school .inp svg { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.ix-chk { display: inline-flex; align-items: center; gap: 8px; font-size: .8rem; cursor: pointer; }
+.ix-chk input { width: 15px; height: 15px; margin: 0; accent-color: var(--blue); }
+.ix-clear { margin-left: auto; background: none; border: 0; font: inherit; font-size: .78rem; font-weight: 600; color: var(--blue); cursor: pointer; padding: 4px; }
+.ix-clear:disabled { color: var(--muted); opacity: .6; cursor: default; }
+.ix-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+.ix-head h2 { font-size: 1.65rem; font-weight: 400; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.ix-head h2 small { font-family: var(--f-body); font-size: .74rem; color: var(--muted); font-weight: 400; }
+.ix-sort { display: flex; align-items: center; gap: 6px; font-size: .78rem; color: var(--muted); }
+.ix-sort select { font: inherit; font-weight: 600; color: var(--ink); border: 0; background: transparent; cursor: pointer; padding: 2px; }
+.ix-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); gap: 14px; align-items: start; }
+.ix-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.ix-card { position: relative; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; transition: border-color .12s, background .12s; }
+.ix-card:hover { border-color: #c6c3b8; }
+.ix-card.sel { border-color: var(--blue); background: var(--blue-soft); }
+.ix-pick { all: unset; box-sizing: border-box; display: grid; gap: 10px; width: 100%; padding: 14px 16px 14px; cursor: pointer; border-radius: 4px; }
 .ix-pick:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
-.ix-logo { flex: none; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: var(--f-display); font-weight: 800; font-size: 1rem; letter-spacing: -.02em; }
-.ix-logo.ix-lg { display: flex; width: 64px; height: 64px; border-radius: 14px; font-size: 1.4rem; }
-.ix-ct { min-width: 0; display: grid; gap: 1px; }
-.ix-ct b { font-size: .98rem; line-height: 1.3; color: var(--ink); }
-.ix-ct .co { font-size: .9rem; color: var(--ink); }
-.ix-ct .sub { font-size: .84rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ix-new { font-size: .7rem; font-weight: 700; color: var(--green); border: 1px solid currentColor; border-radius: 99px; padding: 0 7px; margin-left: 6px; vertical-align: 1px; white-space: nowrap; }
-.ix-bm { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 8px; border: 0; background: none; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.ix-co { display: flex; align-items: center; gap: 10px; padding-right: 30px; min-width: 0; }
+.ix-co > span:last-child { display: grid; min-width: 0; line-height: 1.25; }
+.ix-co b { font-size: .8rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ix-co small, .ix-cap { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ix-logo { flex: none; width: 34px; height: 34px; border-radius: 3px; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-family: var(--f-display); font-weight: 500; font-size: .85rem; letter-spacing: .02em; }
+.ix-card h3 { font-family: var(--f-display); font-weight: 500; font-size: 1.12rem; line-height: 1.25; color: var(--ink); }
+.ix-card.sel h3 { color: var(--blue); }
+.ix-where { display: flex; align-items: center; gap: 5px; font-size: .78rem; color: var(--muted); min-width: 0; }
+.ix-where span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ix-where svg { flex: none; }
+.ix-foot { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.ix-foot > span:first-child { display: flex; gap: 6px; align-items: center; }
+.ix-chip { font-size: .68rem; font-weight: 600; border: 1px solid var(--line); background: var(--soft); border-radius: 3px; padding: 2px 7px; color: var(--ink); white-space: nowrap; }
+.ix-chip.type { color: var(--blue); background: var(--blue-soft); border-color: transparent; }
+.ix-card.sel .ix-chip.type { background: var(--paper); }
+.ix-chip.new { color: var(--green); background: var(--green-soft); border-color: transparent; }
+.ix-bm { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 3px; border: 0; background: none; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .ix-bm:hover { background: var(--soft); color: var(--ink); }
 .ix-bm.on { color: var(--blue); }
 .ix-bm.on svg { fill: currentColor; }
-.ix-detail { position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow: auto; padding: 24px; }
-.ix-detail .ix-back { display: none; }
-.ix-dhead { display: flex; gap: 14px; align-items: center; margin-bottom: 14px; }
-.ix-dhead p { margin: 0; font-weight: 700; }
-.ix-dhead small { display: block; color: var(--muted); font-weight: 400; font-size: .86rem; }
-.ix-detail h2 { font-family: var(--f-display); font-size: 1.6rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -.01em; }
-.ix-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 18px; }
-.ix-tag { font-size: .78rem; background: var(--soft); border-radius: 99px; padding: 3px 11px; color: var(--muted); font-weight: 700; }
-.ix-tag.type { color: var(--ink); background: var(--blue-soft); }
-.ix-dacts { display: flex; flex-wrap: wrap; gap: 10px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
-.ix-dacts .btn { padding: 11px 22px; font-size: .95rem; text-decoration: none; }
-.ix-sec { padding: 18px 0; border-bottom: 1px solid var(--line); }
-.ix-sec:last-child { border-bottom: 0; padding-bottom: 0; }
-.ix-sec h3 { font-size: 1rem; margin: 0 0 10px; }
-.ix-glance { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px 18px; margin: 0; }
-.ix-glance dt { font-size: .76rem; font-family: var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-.ix-glance dd { margin: 2px 0 0; font-size: .92rem; }
-.ix-people { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
-.ix-people a { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); font-weight: 700; font-size: .9rem; }
-.ix-people a:hover { border-color: var(--blue); color: var(--blue); }
-.ix-people span { color: var(--muted); font-weight: 400; font-size: .82rem; }
-.ix-sec p { margin: 0; color: var(--muted); font-size: .92rem; }
-.ix-empty { border: 1px dashed var(--line); border-radius: 12px; padding: 24px; text-align: center; color: var(--muted); }
+.ix-under { display: flex; justify-content: space-between; gap: 10px; font-size: .7rem; color: var(--muted); margin-top: 12px; }
+.ix-detail { position: sticky; top: 76px; max-height: calc(100vh - 92px); overflow: auto; padding: 0; border-radius: 4px; box-shadow: none; }
+.ix-detail .ix-back { display: none; margin: 16px 20px 0; }
+.ix-dtop { padding: 20px 24px 18px; position: relative; display: grid; gap: 10px; justify-items: start; }
+.ix-dtop .ix-bm { top: 16px; right: 16px; }
+.ix-badge { font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); background: var(--blue-soft); border-radius: 3px; padding: 3px 8px; }
+.ix-dco { font-size: .8rem; color: var(--muted); }
+.ix-detail h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.5rem, 2.6vw, 1.95rem); line-height: 1.2; letter-spacing: -.005em; padding-right: 32px; }
+.ix-dmeta { font-size: .8rem; color: var(--muted); }
+.ix-dacts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.ix-dacts .btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 3px; padding: 9px 16px; font-size: .82rem; text-decoration: none; }
+.ix-dnote { font-size: .68rem; color: var(--muted); }
+.ix-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px 18px; margin: 0; padding: 14px 24px; background: var(--soft); border-block: 1px solid var(--line); }
+.ix-facts dt { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.ix-facts dd { margin: 3px 0 0; font-size: .82rem; color: var(--ink); }
+.ix-sec { padding: 20px 24px 0; }
+.ix-sec:last-child { padding-bottom: 22px; }
+.ix-sec h3 { font-size: .9rem; font-family: var(--f-body); font-weight: 600; margin-bottom: 8px; }
+.ix-sec p { color: var(--muted); font-size: .82rem; line-height: 1.6; }
+.ix-ph { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+.ix-ph h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.3rem; margin: 0; }
+.ix-people { list-style: none; padding: 0; margin: 0; }
+.ix-people li + li { border-top: 1px solid var(--line); }
+.ix-people a { display: flex; align-items: center; gap: 12px; padding: 11px 0; text-decoration: none; color: var(--ink); }
+.ix-people a:hover b { color: var(--blue); }
+.ix-people .ic { flex: none; width: 30px; height: 30px; border-radius: 3px; background: var(--blue-soft); color: var(--blue); display: grid; place-items: center; }
+.ix-people .tx { display: grid; flex: 1; min-width: 0; line-height: 1.35; }
+.ix-people b { font-size: .8rem; font-weight: 600; }
+.ix-people small { font-size: .72rem; color: var(--muted); }
+.ix-people .ar { color: var(--blue); flex: none; }
+.ix-empty { border: 1px dashed #cfccc1; border-radius: 4px; padding: 24px; text-align: center; color: var(--muted); font-size: .88rem; background: var(--paper); }
 .ix-more { display: block; margin: 14px auto 0; }
+@media (max-width: 1060px) {
+  .ix-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ix-row .ix-f.q { grid-column: span 2; }
+}
 @media (max-width: 900px) {
+  .ix-hero { grid-template-columns: 1fr; gap: 20px; }
   .ix-split { grid-template-columns: 1fr; }
   .ix-detail { display: none; }
-  .ix-split.open .ix-detail { display: block; position: fixed; inset: 0; z-index: 60; max-height: none; border-radius: 0; border: 0; padding: 16px 16px 40px; }
-  .ix-detail .ix-back { display: inline-flex; margin-bottom: 14px; }
-  .ix-school { margin-left: 0; }
+  .ix-split.open .ix-detail { display: block; position: fixed; inset: 0; z-index: 60; max-height: none; border-radius: 0; border: 0; padding-bottom: 40px; }
+  .ix-detail .ix-back { display: inline-flex; }
+}
+@media (max-width: 560px) {
+  .ix-row { grid-template-columns: 1fr 1fr; }
+  .ix-row .ix-f.q { grid-column: 1 / -1; }
+  .ix-go { grid-column: 1 / -1; justify-content: center; }
+  .ix-index .big b { font-size: 2.5rem; }
+  .ix-clear { margin-left: 0; }
+  .ix-school { flex-wrap: wrap; }
+  .ix-school input { width: 100%; }
+  .ix-school .inp { flex: 1 1 100%; }
 }
 /* Template looks: all single-column and ATS-safe, just different typography */
 .tpl-head .look { font-size: .78rem; color: var(--muted); }
@@ -615,12 +669,57 @@ table.jobs tr.due td:nth-child(6) input { color: var(--red); font-weight: 700; }
   .brand small { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ===== One Stop theme: warm paper ground, serif headlines, blue actions ===== */
+body { margin: 0; font-size: 15px; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-weight: 500; letter-spacing: -.005em; }
+.intro h1 { font-weight: 400; letter-spacing: -.012em; line-height: 1.12; }
+.section-title h2 { font-weight: 500; }
+.eyebrow { font-family: var(--f-body); font-size: .68rem; letter-spacing: .14em; color: var(--blue); font-weight: 600; display: inline-flex; align-items: center; gap: 12px; }
+.eyebrow::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+.sheet { border-radius: 4px; box-shadow: none; }
+.btn { border-radius: 4px; font-weight: 600; }
+.btn.primary:hover { filter: none; background: #1c3cb5; border-color: #1c3cb5; }
+textarea, input[type="text"], label.field select { border-radius: 4px; }
+header.top { background: var(--bg); }
+body::before { background: var(--bg); }
+.top-inner { padding-block: 0; min-height: 64px; gap: 24px; }
+.brand { align-items: center; gap: 10px; }
+.brand-mark { width: 30px; height: 30px; background: var(--night); color: #fff; display: grid; place-items: center; font-family: var(--f-display); font-size: .9rem; border-radius: 2px; letter-spacing: .02em; }
+.brand-txt { display: grid; line-height: 1.05; }
+.brand b { font-weight: 500; font-size: 1.28rem; letter-spacing: -.01em; }
+.brand small { font-family: var(--f-body); color: var(--muted); font-size: .56rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 500; margin-top: 3px; }
+nav.tabs { justify-content: center; gap: 6px; align-self: stretch; }
+nav.tabs > a, .more summary { align-self: stretch; display: flex; align-items: center; border-radius: 0; padding: 0 12px; font-weight: 500; font-size: .84rem; color: var(--ink); background: none; }
+nav.tabs > a:hover, .more summary:hover, .more[open] summary { background: none; color: var(--blue); }
+nav.tabs > a[aria-current="page"], .more summary.current { color: var(--blue); background: none; box-shadow: inset 0 -2px 0 var(--blue); }
+.more { display: flex; align-self: stretch; }
+.more summary::after { width: 5px; height: 5px; border-width: 0 1.5px 1.5px 0; }
+.more-menu { top: 100%; border-radius: 4px; }
+nav.tabs .more-menu a { font-weight: 500; border-radius: 3px; }
+nav.tabs .more-menu a[aria-current="page"] { color: var(--blue); }
+#acctIn { border: 0; background: none; font-weight: 500; }
+#acctIn:hover { color: var(--blue); }
+#acctUp { padding: 8px 16px; }
+main { padding-block: 36px 72px; }
+.view { gap: 26px; }
+footer { border-top: 1px solid var(--line); padding-block: 22px 26px; font-size: .78rem; background: var(--bg); }
+.backup { background: var(--paper); border-radius: 4px; }
+.foot-line { display: flex; align-items: center; justify-content: space-between; gap: 10px 24px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--line); }
+.foot-line .fb { font-family: var(--f-display); font-size: 1.15rem; color: var(--ink); }
+.foot-line .fine { max-width: 56ch; }
+#seoLinks { font-size: .76rem !important; }
+@media (max-width: 720px) {
+  .top-inner { padding-block: 10px 0; row-gap: 4px; }
+  nav.tabs { justify-content: flex-start; min-height: 44px; overflow-x: auto; flex-wrap: nowrap; }
+  .foot-line .fine { order: 3; }
+}
 </style>
 
 <a class="skip" href="#main" id="skipLink">Skip to content</a>
 <header class="top">
   <div class="wrap top-inner">
-    <a class="brand" href="#grade"><b>One<span> Stop</span></b><small>resume &amp; jobs</small></a>
+    <a class="brand" href="#grade"><span class="brand-mark" aria-hidden="true">OS</span><span class="brand-txt"><b>One Stop</b><small>Resume &amp; jobs</small></span></a>
     <nav class="tabs" aria-label="Sections">
       <a href="#grade">Grade yours</a>
       <a href="#build">Build yours</a>
@@ -1243,37 +1342,48 @@ Sign-off      Sincerely, [Full name] · [phone] · [email]</code>
 
 <!-- FIND JOBS -->
 <section class="view" data-view="internships" hidden>
-  <div class="intro">
-    <span class="eyebrow">Find jobs</span>
-    <h1>Internships and entry-level jobs, sorted by major.</h1>
-    <p>Pulled straight from company career pages every few hours. Pick a job to see the details and who to contact, then apply on the company's own site.</p>
-    <p class="ix-stamp" id="ixStamp">Loading openings…</p>
-  </div>
-  <form class="sheet ix-bar" id="ixFilters" role="search" onsubmit="return false">
-    <div class="ix-search">
-      <label class="ix-field"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="sr-only">Job title, keyword or company</span><input type="search" id="ixQ" placeholder="Job title, keyword or company"></label>
-      <label class="ix-field loc"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="sr-only">City or state</span><input type="search" id="ixLoc" placeholder="City or state"></label>
+  <div class="ix-hero">
+    <div class="intro">
+      <span class="eyebrow">Find jobs / Start your next chapter</span>
+      <h1>Internships and entry-level jobs, sorted by major.</h1>
+      <p>Pulled straight from company career pages several times a day. Pick your major, then apply on the company's own site. Every listing links to people worth contacting: the company's recruiters, alumni from your school, and people who work there near you.</p>
     </div>
-    <div class="ix-pills">
-      <label class="ix-pill"><span class="sr-only">Job type</span><select id="ixType"><option value="">Job type</option><option value="Internship">Internships</option><option value="Entry-level">Entry-level full-time</option></select></label>
-      <label class="ix-pill"><span class="sr-only">Major</span><select id="ixMajor"><option value="">Major</option></select></label>
-      <label class="ix-pill"><span class="sr-only">Industry</span><select id="ixIndustry"><option value="">Industry</option></select></label>
-      <label class="ix-pill"><span class="sr-only">Date posted</span><select id="ixAge"><option value="">Date posted</option><option value="1">Past 24 hours</option><option value="3">Past 3 days</option><option value="7">Past week</option><option value="30">Past month</option></select></label>
-      <label class="ix-toggle" id="ixRemoteWrap"><input type="checkbox" id="ixRemote"> Remote</label>
-      <label class="ix-toggle" id="ixSavedWrap"><input type="checkbox" id="ixSaved"> Saved</label>
-      <button type="button" class="ix-clear" id="ixClear" hidden>Clear filters</button>
-      <label class="ix-school">Your school <input type="search" id="ixSchool" placeholder="for alumni contacts" autocomplete="organization"></label>
+    <aside class="ix-index" aria-label="The Opportunity Index">
+      <span class="k">The Opportunity Index</span>
+      <div class="big"><b id="ixTotal">…</b><span>openings</span></div>
+      <dl><div><dt id="ixNInt">–</dt><dd>Internships</dd></div><div><dt id="ixNEntry">–</dt><dd>Entry-level</dd></div><div><dt id="ixNCo">–</dt><dd>Employers</dd></div></dl>
+      <span class="upd" id="ixStamp">Loading openings…</span>
+    </aside>
+  </div>
+  <form class="ix-bar" id="ixFilters" role="search" onsubmit="return false">
+    <div class="ix-row">
+      <label class="ix-f"><span>Job type</span><select id="ixType"><option value="">Internships + entry-level</option><option value="Internship">Internships</option><option value="Entry-level">Entry-level full-time</option></select></label>
+      <label class="ix-f"><span>Major</span><select id="ixMajor"><option value="">All majors</option></select></label>
+      <label class="ix-f"><span>Industry</span><select id="ixIndustry"><option value="">All industries</option></select></label>
+      <label class="ix-f q"><span>Company, title or city</span><input type="search" id="ixQ" placeholder="e.g. marketing, Chicago" autocomplete="off"></label>
+      <label class="ix-f"><span>Posted</span><select id="ixAge"><option value="">Any time</option><option value="1">Past 24 hours</option><option value="3">Past 3 days</option><option value="7">Past week</option><option value="30">Past month</option></select></label>
+      <button type="submit" class="btn primary ix-go" id="ixGo">Search jobs <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+    </div>
+    <div class="ix-row2">
+      <label class="ix-school" for="ixSchool"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg><span class="lbl"><b>Your school</b><small>For alumni contacts</small></span><span class="inp"><input type="search" id="ixSchool" placeholder="e.g. Kansas" autocomplete="organization"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span></label>
+      <label class="ix-chk"><input type="checkbox" id="ixRemote"> Remote only</label>
+      <label class="ix-chk"><input type="checkbox" id="ixSaved"> Saved only</label>
+      <button type="button" class="ix-clear" id="ixClear" disabled>Reset filters</button>
     </div>
   </form>
+  <div class="ix-head">
+    <h2><span id="ixCount" aria-live="polite">Loading openings</span><small id="ixCountSub"></small></h2>
+    <label class="ix-sort">Sort by <select id="ixSort"><option value="recent">Most recent</option><option value="new">Newly added</option><option value="company">Company A–Z</option></select></label>
+  </div>
   <div class="ix-split" id="ixSplit">
     <div>
-      <p class="ix-count" id="ixCount" aria-live="polite"></p>
       <ul class="ix-list" id="ixList"></ul>
       <button type="button" class="btn ix-more" id="ixMore" hidden>Show more</button>
+      <div class="ix-under"><span id="ixShowing"></span><span>Live from company career pages</span></div>
     </div>
     <aside class="sheet ix-detail" id="ixDetail" aria-label="Job details"></aside>
   </div>
-  <p class="note" style="margin-top:28px">Listings link to each employer's own careers page; One Stop doesn't post jobs or take applications. Openings can close at any time, so always confirm details on the employer's site. Contact links open a LinkedIn people search in a new tab. We don't collect or store anyone's profile; you choose who to reach out to.</p>
+  <p class="note">Listings link to each employer's own careers page; One Stop doesn't post jobs or take applications. Openings can close at any time, so always confirm details on the employer's site. Contact links open a LinkedIn people search in a new tab. We don't collect or store anyone's profile; you choose who to reach out to.</p>
 </section>
 
 <section class="view" data-view="tracker" hidden>
@@ -1315,7 +1425,7 @@ Sign-off      Sincerely, [Full name] · [phone] · [email]</code>
     <span>Download a backup to move it to another device, or keep it safe if you clear your browser.</span>
     <div class="btns"><button type="button" class="btn small" id="bkSave">Download backup</button><label class="btn small" for="bkFile">Restore from backup</label><input type="file" id="bkFile" accept=".json,application/json" hidden></div>
   </div>
-  <p>One Stop · Grading runs entirely in your browser. Feedback is general guidance, not a guarantee of an interview. · <a href="#privacy">Privacy</a> · <a href="#terms">Terms</a></p>
+  <div class="foot-line"><span class="fb">One Stop</span><span>Your resume. Your connections. Your next chapter.</span><span><a href="#privacy">Privacy</a> · <a href="#terms">Terms</a></span><p class="fine">Grading runs entirely in your browser. Feedback is general guidance, not a guarantee of an interview.</p></div>
 </div></footer>
 <dialog class="acct-dlg" id="acctDlg" aria-labelledby="acctTitle">
   <form method="dialog" class="acct-x"><button class="btn small" aria-label="Close">✕</button></form>
@@ -3847,7 +3957,7 @@ async function showReview(id) {
 }
 
 /* ================= Find internships ================= */
-const IX = { all: [], shown: 40, loaded: false, loading: false, sel: null };
+const IX = { all: [], shown: 25, loaded: false, loading: false, sel: null };
 // The GitHub copy updates every few hours even when the site itself hasn't been redeployed; the site's own copy is the fallback.
 const IX_SOURCES = ["https://raw.githubusercontent.com/jcbubba11/Gradeline/main/public/internships/data.json", "/internships/data.json"];
 function ixFetch(i = 0) {
@@ -3859,31 +3969,39 @@ function ixFetch(i = 0) {
     .catch(() => ixFetch(i + 1))
     .finally(() => timer && clearTimeout(timer));
 }
+const ixN = n => (n || 0).toLocaleString();
 function ixInit() {
   if (IX.loaded || IX.loading) return;
   IX.loading = true;
   ixFetch().then(data => {
     IX.all = data.postings; IX.loaded = true;
-    const majors = new Set(), inds = new Set();
-    IX.all.forEach(j => { (j.majors || []).forEach(m => majors.add(m)); inds.add(j.industry); });
+    const majors = new Set(), inds = new Set(), cos = new Set();
+    IX.all.forEach(j => { (j.majors || []).forEach(m => majors.add(m)); inds.add(j.industry); cos.add(j.company); });
     const other = "Other / Any major", fill = (sel, vals) => vals.forEach(v => { const o = document.createElement("option"); o.value = o.textContent = v; sel.appendChild(o); });
     fill($("#ixMajor"), [...majors].filter(m => m !== other).sort().concat(majors.has(other) ? [other] : []));
     fill($("#ixIndustry"), [...inds].filter(Boolean).sort());
-    $("#ixStamp").textContent = `${(data.count || IX.all.length).toLocaleString()} openings${data.entry_level != null ? ` (${(data.internships || 0).toLocaleString()} internships, ${data.entry_level.toLocaleString()} entry-level)` : ""} at ${(data.companies || 0).toLocaleString()} employers · updated ${new Date(data.updated).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}`;
+    const nInt = data.internships != null ? data.internships : IX.all.filter(j => (j.type || "Internship") === "Internship").length;
+    $("#ixTotal").textContent = ixN(data.count || IX.all.length);
+    $("#ixNInt").textContent = ixN(nInt);
+    $("#ixNEntry").textContent = ixN(data.entry_level != null ? data.entry_level : IX.all.length - nInt);
+    $("#ixNCo").textContent = ixN(data.companies || cos.size);
+    $("#ixStamp").textContent = `Updated ${new Date(data.updated).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })} · Live listings`;
     ixRender();
-  }).catch(() => { IX.loading = false; $("#ixStamp").textContent = "The openings list could not load right now. Please try again in a few minutes."; });
+  }).catch(() => { IX.loading = false; $("#ixStamp").textContent = "The openings list could not load right now. Please try again in a few minutes."; $("#ixCount").textContent = "Openings unavailable"; });
 }
 const ixSaved = j => JOBS.some(x => x.link && x.link === j.url);
+const IX_FILTERS = ["ixQ", "ixType", "ixMajor", "ixIndustry", "ixAge"];
 function ixMatches(j, now) {
-  const DAY = 864e5, q = $("#ixQ").value.trim().toLowerCase(), loc = $("#ixLoc").value.trim().toLowerCase();
+  const DAY = 864e5, q = $("#ixQ").value.trim().toLowerCase();
   if ($("#ixType").value && (j.type || "Internship") !== $("#ixType").value) return false;
   if ($("#ixMajor").value && !(j.majors || []).includes($("#ixMajor").value)) return false;
   if ($("#ixIndustry").value && j.industry !== $("#ixIndustry").value) return false;
   if ($("#ixRemote").checked && !j.remote) return false;
   if ($("#ixSaved").checked && !ixSaved(j)) return false;
   if ($("#ixAge").value && now - Date.parse(j.posted) > $("#ixAge").value * DAY) return false;
-  if (loc && !`${j.location} ${j.remote ? "remote" : ""}`.toLowerCase().includes(loc)) return false;
-  return !q || `${j.company} ${j.title} ${j.industry} ${(j.majors || []).join(" ")}`.toLowerCase().includes(q);
+  if (!q) return true;
+  const hay = `${j.company} ${j.title} ${j.industry} ${j.location} ${j.remote ? "remote" : ""} ${(j.majors || []).join(" ")}`.toLowerCase();
+  return q.split(/[\s,]+/).filter(Boolean).every(w => hay.includes(w));
 }
 function ixAgo(iso, now) {
   const d = Math.floor((now - Date.parse(iso)) / 864e5);
@@ -3891,68 +4009,95 @@ function ixAgo(iso, now) {
   return d <= 0 ? "today" : d === 1 ? "yesterday" : d < 60 ? d + " days ago" : new Date(iso).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
 }
 // Company "logo": initials on a color picked from the name, so the same company always looks the same.
-const IX_TINTS = [["#e4ecfa", "#1d4fa3"], ["#fde8e4", "#a8322a"], ["#e3f4ea", "#1f7a4d"], ["#fdf0d9", "#8a5a0b"], ["#ede7fb", "#5b3aa6"], ["#e0f3f5", "#16707a"], ["#fbe6f0", "#9b2c63"], ["#ecefe3", "#556019"]];
-function ixLogo(co, big) {
+const IX_TINTS = [["#eef1fb", "#2549d3"], ["#f8ece8", "#a8322a"], ["#e9f3ec", "#1f6b45"], ["#f7f0e1", "#7d540e"], ["#efebf8", "#5b3aa6"], ["#e6f1f2", "#16656e"], ["#f6e9ef", "#8e2a5b"], ["#eeefe6", "#4f5718"]];
+function ixLogo(co) {
   const name = String(co || "?").replace(/[^\p{L}\p{N}\s&]/gu, " ").trim();
   const words = name.split(/\s+/).filter(w => !/^(the|inc|llc|corp|co|ltd)$/i.test(w));
   const ini = ((words[0] || "?")[0] + (words[1] ? words[1][0] : (words[0] || "")[1] || "")).toUpperCase();
   let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0;
   const [bg, fg] = IX_TINTS[h % IX_TINTS.length];
-  return `<span class="ix-logo${big ? " ix-lg" : ""}" style="background:${bg};color:${fg}" aria-hidden="true">${esc(ini)}</span>`;
+  return `<span class="ix-logo" style="background:${bg};color:${fg}" aria-hidden="true">${esc(ini)}</span>`;
 }
 let IX_HITS = [];
 // People to contact: LinkedIn people searches the job seeker opens themselves. Nothing is scraped or stored.
 const LI_PEOPLE = q => "https://www.linkedin.com/search/results/people/?keywords=" + encodeURIComponent(q);
 function ixCity(loc) { return String(loc || "").split(/;|\|/)[0].replace(/\b(remote|hybrid|on-?site|united states|usa|us)\b/gi, "").split(",")[0].replace(/[()\-–·]+/g, " ").trim(); }
+const IX_IC = {
+  rec: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>',
+  alum: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>',
+  near: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>'
+};
 function ixPeople(j) {
   const co = String(j.company || "").replace(/\s*\((?:example)\)\s*/i, "").trim(), school = $("#ixSchool").value.trim(), city = ixCity(j.location);
   const intern = (j.type || "Internship") === "Internship";
-  const out = [[intern ? "University recruiters" : "Recruiters", `at ${co}`, `${co} ${intern ? "university recruiter" : "recruiter"}`]];
-  out.push(school ? [`${school} alumni`, `working at ${co}`, `${co} ${school}`] : ["Alumni", `add your school in the filters to find them`, `${co} alumni`]);
-  if (city && city.length > 2) out.push([`People in ${city}`, `at ${co}`, `${co} ${city}`]);
-  return out.map(([l, s, q]) => [l, s, LI_PEOPLE(q)]);
+  const out = [["rec", intern ? "Company recruiters" : "Recruiters", `Find the people who hire for ${co}`, `${co} ${intern ? "university recruiter" : "recruiter"}`]];
+  out.push(school ? ["alum", `Alumni from ${school}`, `Start with a shared school connection at ${co}`, `${co} ${school}`] : ["alum", "Alumni from your school", "Add your school above to search for them", `${co} alumni`]);
+  if (city && city.length > 2) out.push(["near", `People who work here near ${city}`, `Explore a local connection to ${co}`, `${co} ${city}`]);
+  else out.push(["near", "People who work here", `Explore connections at ${co}`, `${co}`]);
+  return out.map(([ic, l, s, q]) => [ic, l, s, LI_PEOPLE(q)]);
 }
 try { $("#ixSchool").value = store.get("rp-school", "") || ""; } catch {}
 $("#ixSchool").addEventListener("change", () => { store.set("rp-school", $("#ixSchool").value.trim()); ixDetail(); });
-const IX_BM = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>';
+const IX_BM = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>';
+const IX_PIN = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+const IX_OUT = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
 const ixSafe = u => /^https:\/\//i.test(u || "") ? u : "#";
 const ixWhere = j => [j.location, j.remote && !/remote/i.test(j.location || "") ? "Remote" : ""].filter(Boolean).join(" · ");
+const ixFresh = (j, now) => now - Date.parse(j.first_seen) < 2 * 864e5;
+const ixActive = () => IX_FILTERS.some(id => $("#" + id).value) || $("#ixRemote").checked || $("#ixSaved").checked;
+function ixSort(list) {
+  const by = $("#ixSort").value, t = v => Date.parse(v) || 0;
+  if (by === "company") return list.sort((a, b) => String(a.company).localeCompare(String(b.company)) || t(b.posted) - t(a.posted));
+  if (by === "new") return list.sort((a, b) => t(b.first_seen) - t(a.first_seen) || t(b.posted) - t(a.posted));
+  return list.sort((a, b) => t(b.posted) - t(a.posted));
+}
 function ixRender() {
   const E = v => esc(String(v ?? "")), now = Date.now();
-  IX_HITS = IX.all.filter(j => ixMatches(j, now));
-  ["ixType", "ixMajor", "ixIndustry", "ixAge"].forEach(id => $("#" + id).parentElement.classList.toggle("on", !!$("#" + id).value));
-  $("#ixRemoteWrap").classList.toggle("on", $("#ixRemote").checked);
-  $("#ixSavedWrap").classList.toggle("on", $("#ixSaved").checked);
-  $("#ixClear").hidden = !["ixQ", "ixLoc", "ixType", "ixMajor", "ixIndustry", "ixAge"].some(id => $("#" + id).value) && !$("#ixRemote").checked && !$("#ixSaved").checked;
-  $("#ixCount").textContent = IX_HITS.length.toLocaleString() + (IX_HITS.length === 1 ? " job" : " jobs");
+  IX_HITS = ixSort(IX.all.filter(j => ixMatches(j, now)));
+  IX_FILTERS.forEach(id => $("#" + id).closest(".ix-f").classList.toggle("on", !!$("#" + id).value));
+  $("#ixClear").disabled = !ixActive();
+  $("#ixCount").textContent = IX_HITS.length.toLocaleString() + (IX_HITS.length === 1 ? " opening" : " openings");
+  $("#ixCountSub").textContent = ixActive() ? "match your filters" : "live right now";
   if (!IX_HITS.includes(IX.sel)) IX.sel = matchMedia("(max-width: 900px)").matches ? null : IX_HITS[0] || null;
   $("#ixList").innerHTML = IX_HITS.length ? IX_HITS.slice(0, IX.shown).map((j, i) => {
-    const fresh = now - Date.parse(j.first_seen) < 2 * 864e5, saved = ixSaved(j);
-    return `<li class="ix-card${j === IX.sel ? " sel" : ""}"><button type="button" class="ix-pick" data-ix-pick="${i}" aria-current="${j === IX.sel}">${ixLogo(j.company)}<span class="ix-ct"><b>${E(j.title)}${fresh ? '<span class="ix-new">New</span>' : ""}</b><span class="co">${E(j.company)}</span><span class="sub">${E(ixWhere(j) || "Location not listed")} · ${E(j.type || "Internship")}</span><span class="sub">Posted ${E(ixAgo(j.posted, now))}</span></span></button><button type="button" class="ix-bm${saved ? " on" : ""}" data-ix-save="${i}" aria-label="${saved ? "Saved to your Job tracker" : "Save to Job tracker"}" title="${saved ? "Saved" : "Save"}">${IX_BM}</button></li>`;
-  }).join("") : `<li class="ix-empty">${$("#ixSaved").checked ? "You haven't saved any jobs yet. Tap the bookmark on a job to save it to your Job tracker." : $("#ixType").value === "Entry-level" && !IX.all.some(j => j.type === "Entry-level") ? "Entry-level jobs are added on the next listing update (every 6 hours). Check back soon." : "No jobs match those filters yet. Try another major, a wider date range or clear the location."}</li>`;
+    const saved = ixSaved(j), sel = j === IX.sel;
+    return `<li class="ix-card${sel ? " sel" : ""}"><button type="button" class="ix-pick" data-ix-pick="${i}" aria-current="${sel}">
+      <span class="ix-co">${ixLogo(j.company)}<span><b>${E(j.company)}</b><small>${E(j.industry || "Employer")}</small></span></span>
+      <h3>${E(j.title)}</h3>
+      <span class="ix-where">${IX_PIN}<span>${E(ixWhere(j) || "Location not listed")}</span></span>
+      <span class="ix-foot"><span><span class="ix-chip type">${E(j.type || "Internship")}</span>${ixFresh(j, now) ? '<span class="ix-chip new">New</span>' : ""}</span><span class="ix-cap">${E(ixAgo(j.posted, now))}</span></span>
+    </button><button type="button" class="ix-bm${saved ? " on" : ""}" data-ix-save="${i}" aria-label="${saved ? "Saved to your Job tracker" : "Save to Job tracker"}" title="${saved ? "Saved" : "Save"}">${IX_BM}</button></li>`;
+  }).join("") : `<li class="ix-empty">${$("#ixSaved").checked ? "You haven't saved any jobs yet. Tap the bookmark on a job to save it to your Job tracker." : "No jobs match those filters yet. Try another major, a wider date range or a shorter search."}</li>`;
   $("#ixMore").hidden = IX_HITS.length <= IX.shown;
+  $("#ixShowing").textContent = IX_HITS.length ? `Showing ${Math.min(IX.shown, IX_HITS.length).toLocaleString()} of ${IX_HITS.length.toLocaleString()}` : "";
   ixDetail();
 }
 function ixDetail() {
   const box = $("#ixDetail"), j = IX.sel, E = v => esc(String(v ?? "")), now = Date.now();
-  if (!j) { box.innerHTML = `<p class="note">${IX.loaded ? "Pick a job to see the details." : ""}</p>`; return; }
+  if (!j) { box.innerHTML = `<div class="ix-sec"><p>${IX.loaded ? "Pick a job to see the details and who to contact." : "Loading openings…"}</p></div>`; return; }
   const saved = ixSaved(j), src = { greenhouse: "Greenhouse", lever: "Lever", ashby: "Ashby", smartrecruiters: "SmartRecruiters", usajobs: "USAJOBS" }[j.source] || "the company's careers page";
+  const fmt = d => new Date(d).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+  const majors = (j.majors || []).filter(m => m !== "Other / Any major");
   box.innerHTML = `<button type="button" class="btn small ix-back" id="ixBack">← Back to results</button>
-    <div class="ix-dhead">${ixLogo(j.company, true)}<p>${E(j.company)}<small>${E(j.industry || "")}</small></p></div>
-    <h2>${E(j.title)}</h2>
-    <p class="ix-meta" style="margin:0;color:var(--muted)">${E(ixWhere(j) || "Location not listed")} · Posted ${E(ixAgo(j.posted, now))}</p>
-    <div class="ix-tags"><span class="ix-tag type">${E(j.type || "Internship")}</span>${j.remote ? '<span class="ix-tag">Remote</span>' : ""}${now - Date.parse(j.first_seen) < 2 * 864e5 ? '<span class="ix-tag" style="color:var(--green)">New</span>' : ""}</div>
-    <div class="ix-dacts"><a class="btn primary" href="${E(ixSafe(j.url))}" target="_blank" rel="noopener noreferrer nofollow">Apply on company site ↗</a><button type="button" class="btn" id="ixDetailSave"${saved ? " disabled" : ""}>${saved ? "Saved to tracker" : "Save to tracker"}</button></div>
-    <div class="ix-sec"><h3>At a glance</h3><dl class="ix-glance">
-      <div><dt>Location</dt><dd>${E(j.location || "Not listed")}${j.remote ? " (remote option)" : ""}</dd></div>
+    <div class="ix-dtop">
+      <span class="ix-badge">${E(j.type || "Internship")}${ixFresh(j, now) ? " · New this week" : ""}${j.remote ? " · Remote option" : ""}</span>
+      <button type="button" class="ix-bm${saved ? " on" : ""}" id="ixDetailBm" aria-label="${saved ? "Saved to your Job tracker" : "Save to Job tracker"}">${IX_BM}</button>
+      <span class="ix-dco">${E(j.company)}${j.industry ? " · " + E(j.industry) : ""}</span>
+      <h2>${E(j.title)}</h2>
+      <span class="ix-dmeta">${E(ixWhere(j) || "Location not listed")} · Posted ${E(ixAgo(j.posted, now))}</span>
+      <div class="ix-dacts"><a class="btn primary" href="${E(ixSafe(j.url))}" target="_blank" rel="noopener noreferrer nofollow">Apply on company site ${IX_OUT}</a><button type="button" class="btn" id="ixDetailSave"${saved ? " disabled" : ""}>${saved ? "Saved" : "Save job"} ${IX_BM}</button></div>
+      <span class="ix-dnote">Opens ${E(j.company)}'s own application, listed through ${E(src)}.</span>
+    </div>
+    <dl class="ix-facts">
       <div><dt>Job type</dt><dd>${E(j.type || "Internship")}</dd></div>
-      <div><dt>Posted</dt><dd>${E(new Date(j.posted).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }))}</dd></div>
-      ${j.closes ? `<div><dt>Apply by</dt><dd>${E(new Date(j.closes).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }))}</dd></div>` : ""}
-      <div><dt>Industry</dt><dd>${E(j.industry || "Not listed")}</dd></div>
-      <div style="grid-column:1/-1"><dt>Good fit for</dt><dd>${(j.majors || []).map(E).join(", ") || "Any major"}</dd></div>
-    </dl></div>
-    <div class="ix-sec"><h3>Who to contact</h3><ul class="ix-people">${ixPeople(j).map(([l, s, u]) => `<li><a href="${E(u)}" target="_blank" rel="noopener noreferrer">${E(l)} <span>${E(s)} ↗</span></a></li>`).join("")}</ul></div>
-    <div class="ix-sec"><h3>About this job</h3><p>The full description, pay and requirements are on ${E(j.company)}'s careers page, listed through ${E(src)}. Tailor your resume to it with <a href="#tailor">Tailor to a job</a> before you apply.</p></div>`;
+      <div><dt>Posted</dt><dd>${E(fmt(j.posted))}</dd></div>
+      ${j.closes ? `<div><dt>Apply by</dt><dd>${E(fmt(j.closes))}</dd></div>` : ""}
+      <div><dt>Related major</dt><dd>${majors.map(E).join(", ") || "Any major"}</dd></div>
+    </dl>
+    <div class="ix-sec"><h3>${(j.type || "Internship") === "Internship" ? "A first step into real-world work." : "A first full-time role to grow into."}</h3><p>The full description, pay and requirements are on ${E(j.company)}'s careers page. Before you apply, tailor your resume to the posting with <a href="#tailor">Tailor &amp; ATS check</a>, then reach out to someone below. A short, specific note to a recruiter or alum often gets your application read sooner.</p></div>
+    <div class="ix-sec"><div class="ix-ph"><h3>People worth contacting</h3><span class="ix-cap">Opens LinkedIn</span></div>
+      <ul class="ix-people">${ixPeople(j).map(([ic, l, s, u]) => `<li><a href="${E(u)}" target="_blank" rel="noopener noreferrer"><span class="ic">${IX_IC[ic]}</span><span class="tx"><b>${E(l)}</b><small>${E(s)}</small></span><span class="ar">${IX_OUT}</span></a></li>`).join("")}</ul>
+    </div>`;
   box.scrollTop = 0;
 }
 function ixSave(j) {
@@ -3961,9 +4106,11 @@ function ixSave(j) {
   saveJobs(); renderJobs();
   if (typeof toast === "function") toast("Saved to your Job tracker.");
 }
-["change", "input"].forEach(ev => $("#ixFilters").addEventListener(ev, e => { if (e.target.id === "ixSchool") return; IX.shown = 40; ixRender(); }));
-$("#ixClear").onclick = () => { ["ixQ", "ixLoc", "ixType", "ixMajor", "ixIndustry", "ixAge"].forEach(id => $("#" + id).value = ""); $("#ixRemote").checked = $("#ixSaved").checked = false; IX.shown = 40; ixRender(); };
-$("#ixMore").onclick = () => { IX.shown += 40; ixRender(); };
+["change", "input"].forEach(ev => $("#ixFilters").addEventListener(ev, e => { if (e.target.id === "ixSchool") return; IX.shown = 25; ixRender(); }));
+$("#ixSort").addEventListener("change", () => { IX.shown = 25; ixRender(); });
+$("#ixGo").addEventListener("click", () => { ixRender(); $("#ixSplit").scrollIntoView({ behavior: "smooth", block: "start" }); });
+$("#ixClear").onclick = () => { IX_FILTERS.forEach(id => $("#" + id).value = ""); $("#ixRemote").checked = $("#ixSaved").checked = false; IX.shown = 25; ixRender(); };
+$("#ixMore").onclick = () => { IX.shown += 25; ixRender(); };
 $("#ixList").addEventListener("click", e => {
   const s = e.target.closest("[data-ix-save]");
   if (s) { ixSave(IX_HITS[+s.dataset.ixSave]); ixRender(); return; }
@@ -3975,7 +4122,7 @@ $("#ixList").addEventListener("click", e => {
   if (matchMedia("(max-width: 900px)").matches) { $("#ixSplit").classList.add("open"); document.body.style.overflow = "hidden"; $("#ixBack") && $("#ixBack").focus(); }
 });
 $("#ixDetail").addEventListener("click", e => {
-  if (e.target.closest("#ixDetailSave")) { ixSave(IX.sel); ixRender(); return; }
+  if (e.target.closest("#ixDetailSave") || e.target.closest("#ixDetailBm")) { ixSave(IX.sel); ixRender(); return; }
   if (e.target.closest("#ixBack") || e.target.closest('a[href^="#"]')) {
     $("#ixSplit").classList.remove("open"); document.body.style.overflow = "";
     const sel = $("#ixList .ix-card.sel .ix-pick"); if (sel && e.target.closest("#ixBack")) sel.focus();
