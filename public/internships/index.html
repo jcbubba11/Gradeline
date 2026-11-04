@@ -112,11 +112,13 @@ footer{margin-top:48px;border-top:1px solid var(--line);padding:20px 0 40px;colo
     var hits = all.filter(matches);
     el('count').textContent = hits.length.toLocaleString() + (hits.length === 1 ? ' opening' : ' openings');
     el('list').innerHTML = hits.length ? hits.slice(0, shown).map(function (j) {
-      var fresh = now - Date.parse(j.first_seen) < 2 * DAY;
+      // "New" needs a recent posting date too, so older jobs from a newly added employer aren't flagged.
+      var seen = now - Date.parse(j.first_seen), age = now - Date.parse(j.posted);
+      var today = age < DAY && seen < 1.5 * DAY, fresh = today || (age < 3 * DAY && seen < 3 * DAY);
       var where = [j.location, j.remote && !/remote/i.test(j.location) ? 'Remote' : ''].filter(Boolean).join(' · ');
       return '<li class="job"><div><h2><a href="' + esc(safeUrl(j.url)) + '" target="_blank" rel="noopener noreferrer nofollow">' + esc(j.title) + '</a>' +
-        (fresh ? '<span class="new">New</span>' : '') + '</h2>' +
-        '<p class="meta"><span class="co">' + esc(j.company) + '</span>' + (where ? ' · ' + esc(where) : '') + ' · posted ' + esc(ago(j.posted)) + '</p>' +
+        (fresh ? '<span class="new">' + (today ? 'New today' : 'New') + '</span>' : '') + '</h2>' +
+        '<p class="meta"><span class="co">' + esc(j.company) + '</span>' + (where ? ' · ' + esc(where) : '') + ' · <span title="' + esc(isNaN(Date.parse(j.posted)) ? '' : new Date(j.posted).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })) + '">posted ' + esc(ago(j.posted)) + '</span></p>' +
         '<div class="tags"><span class="tag">' + esc(j.industry) + '</span>' + j.majors.map(function (m) { return '<span class="tag">' + esc(m) + '</span>'; }).join('') + '</div></div>' +
         '<a class="apply" href="' + esc(safeUrl(j.url)) + '" target="_blank" rel="noopener noreferrer nofollow">Apply</a></li>';
     }).join('') : '<li class="empty">No openings match those filters yet. Try another major or a wider date range.</li>';

@@ -14,6 +14,18 @@ service cloud.firestore {
         && request.resource.data.data.size() <= 950000
         && request.resource.data.savedAt is string && request.resource.data.savedAt.size() <= 40;
     }
+    // Job alert emails: each signed-in person with a confirmed email keeps one doc listing the saved
+    // searches to email them about. Only the alerts GitHub Action (service account) reads them all.
+    match /alerts/{uid} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null && request.auth.uid == uid
+        && request.auth.token.email_verified == true
+        && request.resource.data.keys().hasOnly(['email', 'searches', 'updatedAt'])
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.searches is string
+        && request.resource.data.searches.size() <= 20000
+        && request.resource.data.updatedAt is string && request.resource.data.updatedAt.size() <= 40;
+    }
     match /reviews/{reviewId} {
       allow get: if true;
       allow list, update, delete: if false;
