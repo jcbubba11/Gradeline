@@ -1,9 +1,14 @@
 {
- "run": "2026-11-04T01:12:49Z",
- "boards_ok": 1149,
- "boards_failed": 60,
- "usajobs": "skipped (USAJOBS_KEY / USAJOBS_EMAIL not set)",
- "postings": 5386,
+ "run": "2026-11-04T04:49:42Z",
+ "boards_ok": 2906,
+ "boards_failed": 116,
+ "usajobs": "ok",
+ "aggregators": {
+  "usajobs": "ok",
+  "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
+  "jooble": "skipped (JOOBLE_KEY not set)"
+ },
+ "postings": 21749,
  "failures": [
   {
    "name": "Age of Learning",
@@ -364,6 +369,342 @@
    "ats": "greenhouse",
    "token": "tempus",
    "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "National Renewable Energy Laboratory",
+   "ats": "workday",
+   "token": "nrel|wd5|nrel",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Otis",
+   "ats": "workday",
+   "token": "otis|wd5|REC_Ext_Gateway",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Hitachi",
+   "ats": "workday",
+   "token": "gtsgbu|wd3|Careers",
+   "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+   "name": "Intel",
+   "ats": "workday",
+   "token": "intel|wd1|en-us",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Netflix",
+   "ats": "workday",
+   "token": "netflix|wd1|Netflix",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "FanThreeSixty",
+   "ats": "workday",
+   "token": "osv-tifec|wd5|fanthreesixty",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Environmental Defense Fund",
+   "ats": "workday",
+   "token": "osv-edf|wd5|Confidential",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Carnegie Mellon University",
+   "ats": "workday",
+   "token": "cmu|wd5|cmu",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Savage X Fenty",
+   "ats": "workday",
+   "token": "justfab|wd1|savagex",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Gensler",
+   "ats": "workday",
+   "token": "gensler|wd1|genslercareers",
+   "error": "HTTPError: HTTP Error 401: Unauthorized"
+  },
+  {
+   "name": "IDEXX",
+   "ats": "workday",
+   "token": "idexx|wd1|IDEXX",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Otsuka Pharmaceutical",
+   "ats": "workday",
+   "token": "vhr-otsuka|wd1|External",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "EPRI",
+   "ats": "workday",
+   "token": "vhr-epri|wd1|epricareers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Ribbon",
+   "ats": "workday",
+   "token": "vhr-genband|wd1|ribboncareers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Comcast",
+   "ats": "workday",
+   "token": "comcast|wd5|Comcast_Careers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Sallie Mae",
+   "ats": "workday",
+   "token": "sallie-mae|wd5|Careers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Nio",
+   "ats": "workday",
+   "token": "nio|wd3|NIO_Careers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Takeda",
+   "ats": "workday",
+   "token": "takeda|wd3|external",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Red Bull Advanced Technologies",
+   "ats": "workday",
+   "token": "redbulltechnology|wd3|RB_Racing",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "CliftonLarsonAllen",
+   "ats": "workday",
+   "token": "cliftonlarsonallen|wd1|CLA",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Cambia Health Solutions",
+   "ats": "workday",
+   "token": "cambiahealth|wd1|External",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "ReCor Medical",
+   "ats": "workday",
+   "token": "vhr-otsuka|wd1|RecorExternal",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Plexus",
+   "ats": "workday",
+   "token": "plexus|wd5|Plexus_Careers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Legrand",
+   "ats": "workday",
+   "token": "milestone|wd1|Milestone_External",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Amplify",
+   "ats": "workday",
+   "token": "amplify|wd1|Amplify_Careers",
+   "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+   "name": "Insmed",
+   "ats": "workday",
+   "token": "insmed|wd5|EXTERNAL",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "LiveRamp",
+   "ats": "workday",
+   "token": "liveramp|wd5|LiveRampCareers",
+   "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+   "name": "Cystic Fibrosis Foundation",
+   "ats": "workday",
+   "token": "cff|wd1|explore-career-opportunities",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Magnite",
+   "ats": "workday",
+   "token": "osv-rubicon|wd5|MagniteCareers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Chegg",
+   "ats": "workday",
+   "token": "osv-chegg|wd5|Chegg",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Ticketmaster",
+   "ats": "workday",
+   "token": "livenation|wd503|en",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Castleton Commodities International",
+   "ats": "workday",
+   "token": "osv-cci|wd1|CCICareers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Walmart",
+   "ats": "workday",
+   "token": "walmart|wd5|WalmartExternal",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Busuu",
+   "ats": "workday",
+   "token": "osv-chegg|wd5|Busuu",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "United Therapeutics Corporation",
+   "ats": "workday",
+   "token": "vhr-unither|wd5|External",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Kohl's",
+   "ats": "workday",
+   "token": "kohls|wd1|kohlscareers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "OneDigital",
+   "ats": "workday",
+   "token": "onedigital|wd5|onedigital",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Montrose Environmental Group",
+   "ats": "workday",
+   "token": "montrose|wd1|meg",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Fragomen",
+   "ats": "workday",
+   "token": "fragomen|wd1|FragomenCareers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Dell Technologies",
+   "ats": "workday",
+   "token": "dell|wd1|External",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Lilly USA",
+   "ats": "workday",
+   "token": "lilly|wd5|LLY",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Gap Inc.",
+   "ats": "workday",
+   "token": "gapinc|wd1|gapconfidential",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Redfin",
+   "ats": "workday",
+   "token": "redfin|wd1|redfin_careers",
+   "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+   "name": "Boar\u2019s Head Brand",
+   "ats": "workday",
+   "token": "boarshead|wd1|BHC",
+   "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+   "name": "Lithia Motors",
+   "ats": "workday",
+   "token": "lithia|wd5|LithiaCareers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "OneSource Virtual",
+   "ats": "workday",
+   "token": "vhr-osvhr|wd1|OSV_External_Career_Site",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Sporting Kansas City",
+   "ats": "workday",
+   "token": "osv-tifec|wd5|SportingKC",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "SSM Health",
+   "ats": "workday",
+   "token": "ssmh|wd5|ssmhealth",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Antech Diagnostics",
+   "ats": "workday",
+   "token": "vca|wd1|antechcareers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Conde Nast",
+   "ats": "workday",
+   "token": "condenast|wd5|CondeCareers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Enterprise Bank & Trust",
+   "ats": "workday",
+   "token": "osv-enterprise|wd1|EnterpriseBankTrust_Jobs",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Ncino",
+   "ats": "workday",
+   "token": "ncino|wd5|nCinoCareers",
+   "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+   "name": "Amerisure",
+   "ats": "workday",
+   "token": "osv-amerisure|wd5|Amerisure",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "CFA Institute",
+   "ats": "workday",
+   "token": "osv-cfainstitute|wd5|Careers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "C Spire",
+   "ats": "workday",
+   "token": "cspire-telapex|wd12|external-careers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "USIC",
+   "ats": "workday",
+   "token": "usicinc|wd5|USICCareers",
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   }
  ]
 }
