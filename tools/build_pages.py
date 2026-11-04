@@ -6,12 +6,36 @@ href="/job-search/" must become href="/<repo>/job-search/". The canonical domain
 
 Usage: python3 tools/build_pages.py public _site /Gradeline https://jcbubba11.github.io/Gradeline
 """
+import hashlib
 import os
 import re
 import shutil
 import sys
 
 OLD_SITE = "https://enchanting-cobbler-9bc669.netlify.app"
+
+
+# Scripts and styles the app loads by relative path. Each reference gets ?v=<content hash> so a new
+# deploy never mixes a fresh index.html with an old cached script. Files that reference others come later.
+VERSIONED = re.compile(r'(["\'])((?:assets/[\w.-]+\.(?:js|css))|interview-(?:bank|prep)\.js)\1')
+
+
+def add_versions(dst):
+    def digest(rel):
+        path = os.path.join(dst, rel)
+        return hashlib.sha256(open(path, "rb").read()).hexdigest()[:10] if os.path.isfile(path) else None
+
+    def stamp(path):
+        text = open(path, encoding="utf-8").read()
+        out = VERSIONED.sub(lambda m: f"{m[1]}{m[2]}?v={digest(m[2])}{m[1]}" if digest(m[2]) else m[0], text)
+        if out != text:
+            open(path, "w", encoding="utf-8").write(out)
+
+    stamp(os.path.join(dst, "assets", "app.js"))  # names the on-demand files
+    for root, _, files in os.walk(dst):
+        for name in files:
+            if name.endswith(".html"):
+                stamp(os.path.join(root, name))
 
 
 def main():
@@ -32,6 +56,7 @@ def main():
                 out = out.replace('"/internships/data.json"', f'"{base}/internships/data.json"')
             if out != text:
                 open(path, "w", encoding="utf-8").write(out)
+    add_versions(dst)
     open(os.path.join(dst, ".nojekyll"), "w").close()
     print("built", dst, "for", site)
 

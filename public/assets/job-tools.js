@@ -101,7 +101,7 @@ a.jt-firm:hover{border-color:var(--blue);color:var(--blue)}
     const due = dueJobs();
     dueBox.hidden = !due.length;
     if (!due.length) return;
-    dueBox.innerHTML = `<div class="jt-head"><h3>${due.length === 1 ? "1 follow-up is due" : due.length + " follow-ups are due"}</h3><span class="note">A short, polite check-in a week or two after applying keeps you on the recruiter's radar.</span></div>
+    dueBox.innerHTML = `<div class="jt-head"><h2>${due.length === 1 ? "1 follow-up is due" : due.length + " follow-ups are due"}</h2><span class="note">A short, polite check-in a week or two after applying keeps you on the recruiter's radar.</span></div>
       <ul>${due.map(([j, i]) => {
         const d = -daysFrom(j.follow);
         return `<li><span class="what"><b>${E(j.company || "Untitled")}</b>${j.role ? " · " + E(j.role) : ""}<small>${d === 0 ? "due today" : d === 1 ? "1 day overdue" : d + " days overdue"}</small></span>
@@ -169,10 +169,10 @@ a.jt-firm:hover{border-color:var(--blue);color:var(--blue)}
   function renderAlerts() {
     const signed = !!(typeof ACCT !== "undefined" && ACCT.user);
     if (!ALERTS.length) {
-      alertBox.innerHTML = `<div class="jt-head"><h3>Job alerts</h3><span class="note">Set your filters above, then press <b>Save search as alert</b>. Next time you visit, we'll show how many new jobs match. Signed-in users can also get a daily email.</span></div>`;
+      alertBox.innerHTML = `<div class="jt-head"><h2>Job alerts</h2><span class="note">Set your filters above, then press <b>Save search as alert</b>. Next time you visit, we'll show how many new jobs match. Signed-in users can also get a daily email.</span></div>`;
       return;
     }
-    alertBox.innerHTML = `<div class="jt-head"><h3>Your job alerts</h3><span class="note">${signed ? "Turn on Email for a daily digest when new jobs match." : "Sign in to also get new matches by email once a day."}</span></div>
+    alertBox.innerHTML = `<div class="jt-head"><h2>Your job alerts</h2><span class="note">${signed ? "Turn on Email for a daily digest when new jobs match." : "Sign in to also get new matches by email once a day."}</span></div>
       <ul class="jt-alerts">${ALERTS.map(a => {
         const n = counts[a.id];
         return `<li class="jt-alert"><span class="nm">${E(a.name)}<small>Checked ${E(new Date(a.since).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }))}</small></span>

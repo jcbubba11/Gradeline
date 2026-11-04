@@ -25,3 +25,6 @@ GitHub → Actions → "Update internship listings" → Run workflow. Locally: `
 
 ## Site setup
 Firebase / Mentor review notes are in SETUP.md. Netlify is no longer used: netlify.toml only tells any leftover Netlify link to skip every build.
+
+## How the main app is split
+`public/index.html` holds the page markup only. Styles are in `public/assets/app.css` and the main script in `public/assets/app.js`. Bigger tools load the first time their page opens (see `LAZY` in app.js): `assets/linkedin-post.js`, `assets/gallery.js`, `assets/apply-tools.js` (application kit, follow-up, rejection), `interview-bank.js` + `interview-prep.js`, and jsPDF (when the builder opens). `assets/job-tools.js` adds the recruiting calendar, job alerts and tracker reminders. All files share one set of globals, so keep new code in the file for its page. The Pages build (`tools/build_pages.py`) adds `?v=<hash>` to each of these file names so a deploy never mixes old and new files.

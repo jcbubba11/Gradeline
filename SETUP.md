@@ -10,13 +10,13 @@ Netlify Drop: open app.netlify.com/drop and drag this folder onto the page. Or u
 2. Build → Firestore Database → Create database → Production mode → pick a US location.
 3. Firestore → Rules → replace everything with the contents of `firestore.rules` → Publish.
 4. Project settings (gear icon) → Your apps → Web (`</>`) → register the app (no hosting needed) → copy the `firebaseConfig` object.
-5. In `index.html`, find `const FIREBASE_CONFIG = null;` and replace `null` with that object. Re-upload the site.
+5. In `public/assets/app.js`, find `const FIREBASE_CONFIG = null;` and replace `null` with that object. Re-upload the site.
 6. Project settings → General → Authorized domains is only for sign-in; nothing to do there for now.
 
 The `firebaseConfig` values (apiKey, projectId…) are meant to be public. The rules file is what protects the data.
 
 ## 3. Before launch
-- Set `const CONTACT_EMAIL = "";` in `index.html` to your contact address (shows in the privacy policy).
+- Set `const CONTACT_EMAIL = "";` in `public/assets/app.js` to your contact address (shows in the privacy policy).
 
 ## Job alert emails (optional, free)
 Anyone can save a search on Find jobs and see how many new jobs match on their next visit; that part needs no setup.
