@@ -2,9 +2,10 @@
 """Pull internship and entry-level job postings from public company job-board feeds and write the
 site's data file.
 
-Sources: Greenhouse, Lever, Ashby and SmartRecruiters public job-board APIs
-(one board per company in companies.json), plus the USAJOBS API when the
-USAJOBS_KEY and USAJOBS_EMAIL environment variables are set.
+Sources: Greenhouse, Lever, Ashby and SmartRecruiters public job-board APIs, Workday, Oracle
+Recruiting Cloud and ADP career-site searches
+(one board per company in companies.json), plus USAJOBS, Adzuna and Jooble when their keys are set
+(USAJOBS_KEY + USAJOBS_EMAIL, ADZUNA_APP_ID + ADZUNA_APP_KEY, JOOBLE_KEY).
 
 Usage: python3 tracker/fetch.py [--out public/internships/data.json]
 Standard library only, so it runs on a stock GitHub Actions runner.
@@ -14,6 +15,7 @@ import json
 import os
 import re
 import sys
+import threading
 import time
 import urllib.parse
 import urllib.request
@@ -36,6 +38,13 @@ ENTRY_RE = re.compile(
     r"junior|jr\.?|associate (?:analyst|engineer|consultant|developer|scientist|designer|product manager|"
     r"accountant|specialist|coordinator)|analyst i\b|engineer i\b|level 1|level i\b|rotational program|"
     r"leadership development program|campus hire|university hire|class of 20\d\d|20\d\d start)\b", re.I)
+
+
+# Food service and hourly store roles are out of scope: the site is for business and professional careers.
+NOT_BUSINESS_RE = re.compile(r"\b(crew member|crew trainer|cashier|cook|line cook|prep cook|dishwasher|food server|busser|hostess|"
+                             r"barista|bartender|baker|food service|restaurant|kitchen|shift (?:lead|manager|supervisor)|"
+                             r"store associate|retail sales associate|stocker|merchandiser|lot attendant|janitor|custodian|"
+                             r"housekeep(?:er|ing)|delivery driver|warehouse associate|package handler)\b", re.I)
 
 
 def job_type(title):
@@ -83,8 +92,10 @@ def tag_majors(title):
     return hits or [OTHER]
 
 
-def get_json(url, headers=None, tries=3):
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json", **(headers or {})})
+def get_json(url, headers=None, tries=3, body=None):
+    data = json.dumps(body).encode() if body is not None else None
+    hdrs = {"User-Agent": UA, "Accept": "application/json", **({"Content-Type": "application/json"} if data else {}), **(headers or {})}
+    req = urllib.request.Request(url, data=data, headers=hdrs)
     for attempt in range(tries):
         try:
             with urllib.request.urlopen(req, timeout=30) as r:
@@ -187,8 +198,175 @@ def fetch_smartrecruiters_term(token, term):
             return out
 
 
+# Workday and Oracle career sites are searched by keyword, so only early-career postings come back.
+SEARCH_TERMS = ("intern", "internship", "co-op", "graduate", "entry level", "early career")
+# Workday hosts many employers on shared servers: keep the load on them light.
+WORKDAY_GATE = threading.Semaphore(6)
+
+
+def workday_posted(text):
+    """Workday says "Posted Today", "Posted Yesterday", "Posted 3 Days Ago" or "Posted 30+ Days Ago"."""
+    t = (text or "").lower()
+    days = 0 if "today" in t else 1 if "yesterday" in t else None
+    m = re.search(r"(\d+)\+?\s*days?", t)
+    if m:
+        days = int(m.group(1))
+    if days is None:
+        return None
+    return iso(time.time() - days * 86400)
+
+
+def fetch_workday(token):
+    # token: "tenant|wd5|site", or "tenant|wd1|site|myworkdaysite" for sites under wdN.myworkdaysite.com/recruiting
+    tenant, wd, site, *kind = token.split("|")
+    if kind and kind[0] == "myworkdaysite":
+        api = f"https://{wd}.myworkdaysite.com/wday/cxs/{tenant}/{site}/jobs"
+        page = f"https://{wd}.myworkdaysite.com/en-US/recruiting/{tenant}/{site}"
+    else:
+        api = f"https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
+        page = f"https://{tenant}.{wd}.myworkdayjobs.com/en-US/{site}"
+    out, seen = [], set()
+    for term in SEARCH_TERMS:
+        offset = 0
+        while offset < 100:
+            with WORKDAY_GATE:
+                data = get_json(api, body={"appliedFacets": {}, "limit": 20, "offset": offset, "searchText": term})
+                time.sleep(0.2)
+            jobs = data.get("jobPostings") or []
+            for j in jobs:
+                path = j.get("externalPath")
+                if not path or path in seen:
+                    continue
+                seen.add(path)
+                loc = j.get("locationsText") or ""
+                out.append(dict(id=path.rsplit("_", 1)[-1] or path, title=j.get("title") or "", location=loc,
+                                url=page + path, posted=workday_posted(j.get("postedOn")),
+                                remote=is_remote(loc, j.get("remoteType"))))
+            offset += 20
+            if len(jobs) < 20 or offset >= (data.get("total") or 0):
+                break
+    return out
+
+
+def fetch_oracle(token):
+    # token: "host|dc|site" for host.fa.dc.oraclecloud.com, career site "site" (e.g. CX_1001)
+    host, dc, site = token.split("|")
+    base = f"https://{host}.fa.{dc}.oraclecloud.com" if dc else f"https://{host}.fa.oraclecloud.com"
+    out, seen = [], set()
+    for term in SEARCH_TERMS:
+        offset = 0
+        while offset < 100:
+            finder = f'findReqs;siteNumber={site},facetsList=NONE,limit=25,offset={offset},keyword="{term}",sortBy=POSTING_DATES_DESC'
+            data = get_json(f"{base}/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&finder={urllib.parse.quote(finder, safe='=;,')}")
+            items = (data.get("items") or [{}])[0]
+            reqs = items.get("requisitionList") or []
+            for j in reqs:
+                jid = j.get("Id")
+                if not jid or jid in seen:
+                    continue
+                seen.add(jid)
+                loc = j.get("PrimaryLocation") or ""
+                out.append(dict(id=jid, title=j.get("Title") or "", location=loc,
+                                url=f"{base}/hcmUI/CandidateExperience/en/sites/{site}/job/{jid}",
+                                posted=iso(j.get("PostedDate")), remote=is_remote(loc, j.get("WorkplaceType"))))
+            offset += 25
+            if len(reqs) < 25 or offset >= (items.get("TotalJobsCount") or 0):
+                break
+    return out
+
+
+def fetch_adp(token):
+    # token: the "cid" from an ADP Workforce Now career center link
+    url = ("https://workforcenow.adp.com/mascsr/default/careercenter/public/events/staffing/v1/job-requisitions"
+           f"?cid={urllib.parse.quote(token)}&lang=en_US&locale=en_US&$top=200")
+    data = get_json(url)
+    out = []
+    for j in data.get("jobRequisitions") or []:
+        locs = []
+        for l in j.get("requisitionLocations") or []:
+            a = l.get("address") or {}
+            city, st = a.get("cityName"), (a.get("countrySubdivisionLevel1") or {}).get("codeValue")
+            locs.append(", ".join(x for x in (city, st) if x) or (l.get("nameCode") or {}).get("shortName") or "")
+        jid = j.get("itemID")
+        out.append(dict(id=jid, title=j.get("requisitionTitle") or "", location="; ".join(x for x in locs if x),
+                        url=("https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html"
+                             f"?cid={urllib.parse.quote(token)}&jobId={jid}&lang=en_US"),
+                        posted=iso(j.get("postDate")), remote=is_remote(*locs)))
+    return out
+
+
 FETCHERS = {"greenhouse": fetch_greenhouse, "lever": fetch_lever, "ashby": fetch_ashby,
-            "smartrecruiters": fetch_smartrecruiters}
+            "smartrecruiters": fetch_smartrecruiters, "workday": fetch_workday, "oracle": fetch_oracle,
+            "adp": fetch_adp}
+
+
+# Job-search aggregators (optional, keys in repo secrets). These fill in employers whose career sites
+# we can't read directly, such as Edward Jones or Northwestern Mutual field offices.
+BUSINESS_FIELDS = {  # Adzuna category -> our industry
+    "accounting-finance-jobs": "Finance & Trading", "consultancy-jobs": "Consulting & Accounting",
+    "sales-jobs": "Sales & Business Development", "pr-advertising-marketing-jobs": "Media & Marketing",
+    "hr-jobs": "HR & Operations", "legal-jobs": "Law & Policy", "it-jobs": "Technology",
+    "engineering-jobs": "Engineering & Hardware", "admin-jobs": "HR & Operations",
+    "logistics-warehouse-jobs": "HR & Operations",
+}
+JOOBLE_FIELDS = {"finance": "Finance & Trading", "accounting": "Consulting & Accounting",
+                 "financial advisor": "Finance & Trading", "investment banking": "Finance & Trading",
+                 "consulting": "Consulting & Accounting", "marketing": "Media & Marketing",
+                 "sales": "Sales & Business Development", "business analyst": "Consulting & Accounting",
+                 "human resources": "HR & Operations", "supply chain": "HR & Operations",
+                 "insurance": "Finance & Trading", "data analyst": "Technology"}
+
+
+def fetch_adzuna():
+    app_id, app_key = os.environ.get("ADZUNA_APP_ID"), os.environ.get("ADZUNA_APP_KEY")
+    if not (app_id and app_key):
+        return [], "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)"
+    out, seen = [], set()
+    for cat, industry in BUSINESS_FIELDS.items():
+        for what in ("intern", "graduate"):
+            for page in (1, 2):
+                q = urllib.parse.urlencode({"app_id": app_id, "app_key": app_key, "results_per_page": 50,
+                                            "what": what, "category": cat, "max_days_old": 45,
+                                            "content-type": "application/json"})
+                data = get_json(f"https://api.adzuna.com/v1/api/jobs/us/search/{page}?{q}")
+                time.sleep(2.6)  # free tier allows about 25 calls a minute
+                rows = data.get("results") or []
+                for r in rows:
+                    if r.get("id") in seen:
+                        continue
+                    seen.add(r.get("id"))
+                    loc = (r.get("location") or {}).get("display_name") or ""
+                    out.append(dict(id=r.get("id"), title=r.get("title") or "", location=loc,
+                                    url=r.get("redirect_url"), posted=iso(r.get("created")), remote=is_remote(loc),
+                                    company=(r.get("company") or {}).get("display_name"), industry=industry))
+                if len(rows) < 50:
+                    break
+    return out, "ok"
+
+
+def fetch_jooble():
+    key = os.environ.get("JOOBLE_KEY")
+    if not key:
+        return [], "skipped (JOOBLE_KEY not set)"
+    out, seen = [], set()
+    for field, industry in JOOBLE_FIELDS.items():
+        for level in ("intern", "entry level"):
+            for page in (1, 2):
+                data = get_json(f"https://jooble.org/api/{key}",
+                                body={"keywords": f"{field} {level}", "location": "United States", "page": str(page)})
+                time.sleep(1)
+                rows = data.get("jobs") or []
+                for r in rows:
+                    if r.get("id") in seen:
+                        continue
+                    seen.add(r.get("id"))
+                    loc = r.get("location") or ""
+                    out.append(dict(id=r.get("id"), title=r.get("title") or "", location=loc, url=r.get("link"),
+                                    posted=iso(r.get("updated")), remote=is_remote(loc, r.get("type") or ""),
+                                    company=r.get("company"), industry=industry))
+                if len(rows) < 20:
+                    break
+    return out, "ok"
 
 
 def fetch_usajobs():
@@ -244,16 +422,22 @@ def main():
     with ThreadPoolExecutor(args.workers) as pool:
         results = list(pool.map(run, companies))
 
-    usa, usa_status = [], "skipped"
-    try:
-        usa, usa_status = fetch_usajobs()
-    except Exception as e:
-        usa_status = f"{type(e).__name__}: {e}"[:200]
-    results.append(({"name": "USAJOBS", "ats": "usajobs", "token": "", "industry": "Government & Public Service"},
-                    usa, None))
+    extra_status = {}
+    for name, ats, industry, fn in (("USAJOBS", "usajobs", "Government & Public Service", fetch_usajobs),
+                                    ("Adzuna", "adzuna", "Business", fetch_adzuna),
+                                    ("Jooble", "jooble", "Business", fetch_jooble)):
+        jobs, status = [], "skipped"
+        try:
+            jobs, status = fn()
+        except Exception as e:
+            status = f"{type(e).__name__}: {e}"[:200]
+        extra_status[ats] = status
+        results.append(({"name": name, "ats": ats, "token": "", "industry": industry, "extra": True}, jobs,
+                        None if status == "ok" else status))
+    usa_status = extra_status["usajobs"]
 
     for c, jobs, err in results:
-        if c["ats"] == "usajobs" and usa_status != "ok":
+        if c.get("extra") and err and err.startswith("skipped"):
             continue
         if err:
             failures.append({"name": c["name"], "ats": c["ats"], "token": c["token"], "error": err})
@@ -268,13 +452,13 @@ def main():
             kind = job_type(title)
             if c["ats"] == "usajobs" and not kind:
                 kind = "Entry-level"  # USAJOBS results here come from the student and recent-graduate hiring paths
-            if not j.get("url") or not kind or SKIP_RE.search(title):
+            if not j.get("url") or not kind or SKIP_RE.search(title) or NOT_BUSINESS_RE.search(title):
                 continue
             key = f"{c['ats']}:{c['token']}:{j['id']}"
             first_seen = previous.get(key, {}).get("first_seen", now)
             postings[key] = {
                 "key": key,
-                "company": j.get("company") or c["name"],
+                "company": (j.get("company") or c["name"]).strip(),
                 "title": title,
                 "location": (j.get("location") or "").strip()[:160],
                 "remote": bool(j.get("remote")),
@@ -282,12 +466,22 @@ def main():
                 "posted": j.get("posted") or first_seen,
                 "first_seen": first_seen,
                 "closes": j.get("closes"),
-                "industry": c["industry"],
+                "industry": j.get("industry") or c["industry"],
                 "majors": tag_majors(title),
                 "type": kind,
                 "source": c["ats"],
             }
 
+    # The same opening can come from a company's own board and an aggregator; keep the direct one.
+    direct = {(p["company"].lower(), p["title"].lower()) for p in postings.values()
+              if p["source"] not in ("adzuna", "jooble")}
+    seen_pair = set()
+    for k in [k for k, p in postings.items() if p["source"] in ("adzuna", "jooble")]:
+        pair = ((postings[k]["company"] or "").lower(), postings[k]["title"].lower(), postings[k]["location"].lower())
+        if pair[:2] in direct or pair in seen_pair:
+            del postings[k]
+        else:
+            seen_pair.add(pair)
     items = sorted(postings.values(), key=lambda p: p["posted"] or "", reverse=True)
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w") as f:
@@ -296,9 +490,9 @@ def main():
                    "entry_level": sum(p.get("type") == "Entry-level" for p in items), "companies": len({p["company"] for p in items}),
                    "postings": items}, f, separators=(",", ":"))
     with open(args.report, "w") as f:
-        json.dump({"run": now, "boards_ok": ok_boards, "boards_failed": len(failures), "usajobs": usa_status,
+        json.dump({"run": now, "boards_ok": ok_boards, "boards_failed": len(failures), "usajobs": usa_status, "aggregators": extra_status,
                    "postings": len(items), "failures": failures}, f, indent=1)
-    print(f"{len(items)} postings from {ok_boards} boards; {len(failures)} boards failed; USAJOBS: {usa_status}")
+    print(f"{len(items)} postings from {ok_boards} boards; {len(failures)} boards failed; extra sources: {extra_status}")
     if ok_boards == 0:
         sys.exit("No boards succeeded; leaving this run uncommitted.")
 
