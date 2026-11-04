@@ -38,5 +38,10 @@ jobs:
             echo "No changes."
           else
             git commit -m "Update internship listings [skip netlify]"
-            git push
+            # The run takes a while, so main may have moved; replay this commit on top and retry.
+            for i in 1 2 3 4; do
+              git pull --rebase -X theirs origin main && git push && exit 0
+              sleep $((i * 5))
+            done
+            exit 1
           fi
