@@ -1,0 +1,39 @@
+name: Send job alert emails
+
+# After each listings refresh, email people whose saved searches have new matches (at most once a day each).
+# Stays off until the FIREBASE_SERVICE_ACCOUNT, ALERTS_GMAIL_USER and ALERTS_GMAIL_APP_PASSWORD secrets exist.
+on:
+  workflow_run:
+    workflows: ["Update internship listings"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: job-alerts
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Send
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          ALERTS_GMAIL_USER: ${{ secrets.ALERTS_GMAIL_USER }}
+          ALERTS_GMAIL_APP_PASSWORD: ${{ secrets.ALERTS_GMAIL_APP_PASSWORD }}
+        run: |
+          if [ -z "$FIREBASE_SERVICE_ACCOUNT" ] || [ -z "$ALERTS_GMAIL_USER" ] || [ -z "$ALERTS_GMAIL_APP_PASSWORD" ]; then
+            echo "Job alert emails are off until the secrets are added (see SETUP.md)."; exit 0
+          fi
+          pip install --quiet google-auth requests
+          python3 tools/send_alerts.py public/internships/data.json
