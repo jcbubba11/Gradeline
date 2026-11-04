@@ -1,2 +1,7 @@
+# The site is published by GitHub Pages (.github/workflows/pages.yml), not Netlify.
+# This file stays only so that, if Netlify is still linked to the repo, every build
+# and every pull request deploy preview is skipped and spends no credits.
+# Once Netlify is unlinked (Stop builds + uninstall the Netlify GitHub app), it can be deleted.
 [build]
   publish = "public"
+  ignore = "exit 0"
