@@ -34,6 +34,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes."
           else
-            git commit -m "Update internship listings"
+            git commit -m "Update internship listings [skip netlify]"
             git push
           fi
