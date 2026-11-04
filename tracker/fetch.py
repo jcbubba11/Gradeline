@@ -256,8 +256,8 @@ def fetch_oracle(token):
     for term in SEARCH_TERMS:
         offset = 0
         while offset < 100:
-            finder = f'findReqs;siteNumber={site},facetsList=NONE,limit=25,offset={offset},keyword="{term}",sortBy=POSTING_DATES_DESC'
-            data = get_json(f"{base}/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&finder={urllib.parse.quote(finder, safe='=;,')}")
+            finder = f'findReqs;siteNumber={site},facetsList=NONE,limit=25,offset={offset},keyword="{term}",sortBy=RELEVANCY'
+            data = get_json(f"{base}/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList&finder={urllib.parse.quote(finder, safe='=;,')}")
             items = (data.get("items") or [{}])[0]
             reqs = items.get("requisitionList") or []
             for j in reqs:
