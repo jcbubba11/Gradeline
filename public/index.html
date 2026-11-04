@@ -592,6 +592,8 @@ dl.kv dd.no { color: var(--red); font-weight: 700; }
 .lp-chips button[aria-pressed="true"] { background: var(--night); color: #fff; border-color: var(--night); }
 #lpTags button[aria-pressed="true"] { background: var(--blue-soft); color: var(--blue); border-color: var(--blue); }
 .lp-fields { display: grid; gap: 14px; }
+.lp-fields div.field { display: grid; gap: 6px; font-weight: 700; font-size: .9rem; }
+.lp-fields div.field .lp-chips button { font-weight: 400; }
 .lp-fields .opt { font-weight: 400; color: var(--muted); font-size: .8rem; }
 .lp-fields textarea { min-height: 64px; }
 .lp-toggle { display: flex; gap: 8px; align-items: center; font-size: .9rem; cursor: pointer; }
@@ -3788,6 +3790,14 @@ document.querySelectorAll("[data-cuse]").forEach(b => b.onclick = () => {
 // Builds a draft from short answers. Each field is [key, label, hint, short name for a placeholder, example].
 // Keys a/o are the "headline facts" used in the opening line; b is required; c (story), d (thanks), e (ask) are optional.
 const lpA = s => (/^[aeiou]/i.test(s) ? "an " : "a ") + s;
+// "Looking for a job": put the chosen job type in front of what they typed ("a nursing job" -> "a full-time nursing job").
+function lpJob(g) {
+  const a = g("a"), t = g("t", true).toLowerCase();
+  if (!t || a.toLowerCase().includes(t) || /^\[/.test(a)) return t && /^\[/.test(a) ? `${t} ${a}` : a;
+  if (t === "internship" && !/intern/i.test(a)) return lpA(a.replace(/^(an?|the)\s+/i, "").replace(/\s+(roles?|jobs?|positions?|work|opportunities)$/i, "") + " internship");
+  const m = a.match(/^(an?|the)\s+(.*)$/i);
+  return m ? (/^the$/i.test(m[1]) ? `the ${t} ${m[2]}` : lpA(`${t} ${m[2]}`)) : `${t} ${a}`;
+}
 const LP_TYPES = {
   job: { label: "New job", emoji: "💼", tags: ["NewJob", "Careers"],
     fields: [["a", "Your new title", "", "your title", "Marketing Coordinator"], ["o", "Company", "", "company", "Northwind Foods"],
@@ -3860,13 +3870,15 @@ const LP_TYPES = {
     bridge: g => `That stuck with me from ${g("a")}.`,
     thanks: "for the conversations" },
   search: { label: "Looking for a job", emoji: "🔎", tags: ["OpenToWork", "JobSearch"],
-    fields: [["a", "The roles you want", "", "the roles you want", "entry-level marketing or communications roles"], ["o", "Where", "City, region or remote", "", "in Columbus or remote"],
+    fields: [["a", "What kind of job do you want?", "Type any job title or field, the way you'd say it", "the job you want", "entry-level marketing or communications roles"],
+      ["t", "Job type", "", "", "Full-time", ["Full-time", "Part-time", "Internship", "Contract", "Freelance"]],
+      ["o", "Where", "City, region or remote", "", "in Columbus or remote"],
       ["b", "What you bring", "Skills and one result", "what you bring", "I've run social accounts with 12,000 followers, written weekly email newsletters, and I'm fluent in Canva, Google Analytics and Mailchimp."],
       ["c", "A bit of your story", "Used for the Story opening", "", "I spent three years in retail, and the part I loved most was getting people excited about a new product."],
       ["e", "Your ask", "Be specific: an intro, a share, a referral", "", "If you know a team that's hiring, I'd be grateful for an introduction or a share."]],
-    news: (g, w) => `I'm looking for ${g("a")}${g("o", true) ? " " + g("o") : ""}${w ? ", and I'd love your help" : ""}.`,
+    news: (g, w) => `I'm looking for ${lpJob(g)}${g("o", true) ? " " + g("o") : ""}${w ? ", and I'd love your help" : ""}.`,
     direct: g => `I'm job hunting, and I could use your help.`,
-    bridge: g => `Now I'm looking for ${g("a")}${g("o", true) ? " " + g("o") : ""}.`,
+    bridge: g => `Now I'm looking for ${lpJob(g)}${g("o", true) ? " " + g("o") : ""}.`,
     thanks: "" },
   lesson: { label: "A lesson or tip", emoji: "💡", tags: ["CareerAdvice", "LessonsLearned"],
     fields: [["a", "The lesson, in one line", "", "your lesson", "Most of my interviews came from one message, not from applying"],
@@ -3918,7 +3930,8 @@ function lpCompose() {
 function lpRenderForm() {
   $("#lpTypes").innerHTML = Object.entries(LP_TYPES).map(([k, T]) => `<button type="button" data-lptype="${k}" aria-pressed="${k === LP.type}">${esc(T.label)}</button>`).join("");
   const v = lpVals();
-  $("#lpFields").innerHTML = LP_TYPES[LP.type].fields.map(([k, label, hint, ph, ex]) => {
+  $("#lpFields").innerHTML = LP_TYPES[LP.type].fields.map(([k, label, hint, ph, ex, opts]) => {
+    if (opts) return `<div class="field"><span>${esc(label)} <span class="opt">optional</span></span><div class="lp-chips" role="group" aria-label="${esc(label)}">${opts.map(o => `<button type="button" data-lpopt="${k}" data-val="${esc(o)}" aria-pressed="${v[k] === o}">${esc(o)}</button>`).join("")}</div></div>`;
     const long = ["b", "c", "e"].includes(k), opt = !ph;
     const tag = long ? `<textarea id="lpf-${k}" data-lpf="${k}" placeholder="${esc(ex)}">${esc(v[k] || "")}</textarea>` : `<input type="text" id="lpf-${k}" data-lpf="${k}" placeholder="${esc(ex)}" value="${esc(v[k] || "")}">`;
     return `<label class="field" for="lpf-${k}"><span>${esc(label)}${opt ? ' <span class="opt">optional</span>' : ""}</span>${hint ? ` <span class="hint">${esc(hint)}</span>` : ""}${tag}</label>`;
@@ -3984,6 +3997,7 @@ function lpCheck() {
 function lpInit() { lpRenderForm(); lpUpdate(false); }
 $("#lpTypes").addEventListener("click", e => { const k = e.target.closest("[data-lptype]")?.dataset.lptype; if (!k || k === LP.type) return; LP.type = k; LP.picked = null; LP.edited = false; lpRenderForm(); lpUpdate(true); });
 $("#lpFields").addEventListener("input", e => { const k = e.target.dataset.lpf; if (!k) return; lpVals()[k] = e.target.value; LP.example = false; $("#lpSampleTag").hidden = true; lpUpdate(false); });
+$("#lpFields").addEventListener("click", e => { const b = e.target.closest("[data-lpopt]"); if (!b) return; const k = b.dataset.lpopt, v = lpVals(); v[k] = v[k] === b.dataset.val ? "" : b.dataset.val; LP.example = false; lpRenderForm(); lpUpdate(false); });
 $("#lpTone").addEventListener("click", e => { const k = e.target.closest("[data-tone]")?.dataset.tone; if (!k) return; LP.tone = k; lpRenderForm(); lpUpdate(false); });
 $("#lpHook").addEventListener("click", e => { const k = e.target.closest("[data-hook]")?.dataset.hook; if (!k) return; LP.hook = k; lpRenderForm(); lpUpdate(false); });
 $("#lpTags").addEventListener("click", e => { const t = e.target.closest("[data-lptag]")?.dataset.lptag; if (!t) return; const p = lpPicked(); LP.picked = p.includes(t) ? p.filter(x => x !== t) : [...p, t]; lpRenderTags(); lpUpdate(false); });
