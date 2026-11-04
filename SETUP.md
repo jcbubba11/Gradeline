@@ -33,9 +33,8 @@ confirmed email address; replies saying "unsubscribe" go to the sending inbox an
 ## Usage stats (optional, free)
 The site counts page views and which tools people open with GoatCounter (no cookies, no personal data). It stays off until you add a code.
 1. Sign up at https://www.goatcounter.com/signup. Pick a code, for example `onestop`, which gives you `onestop.goatcounter.com`. The hosted service is free for reasonable public use.
-2. In GoatCounter, open Settings and turn off "Collect sessions" only if you don't want unique-visitor counts (optional).
-3. Edit `public/assets/analytics.js` on GitHub and put your code between the quotes: `const GOATCOUNTER_CODE = "onestop";`. Commit to main and the site redeploys.
-4. Open the site, click around, then check your dashboard at `https://<code>.goatcounter.com`. Tools show up as paths like `/Gradeline/#interview`.
+2. Edit `public/assets/analytics.js` on GitHub and put your code between the quotes: `const GOATCOUNTER_CODE = "onestop";`. Commit to main and the site redeploys.
+3. Open the site, click around, then check your dashboard at `https://<code>.goatcounter.com`. Tools show up as paths like `/Gradeline/#interview`.
 Visitors can switch counting off on the /privacy/ page, and browsers that send Do Not Track or Global Privacy Control are never counted.
 
 ## Search pages
