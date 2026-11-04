@@ -1629,6 +1629,15 @@ Sign-off      Sincerely, [Full name] · [phone] · [email]</code>
   </div>
 </section>
 
+<section class="view" data-view="calendar" hidden>
+  <div class="intro">
+    <span class="eyebrow">Recruiting calendar</span>
+    <h1>Know when applications open, before they close.</h1>
+    <p>Big employers open internship applications on a yearly rhythm, and some fill months before the internship starts. Here's when each industry usually opens, which firms are hiring on One Stop right now, and a reminder you can add to your calendar.</p>
+  </div>
+  <div id="jtCal"></div>
+</section>
+
 <!-- APPLICATION KIT -->
 <section class="view" data-view="kit" hidden>
   <div class="intro">
@@ -4597,7 +4606,7 @@ function ixInit() {
     $("#ixNInt").textContent = ixN(nInt);
     $("#ixNEntry").textContent = ixN(data.entry_level != null ? data.entry_level : IX.all.length - nInt);
     $("#ixNCo").textContent = ixN(data.companies || cos.size);
-    $("#ixStamp").textContent = `Updated ${new Date(data.updated).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })} · Live listings`;
+    $("#ixStamp").textContent = `Updated ${new Date(data.updated).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })} · ${ixN(IX.all.filter(j => ixToday(j, Date.now())).length)} new today`;
     ixRender();
   }).catch(() => { IX.loading = false; $("#ixStamp").textContent = "The openings list could not load right now. Please try again in a few minutes."; $("#ixCount").textContent = "Openings unavailable"; });
 }
@@ -4655,7 +4664,10 @@ const IX_PIN = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stro
 const IX_OUT = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
 const ixSafe = u => /^https:\/\//i.test(u || "") ? u : "#";
 const ixWhere = j => [j.location, j.remote && !/remote/i.test(j.location || "") ? "Remote" : ""].filter(Boolean).join(" · ");
-const ixFresh = (j, now) => now - Date.parse(j.first_seen) < 2 * 864e5;
+// "New" needs a recent posting date as well as a recent first sighting, so a batch of older jobs from a newly added employer isn't flagged.
+const ixFresh = (j, now) => now - Date.parse(j.first_seen) < 3 * 864e5 && now - Date.parse(j.posted) < 3 * 864e5;
+const ixToday = (j, now) => now - Date.parse(j.posted) < 864e5 && now - Date.parse(j.first_seen) < 1.5 * 864e5;
+const ixPostedOn = (j) => { const t = Date.parse(j.posted); return isNaN(t) ? "" : "Posted " + new Date(t).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }); };
 const ixActive = () => IX_FILTERS.some(id => $("#" + id).value) || $("#ixRemote").checked || $("#ixSaved").checked;
 function ixSort(list) {
   const by = $("#ixSort").value, t = v => Date.parse(v) || 0;
@@ -4677,7 +4689,7 @@ function ixRender() {
       <span class="ix-co">${ixLogo(j.company)}<span><b>${E(j.company)}</b><small>${E(j.industry || "Employer")}</small></span></span>
       <h3>${E(j.title)}</h3>
       <span class="ix-where">${IX_PIN}<span>${E(ixWhere(j) || "Location not listed")}</span></span>
-      <span class="ix-foot"><span><span class="ix-chip type">${E(j.type || "Internship")}</span>${ixFresh(j, now) ? '<span class="ix-chip new">New</span>' : ""}</span><span class="ix-cap">${E(ixAgo(j.posted, now))}</span></span>
+      <span class="ix-foot"><span><span class="ix-chip type">${E(j.type || "Internship")}</span>${ixToday(j, now) ? '<span class="ix-chip new">New today</span>' : ixFresh(j, now) ? '<span class="ix-chip new">New</span>' : ""}</span><span class="ix-cap" title="${E(ixPostedOn(j))}">${E(ixAgo(j.posted, now))}</span></span>
     </button><button type="button" class="ix-bm${saved ? " on" : ""}" data-ix-save="${i}" aria-label="${saved ? "Saved to your Job tracker" : "Save to Job tracker"}" title="${saved ? "Saved" : "Save"}">${IX_BM}</button></li>`;
   }).join("") : `<li class="ix-empty">${$("#ixSaved").checked ? "You haven't saved any jobs yet. Tap the bookmark on a job to save it to your Job tracker." : "No jobs match those filters yet. Try another major, a wider date range or a shorter search."}</li>`;
   $("#ixMore").hidden = IX_HITS.length <= IX.shown;
@@ -4692,7 +4704,7 @@ function ixDetail() {
   const majors = (j.majors || []).filter(m => m !== "Other / Any major");
   box.innerHTML = `<button type="button" class="btn small ix-back" id="ixBack">← Back to results</button>
     <div class="ix-dtop">
-      <span class="ix-badge">${E(j.type || "Internship")}${ixFresh(j, now) ? " · New this week" : ""}${j.remote ? " · Remote option" : ""}</span>
+      <span class="ix-badge">${E(j.type || "Internship")}${ixToday(j, now) ? " · New today" : ixFresh(j, now) ? " · New this week" : ""}${j.remote ? " · Remote option" : ""}</span>
       <button type="button" class="ix-bm${saved ? " on" : ""}" id="ixDetailBm" aria-label="${saved ? "Saved to your Job tracker" : "Save to Job tracker"}">${IX_BM}</button>
       <span class="ix-dco">${E(j.company)}${j.industry ? " · " + E(j.industry) : ""}</span>
       <h2>${E(j.title)}</h2>
@@ -5904,6 +5916,7 @@ renderRubric();
 route();
 if (!restoreGradeDoc()) loadSample("weakResume");
 </script>
+<script src="assets/job-tools.js"></script>
 
 <nav id="seoLinks" aria-label="Free tools" class="wrap" style="padding-bottom:28px;font-size:.84rem;color:var(--muted)">Free tools: <a href="/free-resume-checker/" style="color:inherit">Resume checker</a> · <a href="/ats-resume-checker/" style="color:inherit">ATS check</a> · <a href="/resume-keyword-scanner/" style="color:inherit">Keyword scanner</a> · <a href="/cover-letter-checker/" style="color:inherit">Cover letter checker</a> · <a href="/linkedin-profile-checker/" style="color:inherit">LinkedIn checker</a> · <a href="/free-resume-builder/" style="color:inherit">Resume builder</a> · <a href="/job-search/" style="color:inherit">Job search</a> · <a href="/resume-maker/" style="color:inherit">Resume maker</a> · <a href="/free-alternative-to-paid-resume-checkers/" style="color:inherit">Free alternative</a></nav>
 </body>
