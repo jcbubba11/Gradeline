@@ -1,14 +1,14 @@
 {
- "run": "2026-11-04T05:25:42Z",
- "boards_ok": 2906,
- "boards_failed": 116,
+ "run": "2026-11-04T07:25:37Z",
+ "boards_ok": 2890,
+ "boards_failed": 132,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24893,
+ "postings": 24876,
  "failures": [
   {
    "name": "Age of Learning",
@@ -425,6 +425,18 @@
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
+   "name": "Apex Fintech Solutions",
+   "ats": "workday",
+   "token": "peak6group|wd1|apexfintechsolutions",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "Hitachi Energy",
+   "ats": "workday",
+   "token": "hitachi|wd1|hitachi",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
    "name": "Gensler",
    "ats": "workday",
    "token": "gensler|wd1|genslercareers",
@@ -440,7 +452,7 @@
    "name": "Otsuka Pharmaceutical",
    "ats": "workday",
    "token": "vhr-otsuka|wd1|External",
-   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
   },
   {
    "name": "EPRI",
@@ -509,6 +521,30 @@
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
+   "name": "Texas A&M University System",
+   "ats": "workday",
+   "token": "tamus|wd1|System-wide_External",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "CareSource",
+   "ats": "workday",
+   "token": "caresource|wd1|caresource",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "Dow Jones",
+   "ats": "workday",
+   "token": "dowjones|wd1|Dow_Jones_Career",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "Regal Rexnord",
+   "ats": "workday",
+   "token": "regalrexnord|wd1|careers",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
    "name": "Legrand",
    "ats": "workday",
    "token": "milestone|wd1|Milestone_External",
@@ -518,7 +554,13 @@
    "name": "Amplify",
    "ats": "workday",
    "token": "amplify|wd1|Amplify_Careers",
-   "error": "HTTPError: HTTP Error 403: Forbidden"
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "Lumeris",
+   "ats": "workday",
+   "token": "lumeris|wd1|LC",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
   },
   {
    "name": "Insmed",
@@ -593,6 +635,12 @@
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
+   "name": "T-Mobile",
+   "ats": "workday",
+   "token": "tmobile|wd1|alumni",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
    "name": "Montrose Environmental Group",
    "ats": "workday",
    "token": "montrose|wd1|meg",
@@ -629,10 +677,58 @@
    "error": "HTTPError: HTTP Error 403: Forbidden"
   },
   {
+   "name": "LPL Financial Holdings",
+   "ats": "workday",
+   "token": "lplfinancial|wd1|External",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "agilon health",
+   "ats": "workday",
+   "token": "agilonhealth|wd1|External",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "Illumina",
+   "ats": "workday",
+   "token": "illumina|wd1|illumina-careers",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
    "name": "Boar\u2019s Head Brand",
    "ats": "workday",
    "token": "boarshead|wd1|BHC",
    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+   "name": "Alegeus",
+   "ats": "workday",
+   "token": "alegeus|wd1|Alegeus_External_Careers",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "ONEOK",
+   "ats": "workday",
+   "token": "oneok|wd1|ONEOK",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "Beth Israel Lahey Health",
+   "ats": "workday",
+   "token": "bilh|wd1|External",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "Grand Canyon University",
+   "ats": "workday",
+   "token": "gcu|wd1|GCU",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "University of Central Florida",
+   "ats": "workday",
+   "token": "ucf|wd1|careers",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
   },
   {
    "name": "Lithia Motors",
