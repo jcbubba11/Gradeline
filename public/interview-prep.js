@@ -278,5 +278,8 @@ $("#ipStar").innerHTML = `<div class="ip-guide">
 
 /* ---------- init ---------- */
 renderBank();
-showTab(store.get("rp-ip-tab", "bank"));
+// Links from the company guide pages arrive as ?co=<company>#interview: open that company's guide.
+const coParam = new URLSearchParams(location.search).get("co");
+if (coParam) { showTab("company"); showCo(coParam.slice(0, 80)); history.replaceState(null, "", location.pathname + location.hash); }
+else showTab(store.get("rp-ip-tab", "bank"));
 })();
