@@ -68,6 +68,7 @@
         </div>
       </details>
     </nav>
+    <button type="button" class="sx-btn" id="sxOpen" aria-haspopup="dialog" aria-keyshortcuts="/ Control+K Meta+K"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="sx-btn-t">Search</span><kbd aria-hidden="true">/</kbd></button>
     <div class="acct" id="acct">
       <button type="button" class="btn small" id="acctIn">Sign in</button>
       <button type="button" class="btn small primary" id="acctUp">Sign up</button>
@@ -92,6 +93,13 @@
       <span class="eyebrow">Free career tools for students and new grads</span>
       <h1 id="homeTitle">What do you need help with?</h1>
       <p>Pick what you're working on and we'll take you to the right tool. Everything is free, needs no account, and runs in your browser, so your resume stays on your device.</p>
+      <form class="home-search" role="search" onsubmit="return false">
+        <label class="sr-only" for="homeQ">Search tools, pages and company guides</label>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="homeQ" type="search" role="combobox" aria-expanded="false" aria-controls="homeSxList" aria-autocomplete="list" placeholder="Try “cover letter” or “Goldman”" autocomplete="off" spellcheck="false" enterkeyhint="go">
+        <div class="sx-list sx-pop" id="homeSxList" role="listbox" aria-label="Search results" hidden></div>
+        <div class="sr-only" aria-live="polite" id="homeSxLive"></div>
+      </form>
     </div>
     <aside class="home-side" aria-labelledby="homeSideT">
       <span class="k" id="homeSideT">How One Stop works</span>
@@ -1067,9 +1075,20 @@ Sign-off      Sincerely, [Full name] · [phone] · [email]</code>
   </form>
   <p class="note acct-fine">By continuing you agree to the <a href="#terms">Terms</a> and <a href="#privacy">Privacy policy</a>.</p>
 </dialog>
+<dialog class="sx-dlg" id="sxDlg" aria-label="Search One Stop">
+  <div class="sx-field">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="sxQ" type="search" role="combobox" aria-expanded="true" aria-controls="sxList" aria-autocomplete="list" aria-label="Search tools, pages and company guides" placeholder="Search tools, pages and companies" autocomplete="off" spellcheck="false" enterkeyhint="go">
+    <button type="button" class="sx-close" id="sxClose" aria-label="Close search"><span aria-hidden="true">Esc</span></button>
+  </div>
+  <div class="sx-list" id="sxList" role="listbox" aria-label="Search results"></div>
+  <div class="sx-foot" aria-hidden="true"><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span></div>
+  <div class="sr-only" aria-live="polite" id="sxLive"></div>
+</dialog>
 <div class="toast" id="toast" hidden></div>
 <script defer src="assets/app.js"></script>
 <script defer src="assets/job-tools.js"></script>
+<script defer src="assets/search.js"></script>
 
 <nav id="seoLinks" aria-label="Free tools" class="wrap" style="padding-bottom:28px;font-size:.84rem;color:var(--muted)">Free tools: <a href="/free-resume-checker/" style="color:inherit">Resume checker</a> · <a href="/ats-resume-checker/" style="color:inherit">ATS check</a> · <a href="/resume-keyword-scanner/" style="color:inherit">Keyword scanner</a> · <a href="/cover-letter-checker/" style="color:inherit">Cover letter checker</a> · <a href="/linkedin-profile-checker/" style="color:inherit">LinkedIn checker</a> · <a href="/free-resume-builder/" style="color:inherit">Resume builder</a> · <a href="/job-search/" style="color:inherit">Job search</a> · <a href="/resume-maker/" style="color:inherit">Resume maker</a> · <a href="/free-alternative-to-paid-resume-checkers/" style="color:inherit">Free alternative</a> · <a href="/interview-prep/" style="color:inherit">Interview prep</a> · <a href="/linkedin-post-helper/" style="color:inherit">LinkedIn post helper</a> · <a href="/internship-recruiting-calendar/" style="color:inherit">Recruiting calendar</a> · <a href="/job-application-kit/" style="color:inherit">Application kit</a> · <a href="/follow-up-email-templates/" style="color:inherit">Follow-up templates</a> · <a href="/rejection-email-feedback/" style="color:inherit">Rejection feedback</a> · <a href="/resume-examples-before-and-after/" style="color:inherit">Before &amp; after examples</a> · <a href="/company-interview-questions/" style="color:inherit">Company interview questions</a> · <a href="/about/" style="color:inherit">About</a> · <a href="/privacy/" style="color:inherit">Privacy</a></nav>
 </body>

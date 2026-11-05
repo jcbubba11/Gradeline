@@ -403,6 +403,13 @@ def company_page(c):
 for c in COS:
     company_page(c)
 
+# Company names for the site search bar (assets/search.js), so search can find a guide without
+# downloading the whole interview bank.
+os.makedirs(OUT + "assets", exist_ok=True)
+with open(OUT + "assets/search-data.json", "w") as f:
+    json.dump({"companies": [{"n": c["n"], "a": c.get("a", []), "g": IP["groups"][c["g"]]} for c in COS]}, f, separators=(",", ":"))
+    f.write("\n")
+
 hub_faq = [("Which companies are covered?", f"{len(COS)} large employers of students and new grads across banking, consulting, tech, engineering, consumer goods, healthcare, government and more. For any other company, type its name into Interview prep to get a research plan and the questions almost every employer asks."),
            ("Where do the questions come from?", "From what each employer publishes about its own hiring and from questions candidates commonly report. They vary by team, role and year, so use them to prepare, not to memorize answers."),
            ("Is it free?", "Yes, with no account and no paywall.")]

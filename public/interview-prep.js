@@ -279,7 +279,14 @@ $("#ipStar").innerHTML = `<div class="ip-guide">
 /* ---------- init ---------- */
 renderBank();
 // Links from the company guide pages arrive as ?co=<company>#interview: open that company's guide.
+// The site search opens a company guide or a tab through ipOpen, or leaves a request in sxPendingIp
+// when it sends someone here before this file has loaded.
+window.ipOpen = ({ co: name, tab } = {}) => {
+  if (name) { showTab("company"); showCo(String(name).slice(0, 80)); } else if (tab) showTab(tab);
+  sec.querySelector(".ip-tabs")?.scrollIntoView({ block: "start" });
+};
 const coParam = new URLSearchParams(location.search).get("co");
 if (coParam) { showTab("company"); showCo(coParam.slice(0, 80)); history.replaceState(null, "", location.pathname + location.hash); }
+else if (window.sxPendingIp) { const p = window.sxPendingIp; window.sxPendingIp = null; showTab(store.get("rp-ip-tab", "bank")); window.ipOpen(p); }
 else showTab(store.get("rp-ip-tab", "bank"));
 })();
