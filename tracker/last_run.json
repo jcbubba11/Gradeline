@@ -1,14 +1,14 @@
 {
- "run": "2026-11-07T12:58:04Z",
- "boards_ok": 2906,
- "boards_failed": 116,
+ "run": "2026-11-07T18:52:11Z",
+ "boards_ok": 2904,
+ "boards_failed": 118,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24772,
+ "postings": 24747,
  "failures": [
   {
    "name": "Age of Learning",
@@ -419,6 +419,12 @@
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
+   "name": "NXP Semiconductors",
+   "ats": "workday",
+   "token": "nxp|wd3|careers",
+   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  },
+  {
    "name": "Savage X Fenty",
    "ats": "workday",
    "token": "justfab|wd1|savagex",
@@ -555,6 +561,12 @@
    "ats": "workday",
    "token": "livenation|wd503|en",
    "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Advocate Health Care",
+   "ats": "workday",
+   "token": "aah|wd5|External",
+   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
   },
   {
    "name": "Castleton Commodities International",
