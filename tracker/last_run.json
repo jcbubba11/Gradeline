@@ -1,14 +1,14 @@
 {
- "run": "2026-11-08T12:58:41Z",
- "boards_ok": 2904,
- "boards_failed": 118,
+ "run": "2026-11-08T18:52:07Z",
+ "boards_ok": 2902,
+ "boards_failed": 120,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24682,
+ "postings": 24668,
  "failures": [
   {
    "name": "Age of Learning",
@@ -569,10 +569,22 @@
    "error": "HTTPError: HTTP Error 410: Gone"
   },
   {
+   "name": "Blackstone",
+   "ats": "workday",
+   "token": "blackstone|wd1|Blackstone_Campus_Careers",
+   "error": "HTTPError: HTTP Error 401: Unauthorized"
+  },
+  {
    "name": "Castleton Commodities International",
    "ats": "workday",
    "token": "osv-cci|wd1|CCICareers",
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Blackstone",
+   "ats": "workday",
+   "token": "blackstone|wd1|bx_external_site",
+   "error": "HTTPError: HTTP Error 401: Unauthorized"
   },
   {
    "name": "Walmart",
