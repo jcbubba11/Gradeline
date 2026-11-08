@@ -1,5 +1,5 @@
 {
- "run": "2026-11-08T01:12:13Z",
+ "run": "2026-11-08T07:09:02Z",
  "boards_ok": 2904,
  "boards_failed": 118,
  "usajobs": "ok",
@@ -8,7 +8,7 @@
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24727,
+ "postings": 24676,
  "failures": [
   {
    "name": "Age of Learning",
@@ -566,7 +566,7 @@
    "name": "Advocate Health Care",
    "ats": "workday",
    "token": "aah|wd5|External",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "error": "HTTPError: HTTP Error 410: Gone"
   },
   {
    "name": "Castleton Commodities International",
