@@ -1,5 +1,5 @@
 {
- "run": "2026-11-07T18:52:11Z",
+ "run": "2026-11-08T01:12:13Z",
  "boards_ok": 2904,
  "boards_failed": 118,
  "usajobs": "ok",
@@ -8,7 +8,7 @@
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24747,
+ "postings": 24727,
  "failures": [
   {
    "name": "Age of Learning",
@@ -422,7 +422,7 @@
    "name": "NXP Semiconductors",
    "ats": "workday",
    "token": "nxp|wd3|careers",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
    "name": "Savage X Fenty",
