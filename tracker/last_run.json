@@ -1,14 +1,14 @@
 {
- "run": "2026-11-10T13:11:09Z",
- "boards_ok": 2903,
- "boards_failed": 119,
+ "run": "2026-11-10T19:01:40Z",
+ "boards_ok": 2902,
+ "boards_failed": 120,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24587,
+ "postings": 24622,
  "failures": [
   {
    "name": "Age of Learning",
@@ -21,6 +21,12 @@
    "ats": "lever",
    "token": "aifund",
    "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Anduril",
+   "ats": "greenhouse",
+   "token": "andurilindustries",
+   "error": "TimeoutError: The read operation timed out"
   },
   {
    "name": "Applied Intuition",
