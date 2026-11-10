@@ -1,14 +1,14 @@
 {
- "run": "2026-11-09T19:01:47Z",
- "boards_ok": 2904,
- "boards_failed": 118,
+ "run": "2026-11-10T01:10:41Z",
+ "boards_ok": 2903,
+ "boards_failed": 119,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24692,
+ "postings": 24733,
  "failures": [
   {
    "name": "Age of Learning",
@@ -692,6 +692,12 @@
    "name": "Ncino",
    "ats": "workday",
    "token": "ncino|wd5|nCinoCareers",
+   "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+   "name": "23andMe",
+   "ats": "workday",
+   "token": "23andme|wd5|23",
    "error": "HTTPError: HTTP Error 403: Forbidden"
   },
   {
