@@ -1,14 +1,14 @@
 {
- "run": "2026-11-11T07:23:50Z",
- "boards_ok": 2903,
- "boards_failed": 119,
+ "run": "2026-11-11T13:18:51Z",
+ "boards_ok": 2902,
+ "boards_failed": 120,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24561,
+ "postings": 24576,
  "failures": [
   {
    "name": "Age of Learning",
@@ -573,6 +573,12 @@
    "ats": "workday",
    "token": "osv-cci|wd1|CCICareers",
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "Marmon Holdings",
+   "ats": "workday",
+   "token": "marmon|wd501|Marmon_MSIP_Internships",
+   "error": "HTTPError: HTTP Error 403: Forbidden"
   },
   {
    "name": "Walmart",
