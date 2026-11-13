@@ -1,14 +1,14 @@
 {
- "run": "2026-11-13T13:17:41Z",
- "boards_ok": 2903,
- "boards_failed": 119,
+ "run": "2026-11-13T19:00:32Z",
+ "boards_ok": 2901,
+ "boards_failed": 121,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24248,
+ "postings": 24241,
  "failures": [
   {
    "name": "Age of Learning",
@@ -381,6 +381,18 @@
    "ats": "workday",
    "token": "gtsgbu|wd3|Careers",
    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+   "name": "The Walt Disney Company",
+   "ats": "workday",
+   "token": "disney|wd5|disneycareer",
+   "error": "HTTPError: HTTP Error 502: Bad Gateway"
+  },
+  {
+   "name": "The Walt Disney Company",
+   "ats": "workday",
+   "token": "disney|wd5|disneycareerdc",
+   "error": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "name": "Intel",
