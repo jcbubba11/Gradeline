@@ -1,5 +1,5 @@
 {
- "run": "2026-11-12T19:03:43Z",
+ "run": "2026-11-13T01:18:15Z",
  "boards_ok": 2902,
  "boards_failed": 120,
  "usajobs": "ok",
@@ -8,7 +8,7 @@
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24529,
+ "postings": 24472,
  "failures": [
   {
    "name": "Age of Learning",
