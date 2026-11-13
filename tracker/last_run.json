@@ -1,14 +1,14 @@
 {
- "run": "2026-11-13T07:25:13Z",
- "boards_ok": 2902,
- "boards_failed": 120,
+ "run": "2026-11-13T13:17:41Z",
+ "boards_ok": 2903,
+ "boards_failed": 119,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24276,
+ "postings": 24248,
  "failures": [
   {
    "name": "Age of Learning",
@@ -338,12 +338,6 @@
    "name": "Xpansiv",
    "ats": "lever",
    "token": "xpansiv",
-   "error": "HTTPError: HTTP Error 404: Not Found"
-  },
-  {
-   "name": "BuzzFeed",
-   "ats": "greenhouse",
-   "token": "buzzfeed",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
