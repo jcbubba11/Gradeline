@@ -1,14 +1,14 @@
 {
- "run": "2026-11-15T13:00:29Z",
- "boards_ok": 2899,
- "boards_failed": 123,
+ "run": "2026-11-15T18:53:23Z",
+ "boards_ok": 2900,
+ "boards_failed": 122,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24042,
+ "postings": 24025,
  "failures": [
   {
    "name": "Age of Learning",
@@ -699,12 +699,6 @@
    "ats": "workday",
    "token": "osv-enterprise|wd1|EnterpriseBankTrust_Jobs",
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
-  },
-  {
-   "name": "Bacardi",
-   "ats": "workday",
-   "token": "bacardi|wd3|Jobs_Bacardi",
-   "error": "HTTPError: HTTP Error 401: Unauthorized"
   },
   {
    "name": "Magellan Health",
