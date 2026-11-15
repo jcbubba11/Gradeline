@@ -1,14 +1,14 @@
 {
- "run": "2026-11-14T18:52:02Z",
- "boards_ok": 2893,
- "boards_failed": 129,
+ "run": "2026-11-15T01:15:09Z",
+ "boards_ok": 2900,
+ "boards_failed": 122,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 24109,
+ "postings": 24102,
  "failures": [
   {
    "name": "Age of Learning",
@@ -383,12 +383,6 @@
    "error": "HTTPError: HTTP Error 403: Forbidden"
   },
   {
-   "name": "CCC Intelligent Solutions",
-   "ats": "workday",
-   "token": "cccis|wd1|broadbean_external",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-  },
-  {
    "name": "Intel",
    "ats": "workday",
    "token": "intel|wd1|en-us",
@@ -443,12 +437,6 @@
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
-   "name": "Ryder System",
-   "ats": "workday",
-   "token": "ryder|wd5|RyderCareers",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-  },
-  {
    "name": "Otsuka Pharmaceutical",
    "ats": "workday",
    "token": "vhr-otsuka|wd1|External",
@@ -465,12 +453,6 @@
    "ats": "workday",
    "token": "vhr-genband|wd1|ribboncareers",
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
-  },
-  {
-   "name": "Regions Bank",
-   "ats": "workday",
-   "token": "regions|wd5|regions_careers",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
   },
   {
    "name": "Comcast",
@@ -521,6 +503,12 @@
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
+   "name": "BDO Canada",
+   "ats": "workday",
+   "token": "bdo|wd3|BDO",
+   "error": "HTTPError: HTTP Error 401: Unauthorized"
+  },
+  {
    "name": "ReCor Medical",
    "ats": "workday",
    "token": "vhr-otsuka|wd1|RecorExternal",
@@ -557,12 +545,6 @@
    "error": "HTTPError: HTTP Error 403: Forbidden"
   },
   {
-   "name": "Protech Automotive Solutions",
-   "ats": "workday",
-   "token": "calibercollision|wd1|protech",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-  },
-  {
    "name": "Cystic Fibrosis Foundation",
    "ats": "workday",
    "token": "cff|wd1|explore-career-opportunities",
@@ -587,28 +569,10 @@
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
-   "name": "Target",
-   "ats": "workday",
-   "token": "target|wd5|targetcareers",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-  },
-  {
    "name": "Advocate Health Care",
    "ats": "workday",
    "token": "aah|wd5|External",
    "error": "HTTPError: HTTP Error 410: Gone"
-  },
-  {
-   "name": "Prudential Financial",
-   "ats": "workday",
-   "token": "pru|wd5|Careers",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-  },
-  {
-   "name": "PGIM",
-   "ats": "workday",
-   "token": "pru|wd5|pgim_careers",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
   },
   {
    "name": "Castleton Commodities International",
@@ -741,12 +705,6 @@
    "ats": "workday",
    "token": "magellanhealth|wd5|magellan_health_careers",
    "error": "HTTPError: HTTP Error 401: Unauthorized"
-  },
-  {
-   "name": "Chipotle Mexican Grill",
-   "ats": "workday",
-   "token": "chipotle|wd5|ChipotleCareers",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
   },
   {
    "name": "Ncino",
