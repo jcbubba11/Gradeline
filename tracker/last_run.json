@@ -1,14 +1,14 @@
 {
- "run": "2026-11-16T08:55:03Z",
- "boards_ok": 2900,
- "boards_failed": 122,
+ "run": "2026-11-16T15:14:31Z",
+ "boards_ok": 2901,
+ "boards_failed": 121,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23903,
+ "postings": 23902,
  "failures": [
   {
    "name": "Age of Learning",
@@ -501,12 +501,6 @@
    "ats": "workday",
    "token": "cambiahealth|wd1|External",
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
-  },
-  {
-   "name": "BDO Canada",
-   "ats": "workday",
-   "token": "bdo|wd3|BDO",
-   "error": "HTTPError: HTTP Error 401: Unauthorized"
   },
   {
    "name": "ReCor Medical",
