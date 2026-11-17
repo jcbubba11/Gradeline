@@ -1,14 +1,14 @@
 {
- "run": "2026-11-16T19:03:43Z",
- "boards_ok": 2900,
- "boards_failed": 122,
+ "run": "2026-11-17T01:20:32Z",
+ "boards_ok": 2902,
+ "boards_failed": 120,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23806,
+ "postings": 23877,
  "failures": [
   {
    "name": "Age of Learning",
@@ -503,12 +503,6 @@
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
-   "name": "Denver",
-   "ats": "workday",
-   "token": "denver|wd1|CCD-denver-denvergov-CSC_Jobs-Civil_service_jobs-Police_Jobs-Fire_Jobs",
-   "error": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
    "name": "ReCor Medical",
    "ats": "workday",
    "token": "vhr-otsuka|wd1|RecorExternal",
@@ -531,12 +525,6 @@
    "ats": "workday",
    "token": "amplify|wd1|Amplify_Careers",
    "error": "HTTPError: HTTP Error 403: Forbidden"
-  },
-  {
-   "name": "Digital Realty",
-   "ats": "oracle",
-   "token": "hdep|us2|CX",
-   "error": "HTTPError: HTTP Error 502: Bad Gateway"
   },
   {
    "name": "Insmed",
