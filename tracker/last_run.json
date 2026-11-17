@@ -1,14 +1,14 @@
 {
- "run": "2026-11-17T13:18:33Z",
- "boards_ok": 2902,
- "boards_failed": 120,
+ "run": "2026-11-17T19:10:42Z",
+ "boards_ok": 2901,
+ "boards_failed": 121,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23760,
+ "postings": 23757,
  "failures": [
   {
    "name": "Age of Learning",
@@ -579,6 +579,12 @@
    "ats": "workday",
    "token": "marmon|wd501|Marmon_MSIP_Internships",
    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+   "name": "Brink",
+   "ats": "workday",
+   "token": "brinks|wd5|brinkscareersus",
+   "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
    "name": "Walmart",
