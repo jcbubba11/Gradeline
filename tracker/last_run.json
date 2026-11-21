@@ -1,14 +1,14 @@
 {
- "run": "2026-11-21T13:04:55Z",
- "boards_ok": 2900,
- "boards_failed": 122,
+ "run": "2026-11-21T18:56:36Z",
+ "boards_ok": 2899,
+ "boards_failed": 123,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23465,
+ "postings": 23454,
  "failures": [
   {
    "name": "Age of Learning",
@@ -527,10 +527,10 @@
    "error": "HTTPError: HTTP Error 403: Forbidden"
   },
   {
-   "name": "Sherwin-Williams",
-   "ats": "oracle",
-   "token": "ejhp|us6|CX_2",
-   "error": "HTTPError: HTTP Error 503: Service Unavailable"
+   "name": "Greenheck Group",
+   "ats": "workday",
+   "token": "greenheckgroup|wd5|external",
+   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
   },
   {
    "name": "Insmed",
@@ -723,6 +723,12 @@
    "ats": "workday",
    "token": "osv-amerisure|wd5|Amerisure",
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "LendingClub",
+   "ats": "workday",
+   "token": "lendingclub|wd1|external",
+   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
   },
   {
    "name": "CFA Institute",
