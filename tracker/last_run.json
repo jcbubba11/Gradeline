@@ -1,14 +1,14 @@
 {
- "run": "2026-11-20T19:09:37Z",
- "boards_ok": 2901,
- "boards_failed": 121,
+ "run": "2026-11-21T01:21:04Z",
+ "boards_ok": 2897,
+ "boards_failed": 125,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23593,
+ "postings": 23588,
  "failures": [
   {
    "name": "Age of Learning",
@@ -461,6 +461,12 @@
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
+   "name": "SitusAMC",
+   "ats": "workday",
+   "token": "situsamc|wd1|SitusAMC",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
    "name": "Sallie Mae",
    "ats": "workday",
    "token": "sallie-mae|wd5|Careers",
@@ -485,10 +491,28 @@
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
+   "name": "Cleveland Clinic",
+   "ats": "workday",
+   "token": "ccf|wd1|ClevelandClinicCareers",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "State Street",
+   "ats": "workday",
+   "token": "statestreet|wd1|equest",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
+   "name": "Welocalize",
+   "ats": "workday",
+   "token": "welocalize|wd1|welocalize",
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
+  },
+  {
    "name": "CliftonLarsonAllen",
    "ats": "workday",
    "token": "cliftonlarsonallen|wd1|CLA",
-   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+   "error": "HTTPError: HTTP Error 429: Too Many Requests"
   },
   {
    "name": "Ryan",
