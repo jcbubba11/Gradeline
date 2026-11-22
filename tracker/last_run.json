@@ -1,5 +1,5 @@
 {
- "run": "2026-11-21T18:56:36Z",
+ "run": "2026-11-22T01:17:06Z",
  "boards_ok": 2899,
  "boards_failed": 123,
  "usajobs": "ok",
@@ -8,7 +8,7 @@
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23454,
+ "postings": 23433,
  "failures": [
   {
    "name": "Age of Learning",
@@ -530,7 +530,7 @@
    "name": "Greenheck Group",
    "ats": "workday",
    "token": "greenheckgroup|wd5|external",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
    "name": "Insmed",
@@ -728,7 +728,7 @@
    "name": "LendingClub",
    "ats": "workday",
    "token": "lendingclub|wd1|external",
-   "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
    "name": "CFA Institute",
