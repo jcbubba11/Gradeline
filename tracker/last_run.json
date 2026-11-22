@@ -1,14 +1,14 @@
 {
- "run": "2026-11-22T01:17:06Z",
- "boards_ok": 2899,
- "boards_failed": 123,
+ "run": "2026-11-22T07:19:33Z",
+ "boards_ok": 2898,
+ "boards_failed": 124,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23433,
+ "postings": 23408,
  "failures": [
   {
    "name": "Age of Learning",
@@ -278,6 +278,12 @@
    "name": "Seamless.AI",
    "ats": "greenhouse",
    "token": "seamlessai",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "SHEIN",
+   "ats": "greenhouse",
+   "token": "shein",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
@@ -572,7 +578,7 @@
    "name": "Advocate Health Care",
    "ats": "workday",
    "token": "aah|wd5|External",
-   "error": "HTTPError: HTTP Error 410: Gone"
+   "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
   },
   {
    "name": "Castleton Commodities International",
