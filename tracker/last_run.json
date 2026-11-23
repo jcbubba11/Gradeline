@@ -1,14 +1,14 @@
 {
- "run": "2026-11-23T01:23:32Z",
- "boards_ok": 2898,
- "boards_failed": 124,
+ "run": "2026-11-23T07:44:43Z",
+ "boards_ok": 2897,
+ "boards_failed": 125,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23369,
+ "postings": 23128,
  "failures": [
   {
    "name": "Age of Learning",
@@ -320,6 +320,12 @@
    "name": "Veeda AI",
    "ats": "ashby",
    "token": "veeda-labs",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Verne Robotics",
+   "ats": "ashby",
+   "token": "verne%20robotics",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
