@@ -1,14 +1,14 @@
 {
- "run": "2026-11-23T13:29:37Z",
- "boards_ok": 2897,
- "boards_failed": 125,
+ "run": "2026-11-23T19:11:24Z",
+ "boards_ok": 2896,
+ "boards_failed": 126,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23267,
+ "postings": 23285,
  "failures": [
   {
    "name": "Age of Learning",
@@ -284,6 +284,12 @@
    "name": "SHEIN",
    "ats": "greenhouse",
    "token": "shein",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Shield AI",
+   "ats": "ashby",
+   "token": "f7d8749a-72d6-407c-bf98-292ea630c73a",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
