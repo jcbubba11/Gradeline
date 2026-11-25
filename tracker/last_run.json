@@ -1,14 +1,14 @@
 {
- "run": "2026-11-24T19:09:09Z",
- "boards_ok": 2896,
- "boards_failed": 126,
+ "run": "2026-11-25T01:27:06Z",
+ "boards_ok": 2895,
+ "boards_failed": 127,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23239,
+ "postings": 23270,
  "failures": [
   {
    "name": "Age of Learning",
@@ -278,6 +278,12 @@
    "name": "Seamless.AI",
    "ats": "greenhouse",
    "token": "seamlessai",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Secureframe",
+   "ats": "lever",
+   "token": "secureframe",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
