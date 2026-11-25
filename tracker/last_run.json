@@ -1,14 +1,14 @@
 {
- "run": "2026-11-25T13:32:17Z",
- "boards_ok": 2895,
- "boards_failed": 127,
+ "run": "2026-11-25T19:02:07Z",
+ "boards_ok": 2894,
+ "boards_failed": 128,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23258,
+ "postings": 23283,
  "failures": [
   {
    "name": "Age of Learning",
@@ -729,6 +729,12 @@
    "ats": "workday",
    "token": "osv-enterprise|wd1|EnterpriseBankTrust_Jobs",
    "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
+  },
+  {
+   "name": "MiTek",
+   "ats": "workday",
+   "token": "mii|wd5|MiTek",
+   "error": "HTTPError: HTTP Error 401: Unauthorized"
   },
   {
    "name": "Ncino",
