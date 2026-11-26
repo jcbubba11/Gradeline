@@ -1,14 +1,14 @@
 {
- "run": "2026-11-26T01:26:30Z",
- "boards_ok": 2894,
- "boards_failed": 128,
+ "run": "2026-11-26T07:31:14Z",
+ "boards_ok": 2893,
+ "boards_failed": 129,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23359,
+ "postings": 23272,
  "failures": [
   {
    "name": "Age of Learning",
@@ -20,6 +20,12 @@
    "name": "AI Fund",
    "ats": "lever",
    "token": "aifund",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Apera AI",
+   "ats": "greenhouse",
+   "token": "aperaaiinc",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
