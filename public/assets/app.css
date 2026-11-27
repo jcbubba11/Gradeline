@@ -944,8 +944,6 @@ h1[tabindex="-1"]:focus { outline: none; }
 .ai[data-state="idle"] { position: relative; min-height: calc(100svh - 64px - 36px); align-content: center; padding-bottom: 12vh; }
 .ai-hero { text-align: center; display: grid; justify-items: center; margin-bottom: 14px; }
 .ai-hero h1 { display: inline-flex; align-items: center; gap: 14px; font-size: clamp(2rem, 4.6vw, 2.75rem); font-weight: 400; letter-spacing: -.01em; }
-.ai-mark { color: #d0632b; display: inline-grid; flex: none; }
-.ai-mark svg { width: .9em; height: .9em; }
 .ai-more { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); font-size: .82rem; color: var(--muted); text-decoration: none; white-space: nowrap; }
 .ai-more:hover { color: var(--ink); text-decoration: underline; }
 .ai[data-state="chat"] .ai-more { display: none; }
