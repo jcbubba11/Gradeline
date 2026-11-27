@@ -22,7 +22,7 @@ const TOOL_NAMES = { grade: "Grade yours", build: "Resume builder", internships:
 function hello() {
   const name = ($("#acctMe")?.hidden === false && ($("#acctName").textContent || "").trim().split(/\s+/)[0]) || "";
   const h = new Date().getHours(), part = h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
-  $("#aiHello").textContent = name ? `${part}, ${name}` : "What can I help you with?";
+  $("#aiHello").textContent = name ? `${part}, ${name}` : part;
 }
 hello();
 new MutationObserver(hello).observe($("#acct"), { subtree: true, childList: true, attributes: true, attributeFilter: ["hidden"] });
@@ -31,13 +31,13 @@ function refreshCtx() { ctxWrap.hidden = AI.offline || !profileText() || AI.hist
 /* ---------- Typing ---------- */
 function grow() { q.style.height = "auto"; q.style.height = Math.min(q.scrollHeight, window.innerHeight * 0.4) + "px"; }
 function canSend() { sendBtn.disabled = !AI.busy && !q.value.trim() && !AI.files.length; }
-q.addEventListener("input", () => { grow(); canSend(); try { sessionStorage.setItem("gl-ai-draft", q.value); } catch {} });
+q.addEventListener("input", () => { grow(); canSend(); root.classList.toggle("typing", !!q.value.trim()); try { sessionStorage.setItem("gl-ai-draft", q.value); } catch {} });
 q.addEventListener("keydown", e => {
   if (e.key === "Enter" && !e.shiftKey && !e.isComposing && !matchMedia("(pointer: coarse)").matches) { e.preventDefault(); form.requestSubmit(); }
 });
 try { const d = sessionStorage.getItem("gl-ai-draft"); if (d) { q.value = d; grow(); } } catch {}
 document.querySelectorAll("#aiChips button").forEach(b => b.addEventListener("click", () => {
-  q.value = b.dataset.p; grow(); canSend(); q.focus();
+  q.value = b.dataset.p; grow(); canSend(); root.classList.add("typing"); q.focus();
   if (b.dataset.attach) fileIn.click();
 }));
 
@@ -404,6 +404,7 @@ window.aiAsk = (text) => {
   setTimeout(() => { q.value = text; grow(); canSend(); q.focus(); q.setSelectionRange(q.value.length, q.value.length); }, 60);
 };
 
+$("#aiMore").addEventListener("click", e => { e.preventDefault(); const h = $("#homeGoalsT"); h.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); h.focus({ preventScroll: true }); });
 restore(); refreshCtx(); canSend();
 if (AI.offline) $("#aiFine").textContent = "The AI assistant is coming soon. Until then, ask here and we'll point you to the right free tool.";
 window.addEventListener("hashchange", () => { if (location.hash === "#home" || !location.hash) refreshCtx(); });
