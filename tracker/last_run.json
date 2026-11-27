@@ -1,14 +1,14 @@
 {
- "run": "2026-11-27T01:29:10Z",
- "boards_ok": 2893,
- "boards_failed": 129,
+ "run": "2026-11-27T07:30:28Z",
+ "boards_ok": 2892,
+ "boards_failed": 130,
  "usajobs": "ok",
  "aggregators": {
   "usajobs": "ok",
   "adzuna": "skipped (ADZUNA_APP_ID / ADZUNA_APP_KEY not set)",
   "jooble": "skipped (JOOBLE_KEY not set)"
  },
- "postings": 23206,
+ "postings": 23144,
  "failures": [
   {
    "name": "Age of Learning",
@@ -68,6 +68,12 @@
    "name": "Breeze Airways",
    "ats": "greenhouse",
    "token": "breezeairways",
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "name": "Brightstar.AI",
+   "ats": "ashby",
+   "token": "brightstar-ai",
    "error": "HTTPError: HTTP Error 404: Not Found"
   },
   {
