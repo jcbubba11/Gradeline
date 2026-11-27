@@ -1,0 +1,20 @@
+# One Stop assistant server (Cloudflare Worker). Deployed by .github/workflows/deploy-ai-worker.yml.
+name = "onestop-ai"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Pages allowed to call this server (comma-separated).
+ALLOWED_ORIGINS = "https://jcbubba11.github.io,http://localhost:8000,http://127.0.0.1:8000"
+# The Firebase project whose sign-ins are accepted.
+FIREBASE_PROJECT_ID = "website-cd10e"
+# Claude model and effort. claude-haiku-5-5 costs far less per message if spend becomes a concern.
+MODEL = "claude-opus-5-5"
+EFFORT = "medium"
+
+# Per-person burst limit: at most 8 messages a minute. Set a monthly spend limit in the Claude Console too.
+[[ratelimits]]
+name = "LIMITER"
+namespace_id = "4101"
+simple = { limit = 8, period = 60 }
