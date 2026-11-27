@@ -53,6 +53,7 @@
           </div>
           <div class="col">
             <div class="grp">Prepare</div>
+            <a href="#profile">Profile &amp; LinkedIn sync</a>
             <a href="#interview">Interview prep</a>
             <a href="#tracker">Job tracker</a>
             <a href="#calendar">Recruiting calendar</a>
@@ -77,6 +78,7 @@
         <div class="acct-pop">
           <div class="acct-email" id="acctEmail"></div>
           <div class="acct-sync" id="acctSync">Your work syncs to your account.</div>
+          <a class="btn small" href="#profile">Your profile</a>
           <button type="button" class="btn small" id="acctOut">Sign out</button>
         </div>
       </details>
@@ -88,30 +90,43 @@
 
 <!-- HOME -->
 <section class="view home" data-view="home" aria-labelledby="homeTitle">
-  <div class="home-hero">
-    <div class="intro">
-      <span class="eyebrow">Free career tools for students and new grads</span>
-      <h1 id="homeTitle">What do you need help with?</h1>
-      <p>Pick what you're working on and we'll take you to the right tool. Everything is free, needs no account, and runs in your browser, so your resume stays on your device.</p>
-      <form class="home-search" role="search" onsubmit="return false">
-        <label class="sr-only" for="homeQ">Search tools, pages and company guides</label>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input id="homeQ" type="search" role="combobox" aria-expanded="false" aria-controls="homeSxList" aria-autocomplete="list" placeholder="Try “cover letter” or “Goldman”" autocomplete="off" spellcheck="false" enterkeyhint="go">
-        <div class="sx-list sx-pop" id="homeSxList" role="listbox" aria-label="Search results" hidden></div>
-        <div class="sr-only" aria-live="polite" id="homeSxLive"></div>
-      </form>
+  <div class="ai" id="ai" data-state="idle">
+    <div class="ai-hero" id="aiHero">
+      <span class="ai-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="34" height="34"><path d="M16 3v26M3 16h26M6.8 6.8l18.4 18.4M25.2 6.8 6.8 25.2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span>
+      <h1 id="homeTitle"><span id="aiHello">What can I help you with?</span></h1>
+      <p class="ai-sub">Ask about resumes, jobs or where you want to go. Add a photo of an old resume and I'll turn it into a new one.</p>
     </div>
-    <aside class="home-side" aria-labelledby="homeSideT">
-      <span class="k" id="homeSideT">How One Stop works</span>
-      <ul class="home-facts" id="homeFacts">
-        <li><b>Free</b><span>Every tool, with no paywall or trial.</span></li>
-        <li><b>Private</b><span>Your resume is read in your browser and never uploaded.</span></li>
-        <li><b>Saved here</b><span>Your work stays in this browser. Sign in to sync it.</span></li>
-      </ul>
-    </aside>
+    <div class="ai-log" id="aiLog" role="log" aria-live="polite" aria-label="Conversation" hidden></div>
+    <form class="ai-box" id="aiForm" autocomplete="off">
+      <ul class="ai-files" id="aiFiles" aria-label="Attached files" hidden></ul>
+      <label class="sr-only" for="aiQ">Message the One Stop assistant</label>
+      <textarea id="aiQ" rows="2" placeholder="How can I help you today?" enterkeyhint="send"></textarea>
+      <div class="ai-bar">
+        <label class="ai-add" for="aiFile" title="Add photos or files"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="sr-only">Add photos or files</span></label>
+        <input type="file" id="aiFile" multiple accept="image/*,.pdf,.docx,.txt,.md" hidden>
+        <label class="ai-ctx" id="aiCtxWrap" hidden><input type="checkbox" id="aiCtx" checked> Use my profile</label>
+        <span class="ai-gap"></span>
+        <button type="button" class="ai-new btn small" id="aiNew" hidden>New chat</button>
+        <button type="submit" class="ai-send" id="aiSend" aria-label="Send" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+      </div>
+      <div class="ai-drop" aria-hidden="true">Drop photos or files to attach</div>
+    </form>
+    <div class="ai-chips" id="aiChips" role="group" aria-label="Ideas to start with">
+      <button type="button" data-p="Here's a photo of my old resume. Turn it into a clean new resume." data-attach="1">Make a resume from a photo</button>
+      <button type="button" data-p="I'm not sure what career fits me. Can you help me figure out where I want to go?">Help me pick a career path</button>
+      <button type="button" data-p="Help me build my first resume. Ask me what you need to know.">Build my first resume</button>
+      <button type="button" data-p="What internships should I look for, and when should I apply?">Find internships</button>
+      <button type="button" data-p="I have an interview coming up. Help me prepare.">Prep for an interview</button>
+    </div>
+    <p class="ai-fine" id="aiFine">Free with a One Stop account. Messages and files you send go to our AI provider (Anthropic) to write the reply, and aren't used to train models. The assistant can make mistakes, so check the details. <a href="#privacy">Privacy</a></p>
   </div>
 
-  <div class="section-title home-goals-t"><h2>Choose a goal</h2></div>
+  <aside class="home-back" id="homeBack" aria-labelledby="homeSideT" hidden>
+    <span class="k" id="homeSideT">Pick up where you left off</span>
+    <ul class="home-facts" id="homeFacts"></ul>
+  </aside>
+
+  <div class="section-title home-goals-t"><h2>Or choose a goal</h2><p>Every tool is free and works without the assistant.</p></div>
   <ul class="home-goals" role="list">
     <li class="goal">
       <span class="goal-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
@@ -177,6 +192,58 @@
     <div class="section-title"><h2 id="homeAllT">Every tool</h2></div>
     <div class="home-all-cols" id="homeAll"></div>
   </nav>
+</section>
+
+<!-- PROFILE (assets/profile.js) -->
+<section class="view" data-view="profile" hidden>
+  <div class="intro">
+    <span class="eyebrow">Your profile</span>
+    <h1>One profile for your resume and LinkedIn.</h1>
+    <p>Import your LinkedIn profile, edit it here, and use it to fill the resume builder, the LinkedIn checker and the assistant. When you change something, we give you the updated text and a button to the right LinkedIn edit screen. Saved in this browser, and synced to your account when you're signed in.</p>
+  </div>
+  <div class="pf">
+    <div class="pf-main">
+      <div class="sheet pf-sync">
+        <h2>Sync with LinkedIn</h2>
+        <div class="pf-imports">
+          <div class="pf-imp drop" id="pfDrop" tabindex="0" role="button" aria-describedby="pfPdfHow">
+            <b>Quick: LinkedIn profile PDF</b>
+            <span id="pfPdfHow">On your LinkedIn profile, click <b>Resources</b> (or <b>More</b>) → <b>Save to PDF</b>, then drop the file here.</span>
+            <span class="pf-imp-note">Gets your headline, About, jobs and education. Only your top 3 skills.</span>
+            <input type="file" id="pfPdf" accept=".pdf,application/pdf" hidden>
+          </div>
+          <div class="pf-imp drop" id="pfZipDrop" tabindex="0" role="button" aria-describedby="pfZipHow">
+            <b>Complete: LinkedIn data export</b>
+            <span id="pfZipHow">Request it at <a href="https://www.linkedin.com/mypreferences/d/download-my-data" target="_blank" rel="noopener">Settings → Data privacy → Get a copy of your data</a>. LinkedIn emails a .zip, usually within minutes. Drop it here.</span>
+            <span class="pf-imp-note">Gets every job with its description, all skills, certifications and projects.</span>
+            <input type="file" id="pfZip" accept=".zip,application/zip" hidden>
+          </div>
+        </div>
+        <p class="pf-status" id="pfStatus" aria-live="polite"></p>
+        <details class="pf-why">
+          <summary>Why isn't this automatic?</summary>
+          <p>LinkedIn doesn't let outside websites read your full profile or change it. Its sign-in for other sites only shares your name, email and photo, and editing profiles isn't open to anyone outside LinkedIn's own apps. So One Stop works with LinkedIn's official exports: your file is read here in your browser. Going the other way, we show exactly what changed with a copy button and a link to the LinkedIn screen where it goes. It takes about a minute per section, and nobody gets your LinkedIn password.</p>
+        </details>
+      </div>
+      <form class="pf-form" id="pfForm" novalidate></form>
+    </div>
+    <aside class="pf-side">
+      <div class="sheet pf-push">
+        <h2>Send changes to LinkedIn</h2>
+        <p class="sub" id="pfPushSub">Edit your profile, then update LinkedIn section by section.</p>
+        <ol class="pf-changes" id="pfChanges"></ol>
+      </div>
+      <div class="sheet pf-use">
+        <h2>Use your profile</h2>
+        <div class="pf-use-btns">
+          <button type="button" class="btn primary" id="pfToBuilder">Fill the resume builder</button>
+          <button type="button" class="btn" id="pfToChecker">Grade it on the LinkedIn checker</button>
+          <button type="button" class="btn" id="pfAsk">Ask the assistant to improve it</button>
+        </div>
+        <div class="pf-danger"><button type="button" class="acct-link" id="pfClear">Clear my profile</button></div>
+      </div>
+    </aside>
+  </div>
 </section>
 
 <!-- GRADE -->
@@ -634,7 +701,8 @@
     <h2>The short version</h2>
     <ul>
       <li>Accounts are optional. If you don't sign in, we don't collect your name, email or resume.</li>
-      <li>Files you drop are read inside your browser. They are never uploaded to us.</li>
+      <li>Files you drop into the tools are read inside your browser. They are never uploaded to us.</li>
+      <li>The assistant on Home is the exception: what you type or attach there is sent, when you press send, to our server and to Anthropic (the maker of Claude) to write the reply.</li>
       <li>Your work is saved in your browser's local storage on your device. Clearing your browser, or the button below, deletes it.</li>
       <li>We don't use advertising or tracking cookies. We count visits with GoatCounter, which doesn't use cookies or collect personal information. <a href="/privacy/">Full privacy page</a>.</li>
     </ul>
@@ -643,6 +711,8 @@
       <li><b>In your browser only:</b> the document you're grading, your job posting, builder content, LinkedIn checker entries, LinkedIn post drafts, tracker rows, attached application packets, interview answers, your chosen field, and checklist ticks.</li>
       <li><b>Mentor review (only if you use it):</b> when you create a review link, the document text, your name and note, and reviewers' names and comments are saved in this site's online database (Google Firebase), so people with the link can see them. Review links are random and not listed anywhere, but anyone who has one can read and comment. Don't create a review for a document that contains anything you wouldn't share with your reviewers.</li>
       <li><b>If you create an account (optional):</b> your name, email address and, if you use Google, your profile picture are stored by Google Firebase Authentication. While you're signed in, the same work the backup button saves (documents, builder content, tracker rows, saved internships and the rest of the list above) is copied to this site's database (Google Firebase) under your account so it syncs across your devices. Only you can read it. To delete it, sign in and contact us, or remove your work from every device and sign out.</li>
+      <li><b>The assistant (only if you use it):</b> it needs an account. Your messages, attached photos and files, and your saved profile if you leave "Use my profile" ticked, go through this site's server (Cloudflare Workers) to Anthropic's Claude API, which writes the reply. Our server doesn't save them. Anthropic doesn't train its models on them and keeps them for a limited time under its <a href="https://www.anthropic.com/legal/commercial-terms" target="_blank" rel="noopener">commercial terms</a>. The conversation is kept in this browser tab until you close it or press New chat.</li>
+      <li><b>Your profile:</b> what you import from LinkedIn is read in your browser and saved with the rest of your work (and synced to your account when signed in). We never see your LinkedIn password and can't read or change your LinkedIn account.</li>
       <li><b>Backups:</b> "Download backup" saves a file to your device. We never see it.</li>
     </ul>
     <h2>Services this page loads</h2>
@@ -1089,6 +1159,7 @@ Sign-off      Sincerely, [Full name] · [phone] · [email]</code>
 <script defer src="assets/app.js"></script>
 <script defer src="assets/job-tools.js"></script>
 <script defer src="assets/search.js"></script>
+<script defer src="assets/assistant.js"></script>
 
 <nav id="seoLinks" aria-label="Free tools" class="wrap" style="padding-bottom:28px;font-size:.84rem;color:var(--muted)">Free tools: <a href="/free-resume-checker/" style="color:inherit">Resume checker</a> · <a href="/ats-resume-checker/" style="color:inherit">ATS check</a> · <a href="/resume-keyword-scanner/" style="color:inherit">Keyword scanner</a> · <a href="/cover-letter-checker/" style="color:inherit">Cover letter checker</a> · <a href="/linkedin-profile-checker/" style="color:inherit">LinkedIn checker</a> · <a href="/free-resume-builder/" style="color:inherit">Resume builder</a> · <a href="/job-search/" style="color:inherit">Job search</a> · <a href="/resume-maker/" style="color:inherit">Resume maker</a> · <a href="/free-alternative-to-paid-resume-checkers/" style="color:inherit">Free alternative</a> · <a href="/interview-prep/" style="color:inherit">Interview prep</a> · <a href="/linkedin-post-helper/" style="color:inherit">LinkedIn post helper</a> · <a href="/internship-recruiting-calendar/" style="color:inherit">Recruiting calendar</a> · <a href="/job-application-kit/" style="color:inherit">Application kit</a> · <a href="/follow-up-email-templates/" style="color:inherit">Follow-up templates</a> · <a href="/rejection-email-feedback/" style="color:inherit">Rejection feedback</a> · <a href="/resume-examples-before-and-after/" style="color:inherit">Before &amp; after examples</a> · <a href="/company-interview-questions/" style="color:inherit">Company interview questions</a> · <a href="/about/" style="color:inherit">About</a> · <a href="/privacy/" style="color:inherit">Privacy</a></nav>
 </body>

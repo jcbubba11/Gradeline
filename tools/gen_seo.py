@@ -429,12 +429,13 @@ write("company-interview-questions", shell(
     f"{SITE}/company-interview-questions/", "Company interview questions", hub_body, hub_faq, "/#interview", "Open interview prep"))
 
 # ---- Privacy and About ----
-PRIVACY_DATE = "November 4, 2026"
+PRIVACY_DATE = "November 27, 2026"
 privacy_body = f"""<h1>Privacy</h1>
 <p class="lead">Your resume stays on your device. One Stop reads your files and grades them inside your browser, so we never receive them. Accounts are optional. Effective {PRIVACY_DATE}.</p>
 <h2>The short version</h2>
 <div class="night"><ul>
-<li>Files you drop in are read by your browser. They are never uploaded to us.</li>
+<li>Files you drop into the tools are read by your browser. They are never uploaded to us.</li>
+<li>The assistant on Home is the exception: what you type or attach there is sent to Anthropic's Claude to write the reply, only when you press send.</li>
 <li>Your work is saved in your browser's storage on your device, not on a server, unless you sign in.</li>
 <li>Accounts are optional. If you don't sign in, we don't collect your name, email or resume.</li>
 <li>No advertising, no tracking cookies, and we don't sell data.</li>
@@ -447,6 +448,8 @@ privacy_body = f"""<h1>Privacy</h1>
 <p><b>Job alerts (only if you turn them on).</b> Alerts need an account with a confirmed email. We store your email address, your saved searches and when we last emailed you. About once a day, a scheduled job compares new listings with your searches and sends one digest email through Gmail. Turn alerts off on Find jobs to stop them.</p>
 <p><b>Job tracker reminders.</b> Follow-up reminders are worked out in your browser. If you download a calendar file, it goes to your device and we never see it.</p>
 <p><b>Mentor review (only if you use it).</b> When you create a review link, the document text, your name and note, and reviewers' names and comments are saved in the site's database so people with the link can see them. Links are random and not listed anywhere, but anyone who has one can read and comment, so think about removing your phone number and address first.</p>
+<p><b>The assistant (only if you use it).</b> It needs an account. Your messages, attached photos and files, and your saved profile if you leave "Use my profile" ticked, go through this site's server (Cloudflare Workers) to Anthropic's Claude API, which writes the reply. Our server doesn't store them. Anthropic doesn't train its models on them and keeps them for a limited time under its <a href="https://www.anthropic.com/legal/commercial-terms">commercial terms</a>. The conversation stays in your browser tab until you close it or start a new chat.</p>
+<p><b>Your profile and LinkedIn.</b> LinkedIn files you import are read in your browser and saved with the rest of your work. We never see your LinkedIn password and can't read or change your LinkedIn account.</p>
 <p><b>Backups.</b> "Download backup" saves a file to your device. We never see it.</p>
 </div>
 <h2>Usage stats</h2>
@@ -459,7 +462,7 @@ privacy_body = f"""<h1>Privacy</h1>
 <h2>Job listings</h2>
 <div class="card"><p>Find jobs shows openings collected from employers' public career pages several times a day. Searching and filtering happen in your browser. When you apply, you go to the employer's own site, and their privacy policy applies there.</p></div>
 <h2>Services the site loads</h2>
-<div class="card"><p>Pages load fonts from Google Fonts and code libraries (jsPDF and pdf.js) from cdnjs, run by Cloudflare. Signing in, job alerts and Mentor review load Google's Firebase library from jsDelivr. The site is hosted on GitHub Pages. Like any website request, these services receive your IP address and browser details. They don't receive your resume. See the privacy policies of <a href="https://policies.google.com/privacy">Google</a>, <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a> and <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a>.</p></div>
+<div class="card"><p>Pages load fonts from Google Fonts and code libraries (jsPDF and pdf.js) from cdnjs, run by Cloudflare. Signing in, job alerts and Mentor review load Google's Firebase library from jsDelivr. The site is hosted on GitHub Pages. The assistant runs on Cloudflare Workers and Anthropic. Like any website request, these services receive your IP address and browser details. Apart from the assistant, they don't receive your resume. See the privacy policies of <a href="https://policies.google.com/privacy">Google</a>, <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a>, <a href="https://www.anthropic.com/legal/privacy">Anthropic</a> and <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a>.</p></div>
 <h2>Children</h2>
 <div class="card"><p>This site isn't directed at children under 13, and we don't knowingly collect information from them.</p></div>
 <h2>Deleting your data</h2>

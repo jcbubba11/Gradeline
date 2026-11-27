@@ -8,7 +8,8 @@ if (!dlg) return;
 
 // Extra words people might type for each page, plus a one-line description. Titles come from the header menu.
 const TOOLS = {
-  home: ["Home", "Pick a goal and we'll point you to the right tool", "goals main menu"],
+  home: ["Home", "Ask the assistant, or pick a goal", "goals main menu assistant ai chat ask question help career advice photo"],
+  profile: [null, "Your profile, with LinkedIn import and copy-ready updates", "profile my profile linkedin sync import export update account about headline"],
   grade: [null, "Score your resume or cover letter out of 100", "resume checker grader grade score review rate ats cover letter check feedback upload pdf red pen"],
   build: [null, "Make a resume from scratch and download a PDF", "resume builder maker create write new make pdf download"],
   internships: [null, "Search internships and entry-level jobs by major", "jobs internships internship openings search apply entry level new grad careers hiring positions co-op"],
@@ -221,6 +222,10 @@ document.addEventListener("keydown", e => {
   else if (e.key === "/" && !typing && !e.metaKey && !e.ctrlKey && !e.altKey && !document.querySelector("dialog[open]")) { e.preventDefault(); openDlg(); }
 });
 btn.title = /Mac|iPhone|iPad/.test(navigator.platform) ? "Search (/ or ⌘K)" : "Search (/ or Ctrl+K)";
+
+// The home page assistant uses these when it routes a question without AI.
+window.sxFind = search;
+window.sxGo = go;
 
 /* Home page search (inline dropdown) */
 const hq = $("#homeQ"), hl = $("#homeSxList");

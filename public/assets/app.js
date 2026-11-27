@@ -542,7 +542,7 @@ function renderLetterDoc(text) {
 }
 
 /* ---------- Routing ---------- */
-const VIEWS = ["home", "grade", "build", "internships", "linkedin", "linkedin-post", "how-we-grade", "resumes", "cover-letters", "examples", "gallery", "tips", "tracker", "resources", "match", "coach", "tailor", "interview", "review", "privacy", "terms", "kit", "follow-up", "rejection"];
+const VIEWS = ["home", "grade", "build", "internships", "linkedin", "linkedin-post", "how-we-grade", "resumes", "cover-letters", "examples", "gallery", "tips", "tracker", "resources", "match", "coach", "tailor", "interview", "review", "privacy", "terms", "kit", "follow-up", "rejection", "profile"];
 const BASE_TITLE = document.title;
 function route() {
   const ALIAS = { robot: "tailor", human: "grade" };
@@ -2702,7 +2702,8 @@ const LAZY = {
   "linkedin-post": ["assets/linkedin-post.js"],
   gallery: ["assets/gallery.js"],
   kit: ["assets/apply-tools.js"], "follow-up": ["assets/apply-tools.js"], rejection: ["assets/apply-tools.js"],
-  interview: ["interview-bank.js", "interview-prep.js"]
+  interview: ["interview-bank.js", "interview-prep.js"],
+  profile: ["assets/profile.js"]
 };
 const lazyDone = {}, lazyOk = new Set();
 function lazyLoad(files) {
@@ -2741,8 +2742,9 @@ function homeInit() {
   if (kit && kit.company && !/\(example\)/i.test(kit.company)) items.push(["kit", `Application kit for ${kit.company}`, "Pick up where you stopped"]);
   const answered = Object.values(star || {}).filter(a => a && (a.s || a.t || a.a || a.r)).length;
   if (answered) items.push(["interview", `${answered} interview answer${answered === 1 ? "" : "s"} written`, "Keep practicing"]);
+  if (store.get("rp-profile", null)) items.push(["profile", "Your profile", "Edit it or send changes to LinkedIn"]);
+  $("#homeBack").hidden = !items.length;
   if (!items.length) return;
-  $("#homeSideT").textContent = "Pick up where you left off";
   $("#homeFacts").innerHTML = items.slice(0, 4).map(([h, t, d]) => `<li><a href="#${h}"><b>${esc(t)}</b><span>${esc(d)}</span></a></li>`).join("");
 }
 
@@ -2758,6 +2760,7 @@ function onView(v, sub) {
   else if (v === "interview") { renderInterview(); lazyView(v, () => {}); }
   else if (v === "review") showReview(sub);
   else if (v === "kit") lazyView(v, () => kitInit());
+  else if (v === "profile") lazyView(v, () => pfInit());
   else if (v === "follow-up") lazyView(v, () => fuInit());
   else if (v === "rejection") lazyView(v, () => rjInit());
 }

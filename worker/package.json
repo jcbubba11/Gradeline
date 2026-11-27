@@ -1,0 +1,17 @@
+{
+  "name": "onestop-ai",
+  "private": true,
+  "description": "Small server for the One Stop assistant. Keeps the Claude API key off the website.",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.8.0"
+  },
+  "devDependencies": {
+    "wrangler": "4.160.0"
+  }
+}
