@@ -92,15 +92,13 @@
 <section class="view home" data-view="home" aria-labelledby="homeTitle">
   <div class="ai" id="ai" data-state="idle">
     <div class="ai-hero" id="aiHero">
-      <span class="ai-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="34" height="34"><path d="M16 3v26M3 16h26M6.8 6.8l18.4 18.4M25.2 6.8 6.8 25.2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span>
-      <h1 id="homeTitle"><span id="aiHello">What can I help you with?</span></h1>
-      <p class="ai-sub">Ask about resumes, jobs or where you want to go. Add a photo of an old resume and I'll turn it into a new one.</p>
+      <h1 id="homeTitle"><span class="ai-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="34" height="34"><path d="M16 3v26M3 16h26M6.8 6.8l18.4 18.4M25.2 6.8 6.8 25.2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span id="aiHello">Good evening</span></h1>
     </div>
     <div class="ai-log" id="aiLog" role="log" aria-live="polite" aria-label="Conversation" hidden></div>
     <form class="ai-box" id="aiForm" autocomplete="off">
       <ul class="ai-files" id="aiFiles" aria-label="Attached files" hidden></ul>
       <label class="sr-only" for="aiQ">Message the One Stop assistant</label>
-      <textarea id="aiQ" rows="2" placeholder="How can I help you today?" enterkeyhint="send"></textarea>
+      <textarea id="aiQ" rows="2" placeholder="Ask about resumes, jobs or careers, or add a photo of your resume" enterkeyhint="send"></textarea>
       <div class="ai-bar">
         <label class="ai-add" for="aiFile" title="Add photos or files"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="sr-only">Add photos or files</span></label>
         <input type="file" id="aiFile" multiple accept="image/*,.pdf,.docx,.txt,.md" hidden>
@@ -112,12 +110,13 @@
       <div class="ai-drop" aria-hidden="true">Drop photos or files to attach</div>
     </form>
     <div class="ai-chips" id="aiChips" role="group" aria-label="Ideas to start with">
-      <button type="button" data-p="Here's a photo of my old resume. Turn it into a clean new resume." data-attach="1">Make a resume from a photo</button>
-      <button type="button" data-p="I'm not sure what career fits me. Can you help me figure out where I want to go?">Help me pick a career path</button>
+      <button type="button" data-p="Here's a photo of my old resume. Turn it into a clean new resume." data-attach="1">Resume from a photo</button>
+      <button type="button" data-p="I'm not sure what career fits me. Can you help me figure out where I want to go?">Pick a career path</button>
       <button type="button" data-p="Help me build my first resume. Ask me what you need to know.">Build my first resume</button>
       <button type="button" data-p="What internships should I look for, and when should I apply?">Find internships</button>
-      <button type="button" data-p="I have an interview coming up. Help me prepare.">Prep for an interview</button>
+      <button type="button" data-p="I have an interview coming up. Help me prepare.">Interview prep</button>
     </div>
+    <a class="ai-more" href="#homeGoalsT" id="aiMore">Browse all free tools <span aria-hidden="true">↓</span></a>
     <p class="ai-fine" id="aiFine">Free with a One Stop account. Messages and files you send go to our AI provider (Anthropic) to write the reply, and aren't used to train models. The assistant can make mistakes, so check the details. <a href="#privacy">Privacy</a></p>
   </div>
 
@@ -126,7 +125,7 @@
     <ul class="home-facts" id="homeFacts"></ul>
   </aside>
 
-  <div class="section-title home-goals-t"><h2>Or choose a goal</h2><p>Every tool is free and works without the assistant.</p></div>
+  <div class="section-title home-goals-t"><h2 id="homeGoalsT" tabindex="-1">Or choose a goal</h2><p>Every tool is free and works without the assistant.</p></div>
   <ul class="home-goals" role="list">
     <li class="goal">
       <span class="goal-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
